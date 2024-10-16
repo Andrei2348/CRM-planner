@@ -1,5 +1,7 @@
 <template>
-	Login page
+	<LoginLayout>
+		Login page
+	</LoginLayout>
 </template>
 
 <script lang="ts" src="./LoginComponent.ts"></script>

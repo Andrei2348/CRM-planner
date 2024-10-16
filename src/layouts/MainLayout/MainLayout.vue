@@ -1,4 +1,5 @@
 <template>
+	<AsideComponent />
 	Main
 	<slot />
 </template>

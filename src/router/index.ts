@@ -7,37 +7,12 @@ const router = createRouter({
     {
       path: "/",
       name: RouteNamesEnum.home,
-      component: () => import("@/views/One.vue"),
+      component: () => import("@/views/MainComponent/MainComponent.vue"),
     },
     {
-      path: "/one",
+      path: "/login",
       name: RouteNamesEnum.one,
-      component: () => import("@/views/One.vue"),
-    },
-    {
-      path: "/two",
-      name: RouteNamesEnum.two,
-      component: () => import("@/views/Two.vue"),
-    },
-    {
-      path: "/three",
-      name: RouteNamesEnum.three,
-      component: () => import("@/views/Three.vue"),
-    },
-    {
-      path: "/four",
-      name: RouteNamesEnum.four,
-      component: () => import("@/views/Four.vue"),
-    },
-    {
-      path: "/five",
-      name: RouteNamesEnum.five,
-      component: () => import("@/views/Five.vue"),
-    },
-    {
-      path: "/six",
-      name: RouteNamesEnum.six,
-      component: () => import("@/views/Six.vue"),
+      component: () => import("@/views/LoginComponent/LoginComponent.vue"),
     },
   ],
 });
