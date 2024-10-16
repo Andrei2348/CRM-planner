@@ -3,15 +3,16 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
+  base: '/',
   plugins: [vue()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: { additionalData: `@import "./src/styles/main";` },
-  //   },
-  // },
+  css: {
+    preprocessorOptions: {
+      scss: { additionalData: `@import "@/styles/main";`, api: 'modern-compiler' },
+    },
+  },
 })
