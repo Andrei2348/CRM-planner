@@ -6,11 +6,7 @@ export const MENU_DATA: ImenuItem[] = [
 		name: 'Home',
 		url: '/'
 	},
-	{
-		icon:'home',
-		name: 'Home',
-		url: '/'
-	},
+	
 	{
 		icon:'payments',
 		name: 'Payments',
@@ -20,11 +16,6 @@ export const MENU_DATA: ImenuItem[] = [
 		icon:'orders',
 		name: 'Orders',
 		url: '/orders'
-	},
-	{
-		icon:'orders',
-		name: 'Customers',
-		url: '/customers'
 	},
 	{
 		icon:'feedback',

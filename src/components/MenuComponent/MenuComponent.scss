@@ -1,6 +1,25 @@
-.menu__wrapper{
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+.menu{
+	&__wrapper{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: 20px;
+	}
+	&__router-link{
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		gap: 12px;
+	}
+	&__router-text{
+		color: white;
+		font-size: 16px;
+		font-weight: 400;
+	}
+}
+
+::v-deep(.menu__svg-image svg) {
+  width: 24px;
+  height: 24px;
 }

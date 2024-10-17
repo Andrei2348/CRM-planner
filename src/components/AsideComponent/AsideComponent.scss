@@ -11,3 +11,14 @@
 		cursor: pointer;
 	}
 }
+
+::v-deep(.svg_image svg) {
+  width: 24px;
+  height: 24px;
+}
+::v-deep(.svg_image svg path) {
+  stroke: $gray;
+}
+::v-deep(.svg_image:hover svg path) {
+  stroke: $blue;
+}
