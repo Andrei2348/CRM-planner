@@ -1,6 +1,5 @@
 <template>
 	<aside class='aside'>
-		<h3>Aside Component</h3>
 		<button class='aside__logout-button'>
 		<SvgIcon icon="log-out" />
 		</button>

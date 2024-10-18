@@ -1,6 +1,6 @@
 <template>
 	<LoginLayout>
-		Login page
+		<LoginForm />
 	</LoginLayout>
 </template>
 
