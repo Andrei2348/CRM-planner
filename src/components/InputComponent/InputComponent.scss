@@ -7,23 +7,15 @@
 		gap: 8px;
 	}
 	&__area{
-		font-size: 18px;
-		line-height: 1;
-		font-weight: 300;
-		padding: 12px 6px;
-		outline: none;
-		border-radius: 3px;
-		border: 1px solid $gray2;
-		color: $gray;
-		background-color: $gray6;
+		@include input;
 	}
 	&__label{
 		font-size: 18px;
 		line-height: 1;
-		font-weight: 400;
+		font-weight: 300;
+		color: $white
 	}
 }
-
 .error {  
 	border: 1px solid red;  
 	&-message {  

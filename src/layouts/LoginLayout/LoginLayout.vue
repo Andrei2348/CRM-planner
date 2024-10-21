@@ -1,5 +1,7 @@
 <template>
-	<slot />
+	<div class='login__layout'>
+		<slot />
+	</div>
 </template>
 
 <script lang="ts" src="./LoginLayout.ts"></script>

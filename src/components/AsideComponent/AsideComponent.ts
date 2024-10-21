@@ -7,8 +7,13 @@ export default defineComponent({
   components: {
     MenuComponent,
   },
-  setup() {
+  emits: ['logoutUserHandler',],
+  setup(_, { emit }) {
+    const logoutHandler = () => {
+      emit('logoutUserHandler')
+    }
     return {
+      logoutHandler
     }
   },
 })

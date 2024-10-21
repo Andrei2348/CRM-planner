@@ -1,15 +1,17 @@
 @mixin input {
-  height: 52px;
-  @include textRegular(14);
-  padding: 14px 16px;
-  box-sizing: border-box;
-  background: $white;
-  border: 1.4px solid $gray3;
-  border-radius: 14px;
-  color: $black;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 300;
+  padding: 12px 6px;
   outline: none;
+  border: 1px solid $gray;
+  color: $white;
+  border-radius: 4px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
   &:focus {
-    outline: 3px solid $gray4;
+    outline: 2px solid $gray4;
     border-color: $gray;
   }
   &:hover {
@@ -18,6 +20,12 @@
   &:disabled {
     background: $gray5;
     border-color: $gray2;
+  }
+  &::placeholder {
+    font-size: 18px;
+    line-height: 1;
+    color: $gray;
+    font-weight: 300;
   }
   &.error {
     outline: 3px solid $bgRed;
@@ -31,21 +39,21 @@
   @include centering;
   transition: background, opacity 0.2s linear;
   height: $height;
-  padding: 17px 30px 18px 28px;
+  padding: 12px 30px;
   gap: 10px;
-  border-radius: 14px;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
 @mixin primaryButton($height: 52px) {
   @include button($height);
-  background: $green;
+  background: $violet;
   color: $white;
   &:hover {
-    background: $darkGreen;
+    background: $darkViolet;
   }
   &:disabled {
-    background: $lightGreen;
+    background: $lightBlue;
     color: $gray2;
     cursor: unset;
   }

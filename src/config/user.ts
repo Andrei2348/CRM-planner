@@ -12,3 +12,5 @@ export const EMPTY_LOGIN_FORM: UserLoginItem = {
 	"email": "",
 	"password": ""
 }
+
+export const TOKEN_KEY: string = 'crmToken'

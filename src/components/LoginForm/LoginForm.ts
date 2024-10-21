@@ -1,19 +1,31 @@
-import { defineComponent, reactive } from 'vue'  
+import { defineComponent, watchEffect, reactive, ref } from 'vue'  
 import { UserLoginItem } from '@/types/user'  
-import { EMPTY_LOGIN_FORM } from '@/config/user'  
+import { EMPTY_LOGIN_FORM } from '@/config/user' 
+import { useUserStore } from '@/store/user' 
 
 export default defineComponent({  
   name: 'LoginForm',  
   
-  setup() {  
-    const userData = reactive<UserLoginItem>({ ...EMPTY_LOGIN_FORM })  
+  setup() {
+    const userStore = useUserStore()
+    const userData = reactive<UserLoginItem>({ ...EMPTY_LOGIN_FORM })
+    const disableButtonFlag = ref(true)
 
     const getInputData = (key: keyof UserLoginItem, value: string) => {  
-      userData[key] = value  
-    }  
-    
+      userData[key] = value
+    }
+
+    const loginUserHandler = async() => {
+      await userStore.userLoginRequest('auth', {...userData})
+    }
+
+    watchEffect(() => {
+      disableButtonFlag.value = Object.values(userData).some(field => field === '');
+    })
     return {  
-      getInputData  
+      getInputData,
+      disableButtonFlag,
+      loginUserHandler
     }  
   },  
 })

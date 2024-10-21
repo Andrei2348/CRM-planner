@@ -1,6 +1,6 @@
 <template>
 	<aside class='aside'>
-		<button class='aside__logout-button'>
+		<button class='aside__logout-button' @click='logoutHandler'>
 		<SvgIcon icon="log-out" />
 		</button>
 		<MenuComponent />

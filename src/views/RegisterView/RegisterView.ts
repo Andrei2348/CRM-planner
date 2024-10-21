@@ -3,7 +3,7 @@ import LoginLayout from "@/layouts/LoginLayout/LoginLayout.vue";
 import LoginForm from '@/components/LoginForm/LoginForm.vue'
 
 export default defineComponent({
-  name: 'LoginComponent',
+  name: 'RegisterView',
 	components: {
 		LoginLayout,
     LoginForm

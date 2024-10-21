@@ -1,6 +1,5 @@
 <template>
-	<AsideComponent />
-	
+	<AsideComponent @logoutUserHandler='logoutUserHandler'/>
 	<slot />
 </template>
 

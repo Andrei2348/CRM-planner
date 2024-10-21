@@ -6,14 +6,14 @@
 		:type="type"   
 		:id="name"  
 		:placeholder="placeholder"  
-		:v-model="inputValue"  
+		v-model="inputValue"  
 		:required="required"  
-		:disabled="disabled"  
+		:disabled="disabled"    
 		:readonly="readonly"  
 		:maxlength="maxlength"  
 		:autocomplete="autocomplete"  
 		:class="{ error: error }"  
-	/>  
+	/>
 	<span v-if="error" class="error-message">{{ error }}</span>   
 </div>
 </template>  

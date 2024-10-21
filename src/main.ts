@@ -1,17 +1,27 @@
-import { createApp } from 'vue'
-import router from './router'
-import App from './App.vue'
-import { createPinia } from 'pinia'
-import '@/styles/global.scss'
-import globalComponents from '@/plugins/globalComponents'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import { createPinia } from 'pinia';
+import '@/styles/global.scss';
+// import { createMetaManager, defaultConfig } from 'vue-meta';
+import globalComponents from '@/plugins/globalComponents';
+import createMetaManager from 'vue-meta';
+import defaultConfig from 'vue-meta'
 
-const app = createApp(App)
-const pinia = createPinia()
+const app = createApp(App);
 
-globalComponents(app)
-async function initApp() {
-  app.use(pinia)
-  app.use(router).mount('#app')
-}
+const pinia = createPinia();
+globalComponents(app);
 
-window.addEventListener('load', initApp)
+const metaManager = createMetaManager(false, {
+  ...defaultConfig,
+  meta: { tag: 'meta', nameless: true },
+});
+
+app.use(metaManager);
+app.use(pinia);
+app.use(router);
+
+router.isReady().then(() => {
+  app.mount('#app');
+});
