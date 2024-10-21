@@ -5,9 +5,9 @@
       <LogoComponent class='notfound__logo' />
       <h1 class='notfound__title'>Страница не найдена</h1>
       <p class='notfound__text'>К сожалению, запрашиваемая вами страница не найдена, она была перемещена или удалена, или ее никогда и не было.</p>
-      <router-link to='/'>
+      
         <button class='notfound__button'><SvgIcon icon="web" />На главную</button>
-      </router-link>
+      
     </div>
     <div class="notfound__copyright">
       <SvgIcon icon="catGray" />

@@ -9,5 +9,3 @@
 
 <script lang="ts" src="./AsideComponent.ts"></script>
 <style lang="scss" scoped src="./AsideComponent.scss"></style>
-
-// iconClass='svg_image'
