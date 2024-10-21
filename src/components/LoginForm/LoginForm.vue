@@ -1,6 +1,9 @@
 <template>
-	<InputComponent label='Имя пользователя' name='username'/>
-	<InputComponent label='Пароль' name='password'/>
+	<aside class='login__aside'>
+		<InputComponent label='Ваша почта' name='email' @update:modelValue='getInputData'/>
+		<InputComponent label='Пароль' name='password'/>
+		<button>Войти</button>
+	</aside>
 </template>
 
 <script lang="ts" src="./LoginForm.ts"></script>

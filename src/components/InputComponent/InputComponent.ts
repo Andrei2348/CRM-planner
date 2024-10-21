@@ -51,8 +51,8 @@ export default defineComponent({
 	setup(props, { emit }) {  
 		const inputValue = ref<string>(props.modelValue) 
  
-		watch(inputValue, (newValue) => {  
-			emit('update:modelValue', newValue)
+		watch(inputValue, (newValue ) => {  
+			emit('update:modelValue', props.name, newValue)
 		})  
  
 		watch(() => props.modelValue, (newValue) => {  
