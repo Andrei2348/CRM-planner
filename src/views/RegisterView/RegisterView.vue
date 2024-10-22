@@ -1,6 +1,6 @@
 <template>
 	<LoginLayout>
-		<LoginForm />
+		<RegisterForm />
 	</LoginLayout>
 </template>
 

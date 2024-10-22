@@ -1,8 +1,15 @@
 export interface UserItem {
-	id: number | null,
 	username: string,
 	email: string,
-	password: string
+	password: string,
+	repassword?: string
+}
+
+export interface UserItemResponse {
+	id: number,
+	username: string,
+	email: string,
+	password: string,
 }
 
 export interface UserLoginItem {
@@ -10,3 +17,7 @@ export interface UserLoginItem {
 	password: string
 }
 
+export interface UserApiResponse {
+	data: UserItemResponse
+	token: string
+}

@@ -1,6 +1,6 @@
 <template>  
 	<div class='menu__wrapper'>  
-		<router-link   
+		<Router-link   
 			v-for='item in MENU_DATA'   
 			:key="item.name"   
 			:to="item.url"
@@ -9,7 +9,7 @@
 			<SvgIcon :icon='item.icon' iconClass='menu__svg-image'/>
 			<p class='menu__router-text'>{{ item.name }}</p>  
 			  
-		</router-link>  
+		</Router-link>  
 	</div>  
 </template>  
 

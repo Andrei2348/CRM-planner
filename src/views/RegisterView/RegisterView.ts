@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue'
 import LoginLayout from "@/layouts/LoginLayout/LoginLayout.vue";
-import LoginForm from '@/components/LoginForm/LoginForm.vue'
+import RegisterForm from '@/components/RegisterForm/RegisterForm.vue'
 
 export default defineComponent({
   name: 'RegisterView',
 	components: {
 		LoginLayout,
-    LoginForm
+    RegisterForm
 	},
   setup() {
     return {}

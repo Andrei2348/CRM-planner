@@ -12,11 +12,12 @@
 		:readonly="readonly"  
 		:maxlength="maxlength"  
 		:autocomplete="autocomplete"  
-		:class="{ error: error }"  
+		:class="{ error: error }"
+		@focus="$emit('focus')"
 	/>
-	<span v-if="error" class="error-message">{{ error }}</span>   
+	<span v-if="error" class="input__error-message">{{ error }}</span>   
 </div>
-</template>  
+</template>
 
 <script lang="ts" src="./InputComponent.ts"></script>  
 <style lang="scss" scoped src="./InputComponent.scss"></style>
