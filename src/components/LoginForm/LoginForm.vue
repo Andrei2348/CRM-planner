@@ -4,7 +4,7 @@
 		<InputComponent 
 			label='Ваша почта' 
 			name='email' 
-			type='text'
+			type='email'
 			@update:modelValue='getInputData'
 			placeholder='Введите ваш email'
 		/>

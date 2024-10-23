@@ -35,19 +35,24 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
-  const userStore = useUserStore()
-  const token = getStorageItemWithExpiry()
+router.beforeEach(async (to, from, next) => {  
+  const userStore = useUserStore()  
+  const token = getStorageItemWithExpiry()  
 
-  if (!userStore.isLoginStatus && 
-      !token && 
-      to.name !== RouteNamesEnum.login && 
-      to.name !== RouteNamesEnum.register
-    ) {
-    next({ name: RouteNamesEnum.login })
-  } else {
-    next()
-  }
-})
+  // Проверяем, если пользователь не авторизован и нет токена  
+  if (!userStore.isLoginStatus && !token) {  
+    if (to.name !== RouteNamesEnum.login && to.name !== RouteNamesEnum.register) {  
+      next({ name: RouteNamesEnum.login })  
+    } else {  
+      next()  
+    }  
+  } else if (token && !userStore.isLoginStatus) {  
+    // Если токен существует, но пользователь не авторизован
+    await userStore.preLoginUserStatus()  
+    next()  
+  } else {  
+    next()  
+  }  
+})  
 
 export default router

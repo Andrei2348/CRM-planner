@@ -15,6 +15,7 @@ export default defineComponent({
 
     const logoutUserHandler = () => {
       userStore.setIsLoginStatus(false)
+      userStore.setUserInfo(null)
       clearStorageItem()
       router.push({ name: 'login' })
     }

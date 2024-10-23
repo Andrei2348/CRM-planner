@@ -13,28 +13,28 @@ export default defineComponent({
     const userStore = useUserStore()
     const userData = reactive<UserItem>({ ...EMPTY_USER })
      
-      const errors = reactive<UserItem>({  
+    const errors = reactive<UserItem>({  
       username: '',  
       email: '',  
       password: '',  
       repassword: '',  
-      })
+    })
 
-      const touched = reactive({
-        username: false,
-        email: false,
-        password: false,
-        repassword: false,
-      })
+    const touched = reactive({
+      username: false,
+      email: false,
+      password: false,
+      repassword: false,
+    })
 
-      const validateForm = () => {  
-        errors.username = validateUsername(userData.username) ? '' : 'Имя должно быть от 2 до 15 символов и содержать только буквы, цифры, _ или -'  
-        errors.email = validateEmail(userData.email) ? '' : 'Некорректный email'
-        errors.password = validatePassword(userData.password)
-        errors.repassword = userData.repassword && doPasswordsMatch(userData.password || '', userData.repassword) ? '' : 'Пароли не совпадают'
-        }
+    const validateForm = () => {  
+      errors.username = validateUsername(userData.username) 
+      errors.email = validateEmail(userData.email)
+      errors.password = validatePassword(userData.password)
+      errors.repassword = doPasswordsMatch(userData.password, userData.repassword || '')
+    }
          
-        const disableButtonFlag = computed(() => {
+    const disableButtonFlag = computed(() => {
       return (
         !errors.username &&
         !errors.email &&

@@ -12,7 +12,6 @@ export default defineComponent({
     const dataStore = useDataStore()
     onBeforeMount(() => {
       dataStore.dealsListRequest()
-      console.log('st')
     })
     return {}
   },
