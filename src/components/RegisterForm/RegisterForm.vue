@@ -13,7 +13,7 @@
 		<InputComponent 
 			label='Введите ваш email' 
 			name='email' 
-			type='text'
+			type='email'
 			:error='displayErrors.email'
 			@update:modelValue='getInputData'
 			placeholder='Введите ваш email'

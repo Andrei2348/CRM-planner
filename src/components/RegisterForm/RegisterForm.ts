@@ -28,7 +28,7 @@ export default defineComponent({
       })
 
       const validateForm = () => {  
-        errors.username = validateUsername(userData.username) ? '' : 'Имя должно быть от 3 до 15 символов и содержать только буквы, цифры, _ или -'  
+        errors.username = validateUsername(userData.username) ? '' : 'Имя должно быть от 2 до 15 символов и содержать только буквы, цифры, _ или -'  
         errors.email = validateEmail(userData.email) ? '' : 'Некорректный email'
         errors.password = validatePassword(userData.password)
         errors.repassword = userData.repassword && doPasswordsMatch(userData.password || '', userData.repassword) ? '' : 'Пароли не совпадают'

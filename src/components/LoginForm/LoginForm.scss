@@ -1,6 +1,6 @@
 .login{
 	&__wrapper{
-		width: 330px;
+		width: 470px;
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
@@ -10,7 +10,7 @@
 	}
 	&__button{
 		padding: 12px 54px;
-		display: block;
+		display: inline-block;
 		@include primaryButton;
 	}
 	&__title{

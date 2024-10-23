@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from 'vue' 
+import { defineComponent, computed, ref, watch } from 'vue' 
 
 export default defineComponent({  
 	name: 'InputComponent',  
@@ -49,7 +49,14 @@ export default defineComponent({
 		}  
 	},  
 	setup(props, { emit }) {  
-		const inputValue = ref<string>(props.modelValue) 
+		const inputValue = ref<string>(props.modelValue)
+		const isPasswordVisible = ref(false)
+
+		const togglePasswordVisibility = () => {  
+			isPasswordVisible.value = !isPasswordVisible.value
+		}
+
+		const isPasswordField = computed(() => props.type === 'password') 
 
 		watch(inputValue, (newValue ) => {  
 			emit('update:modelValue', props.name, newValue)
@@ -60,7 +67,10 @@ export default defineComponent({
 		})
 
 		return {  
-			inputValue,  
+			inputValue,
+			isPasswordVisible,
+			togglePasswordVisibility,
+			isPasswordField
 		}
 	}  
 })
