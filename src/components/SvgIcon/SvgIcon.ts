@@ -1,4 +1,4 @@
-import { defineComponent, onBeforeMount, ref, watch } from 'vue'
+import { defineComponent, onBeforeMount, ref } from 'vue'
 
 export default defineComponent({  
   name: 'SvgIcon',

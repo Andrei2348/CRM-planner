@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue'
-import MenuComponent from '@/components/MenuComponent/MenuComponent.vue'
 
 import { useUserStore } from '@/store/user'
 

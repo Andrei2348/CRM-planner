@@ -8,6 +8,9 @@
 		border: 1px solid $gray;
 		border-radius: 4px;
 		background-color: $violetBg;
+		-webkit-box-shadow: $shadow;
+		-moz-box-shadow: $shadow;
+		box-shadow: $shadow;
 	}
 	&__button{
 		padding: 12px 54px;

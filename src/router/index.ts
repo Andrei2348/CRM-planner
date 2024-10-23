@@ -35,7 +35,7 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach(async (to, from, next) => {  
+router.beforeEach(async (to, _, next) => {  
   const userStore = useUserStore()  
   const token = getStorageItemWithExpiry()  
 

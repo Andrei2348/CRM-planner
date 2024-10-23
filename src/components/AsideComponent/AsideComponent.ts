@@ -12,7 +12,7 @@ export default defineComponent({
       emit('logoutUserHandler')
     }
     return {
-      logoutHandler
+      logoutHandler,
     }
   },
 })
