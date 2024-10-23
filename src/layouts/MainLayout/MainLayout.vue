@@ -1,6 +1,9 @@
 <template>
-	<AsideComponent @logoutUserHandler='logoutUserHandler'/>
-	<slot />
+	<main class="main">
+		<AsideComponent @logoutUserHandler='logoutUserHandler'/>
+		<NavbarComponent />
+		<slot />
+	</main>
 </template>
 
 <script lang="ts" src="./MainLayout.ts"></script>

@@ -5,12 +5,11 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: 20px;
+		padding: 20px;
 	}
 	&__router-link{
-		display: flex;
-		align-items: center;
-		flex-wrap: nowrap;
-		gap: 12px;
+		@include secondaryButton;
+		width: 100%;
 	}
 	&__router-text{
 		color: white;

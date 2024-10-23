@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import AsideComponent from '@/components/AsideComponent/AsideComponent.vue'
+import NavbarComponent from '@/components/NavbarComponent/NavbarComponent.vue'
 import { clearStorageItem } from '@/helpers/localStorageHelpers'
 import { useUserStore } from '@/store/user'
 import { useRouter } from 'vue-router'
@@ -7,7 +8,8 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'MainLayout',
   components: {
-    AsideComponent
+    AsideComponent,
+    NavbarComponent
   },
   setup() {
     const router = useRouter()

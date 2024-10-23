@@ -61,15 +61,16 @@
 
 @mixin secondaryButton($height: 52px) {
   @include button($height);
-  background: $lightGreen;
-  color: $darkGreen;
+  justify-content: flex-start;
+  background: $darkViolet;
+  color: $white;
   &:hover {
-    background: $lightGreen2;
+    background: $darkBlue;
   }
   &:disabled {
-    cursor: unset;
-    background: $lightGreen;
+    background: $lightBlue;
     color: $gray2;
+    cursor: unset;
   }
 }
 
