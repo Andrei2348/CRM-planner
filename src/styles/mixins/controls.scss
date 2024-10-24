@@ -74,15 +74,21 @@
   }
 }
 
-@mixin redButton($height: 52px) {
-  @include button($height);
-  background: $red;
+@mixin circleButton($height: 52px) {
+  background: $darkViolet;
   color: $white;
+  padding: 6px 0 0 2px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
   &:hover {
-    background: $darkRed;
+    background: $darkBlue;
   }
   &:disabled {
-    background: $bgRed;
+    background: $lightBlue;
     color: $gray2;
     cursor: unset;
   }
