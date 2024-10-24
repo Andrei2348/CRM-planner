@@ -1,6 +1,9 @@
 <template>
 	<div class='login__layout'>
-		<slot />
+		<img class='login__background' :src="backgroundImage" alt="Background login">
+		<div class='login__content'>
+			<slot />
+		</div>
 	</div>
 </template>
 

@@ -3,7 +3,7 @@ import { ImenuItem } from '@/types/common'
 export const MENU_DATA: ImenuItem[] = [
 	{
 		icon:'home',
-		name: 'Home',
+		name: 'Проекты',
 		url: '/'
 	},
 	

@@ -1,0 +1,28 @@
+.card__wrapper{
+	width: 100%;
+	background-color: $violet;
+	padding: 24px;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 12px;
+	box-shadow: $shadow3;
+}
+.card__title{
+	color: $white;
+	@include textMedium(16);
+	width: 100%;
+	border-bottom: 1px solid $gray2;
+	padding-bottom: 8px;
+}
+.card__text{
+	color: $gray;
+	@include textLight(12);
+}
+.card__button{
+	margin-top: 10px;
+	@include secondaryButton;
+	width: 100%;
+}

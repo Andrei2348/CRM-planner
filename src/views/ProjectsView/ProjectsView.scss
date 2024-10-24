@@ -1,0 +1,15 @@
+.projects__list{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	margin-left: 280px;
+	padding-top: 60px;
+	gap: 10px;
+}
+.projects__empty-list{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: $white;
+	@include heading(22);
+}

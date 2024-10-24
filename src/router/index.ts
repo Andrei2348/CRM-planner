@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: RouteNamesEnum.home,
-    component: () => import('@/views/MainView/MainView.vue'),
+    component: () => import('@/views/ProjectsView/ProjectsView.vue'),
   },
   {
     path: '/login',
