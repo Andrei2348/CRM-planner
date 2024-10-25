@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue'
-
 import { useUserStore } from '@/store/user'
 
 export default defineComponent({

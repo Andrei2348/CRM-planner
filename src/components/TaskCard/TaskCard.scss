@@ -1,0 +1,83 @@
+.task{
+	&__wrapper{
+		background: $darkViolet;
+		padding: 15px;
+		border-radius: 30px;
+		max-width: 280px;
+		width: 100%;
+		box-shadow: $shadow3;
+	}
+	&__title{
+		color: $white;
+		display: block;
+		padding-bottom: 10px;
+		border-bottom: 1px solid $gray2;
+		margin: 4px 0 22px;
+		@include textMedium(16);
+	}
+	&__subtitle{
+		color: $white;
+		margin-left: 20px;
+		@include textRegular(16);
+	}
+	&__span{
+		color: $gray;
+		width: 100%;
+		@include textLight(14);
+	}
+	&__text{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: $white;
+		@include textMedium(14);
+		margin-top: 16px;
+	}
+	&__comment{
+		&-wrapper{
+			margin-top: 16px;
+		}
+		&-text{
+			color: $white;
+			margin-top: 6px;
+			@include textMedium(14);
+		}
+	}
+	&__hidden-info{
+		display: none;
+		background-color: $darkBlue2;
+		padding: 12px 6px 30px;
+		border-bottom-left-radius: 30px;
+		border-bottom-right-radius: 30px;
+		&.visible{
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	&__button{
+		@include circleButton;
+		margin-right: 2px;
+		&-area{
+			margin-top: 20px;
+			width: 100%;
+			background-color: $darkBlue2;
+			height: 56px;
+			border-radius: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&.active{
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+		}
+	}
+	&__icon-button{
+		margin-bottom: 2px;
+		transform: rotate(90deg);
+		transition: all ease 0.5s;
+		&.active{
+			transform: rotate(270deg);
+		}
+	}
+}

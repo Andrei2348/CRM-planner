@@ -12,9 +12,10 @@
       />  
 		</div>
 		<div 
-		v-if='!dataStore.projectList &&
-		!dataStore.isLoadingProjects'
-		class='projects__empty-list'
+			v-if='(!dataStore.projectList ||
+			dataStore.projectList.length === 0) &&
+			!dataStore.isLoadingProjects'
+			class='projects__empty-list'
 		>
 			Список проектов пока пуст.
 		</div>

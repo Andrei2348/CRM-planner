@@ -4,8 +4,9 @@ export interface User {
 }  
   
 export interface Task {  
-	id: number;  
-	executor: number;  
+	id: number;
+	projectId: number;
+	executorId: number;  
 	task: string;  
 	timeCreate: string;  
 	deadline: string;  
@@ -15,7 +16,7 @@ export interface Task {
   
 export interface Project {  
 	id: number;  
-	name: string;  
+	name: string;
+	teamLead: number;
 	users: User[];  
-	tasks: Task[];  
 }  

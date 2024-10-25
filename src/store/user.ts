@@ -6,9 +6,9 @@ import { useRouter } from 'vue-router'
 import { setStorageItemWithExpiry } from '@/helpers/localStorageHelpers'
 
 export const useUserStore = defineStore('user', () => {
+  const router = useRouter()
   const isLoginStatus = ref(false)
   const userInfo = ref<UserItemResponse | null>(null)
-  const router = useRouter()
 
   const setUserInfo = (payload: UserItemResponse | null) => {
     userInfo.value = payload

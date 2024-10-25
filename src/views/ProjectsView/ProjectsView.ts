@@ -4,7 +4,7 @@ import { useDataStore } from '@/store/data'
 import ProjectCard from '@/components/ProjectCard/ProjectCard.vue'
 
 export default defineComponent({
-  name: 'MainView',
+  name: 'ProjectsView',
 	components: {
 		MainLayout,
     ProjectCard
@@ -16,9 +16,9 @@ export default defineComponent({
       dataStore.projectsListRequest()
     })
 
-    onBeforeUnmount(() => {
-      dataStore.setProjectList(null)
-    })
+    // onBeforeUnmount(() => {
+    //   dataStore.setProjectList(null)
+    // })
     return {
       dataStore
     }

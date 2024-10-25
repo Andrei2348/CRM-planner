@@ -6,8 +6,13 @@ import { getStorageItemWithExpiry } from '@/helpers/localStorageHelpers'
 const routes = [
   {
     path: '/',
-    name: RouteNamesEnum.home,
+    name: RouteNamesEnum.projects,
     component: () => import('@/views/ProjectsView/ProjectsView.vue'),
+  },
+  {
+    path: '/project/:id',
+    name: RouteNamesEnum.boards,
+    component: () => import('@/views/BoardsView/BoardsView.vue'),
   },
   {
     path: '/login',
