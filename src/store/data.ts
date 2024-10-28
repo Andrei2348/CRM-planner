@@ -41,6 +41,7 @@ export const useDataStore = defineStore('data', () => {
 		return !isLoadingTasks.value && !isLoadingUsers.value;  
 	});
 	
+	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
 		try{
 			if(userStore.userInfo){
@@ -57,11 +58,28 @@ export const useDataStore = defineStore('data', () => {
     }
 	}
 
+	// Получение списка задач по выбранному проекту
 	const tasksListRequest = async (id: number): Promise<void> => {
 		try{
 			if(userStore.userInfo){
 				setIsLoadingTasks(true)
 				const {status, data} = await useApiCall.get(`tasks?projectId=${id}`)
+				if(status === 200 || status === 201){
+					setTasksList(data)
+				}
+			}
+		} catch (error) {
+			console.log(error)
+		} finally {
+      setIsLoadingTasks(false)
+    }
+	}
+
+	const taskPatchRequest = async (id: number): Promise<void> => {
+		try{
+			if(userStore.userInfo){
+				setIsLoadingTasks(true)
+				const {status, data} = await useApiCall.patch(`tasks?projectId=${id}`)
 				if(status === 200 || status === 201){
 					setTasksList(data)
 				}

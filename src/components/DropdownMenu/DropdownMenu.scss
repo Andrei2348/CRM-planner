@@ -1,0 +1,73 @@
+.dropdown{
+	position: relative;
+	cursor: pointer;
+	&__icon{
+		position: absolute;
+	}
+	&__face{
+		border-radius: 50px;
+		padding: 6px 10px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	&__title{
+		color: $white;
+		white-space: nowrap;
+		@include textMedium(14);
+	}
+	&__menu{
+		position: absolute;
+		border-radius: 6px;
+		background-color: $white;
+		box-shadow: 0px 0px 10.2px 0px #9F9F9F47;
+		z-index: 2000;
+		padding: 6px 0;
+		right: 0;
+		&-item{
+			@include textRegular(14);
+			color: $black;
+			cursor: pointer;
+			padding: 7px 10px;
+			transform: all ease-out 0.5s;
+			white-space: nowrap;
+			&.empty{
+				display: none;
+			}
+			&:hover{
+				background-color: $gray5;
+			}
+		}
+		&-top{
+			top: auto;
+			bottom: 26px;
+		}
+		&-bottom{
+			bottom: auto;
+			top: 34px;
+		}
+		&-top:after{
+			position: absolute;
+			content: '';
+			bottom: -7px;
+			right: 28px;
+			width: 0;
+			height: 0;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-bottom: 8px solid $white;
+			transform: rotate(180deg);
+		}
+		&-bottom:before{
+			position: absolute;
+			content: '';
+			top: -7px;
+			right: 28px;
+			width: 0;
+			height: 0;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-bottom: 8px solid $white;
+		}
+	}
+}

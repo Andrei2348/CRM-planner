@@ -3,7 +3,13 @@
 		<span class='task__span'>Задание:</span>
 		<h3 class='task__title'>{{task.task}}</h3>
 		<p class='task__text'><span class='task__span'>Исполнитель:</span> {{ fetchUserById(task.executorId) }}</p>
-		<p class='task__text'><span class='task__span'>Статус:</span>{{ task.status }}</p>
+		<p class='task__text'><span class='task__span'>Статус:</span>
+		<DropdownMenu 
+			:title='getTitleByStatus(task.status)'
+			:color='getColorByStatus(task.status)'
+			:menuItems='DROPDOWN_STATUS_MENU'
+		/>
+		</p>
 		<div class='task__button-area' :class="{ active: infoIsVisible }">
 			<p class='task__subtitle'>Инфо:</p>
 			<button 
