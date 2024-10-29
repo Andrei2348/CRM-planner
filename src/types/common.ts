@@ -1,3 +1,5 @@
+import { TasksStatuses } from './projects'
+
 export interface ImenuItem {
 	name: string,
 	url: string,
@@ -7,6 +9,7 @@ export interface ImenuItem {
 export interface MenuItemDropdown {
   id: number,
   title: string,
-  status: string,
+  status: TasksStatuses,
   color: string,
 }
+

@@ -4,15 +4,17 @@ export interface User {
 }  
   
 export interface Task {  
-	id: number;
-	projectId: number;
+	id?: number;  
+	projectId: number;  
 	executorId: number;  
 	task: string;  
 	timeCreate: string;  
 	deadline: string;  
 	comment: string;  
-	status: 'inProgress' | 'finished' | 'review' 
+	status: TasksStatuses;   
 }  
+
+export type TasksStatuses = 'inProgress' | 'finished' | 'review';
   
 export interface Project {  
 	id: number;  
@@ -20,3 +22,8 @@ export interface Project {
 	teamLead: number;
 	users: User[];  
 }  
+
+export interface PatchTaskResponse{
+  status?: string,
+  comment?: string,
+}

@@ -5,9 +5,8 @@
 		<p class='task__text'><span class='task__span'>Исполнитель:</span> {{ fetchUserById(task.executorId) }}</p>
 		<p class='task__text'><span class='task__span'>Статус:</span>
 		<DropdownMenu 
-			:title='getTitleByStatus(task.status)'
-			:color='getColorByStatus(task.status)'
-			:menuItems='DROPDOWN_STATUS_MENU'
+			:title='task.status'
+			@changeSelectHandler='changeSelectHandler'
 		/>
 		</p>
 		<div class='task__button-area' :class="{ active: infoIsVisible }">

@@ -1,0 +1,10 @@
+.task__wrapper{
+	height: 100vh;
+	width: 400px;
+	background-color: $darkBlue2;
+}
+.task__button-create{
+	padding: 12px 54px;
+	display: inline-block;
+	@include primaryButton;
+}

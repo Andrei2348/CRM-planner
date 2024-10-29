@@ -1,4 +1,4 @@
-import { ImenuItem } from '@/types/common'
+import { ImenuItem, MenuItemDropdown } from '@/types/common'
 
 export const MENU_DATA: ImenuItem[] = [
 	{
@@ -29,7 +29,7 @@ export const MENU_DATA: ImenuItem[] = [
 	},
 ]
 
-export const DROPDOWN_STATUS_MENU = [
+export const DROPDOWN_STATUS_MENU: MenuItemDropdown[] = [
 	{
 		'id': 0,
 		'title': 'В разработке',
@@ -37,7 +37,7 @@ export const DROPDOWN_STATUS_MENU = [
 		'color': '#D8320E'
 	},
 	{
-		'id': 2,
+		'id': 1,
 		'title': 'На ревью',
 		'status': 'review',
 		'color': '#a7a41f'

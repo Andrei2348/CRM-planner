@@ -1,0 +1,26 @@
+.textarea{
+	&__wrapper{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 8px;
+		position: relative;
+		padding-bottom: 0;
+		transition: all ease 0.5s;
+	}
+	&__area{
+		background-color: $violet;
+		resize: none;
+		height: 120px;
+		@include input;
+	}
+	&__area-wrapper{
+		width: 100%;
+	}
+	&__label{
+		color: $white;
+		@include textLight(16);
+	}
+}
+ 

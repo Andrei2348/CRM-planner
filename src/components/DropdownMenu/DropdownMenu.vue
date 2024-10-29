@@ -1,14 +1,13 @@
 <template>
   <div 
-  v-click-outside="close" 
+  v-click-outside="closeHandler" 
   class="dropdown" 
   @click="toggleMenuHandler">
     <div 
       class="dropdown__face"
-      :style="{ background: color }"
+      :style="{ background: getColorByStatus(title) }"
       >
-      <SvgIcon class="dropdown__icon" :icon="menuIcon" v-if="menuIcon != ''" />
-      <div class="dropdown__title" v-if="title != ''">{{ title }}</div>
+      <div class="dropdown__title" v-if="title != ''">{{ getTitleByStatus(title) }}</div>
     </div>
     <div
       v-if="menuIsOpen"
@@ -19,7 +18,7 @@
     >
       <ul class="dropdown__menu-items">
         <li
-          v-for="item in menuItems"
+          v-for="item in DROPDOWN_STATUS_MENU"
           :class="['dropdown__menu-item', { empty: item.title === '' }]"
           :key="item.id"
           @click="handleClick(item.status)"

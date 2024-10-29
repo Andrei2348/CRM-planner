@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { Project, Task, User } from '@/types/projects'
+import { Project, Task, User, PatchTaskResponse } from '@/types/projects'
 import { useUserStore } from '@/store/user'
 
 export const useDataStore = defineStore('data', () => {
@@ -13,27 +13,37 @@ export const useDataStore = defineStore('data', () => {
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
 
-	const setIsLoadingProjects = (payload: boolean) => {
+	const changeTaskData = (newTask: Task): void => {
+		if(tasksList.value){
+			const index = tasksList.value.findIndex(task => task.id === newTask.id) 
+			if (index !== -1) {  
+				tasksList.value[index] = { ...tasksList.value[index], ...newTask } 
+				console.log(tasksList.value)
+			}  
+		}
+	}  
+
+	const setIsLoadingProjects = (payload: boolean): void => {
 		isLoadingProjects.value = payload
 	}
 
-	const setIsLoadingTasks = (payload: boolean) => {
+	const setIsLoadingTasks = (payload: boolean): void => {
 		isLoadingTasks.value = payload
 	}
 
-	const setIsLoadingUsers = (payload: boolean) => {
+	const setIsLoadingUsers = (payload: boolean): void => {
 		isLoadingUsers.value = payload
 	}
 
-	const setProjectList = (payload: Project[] | null) => {  
+	const setProjectList = (payload: Project[] | null): void => {  
 		projectList.value = payload
 	}
 
-	const setTasksList = (payload: Task[] | null) => {
+	const setTasksList = (payload: Task[] | null): void => {
 		tasksList.value = payload
 	}
 
-	const setUsersList = (payload: User[] | null) => {
+	const setUsersList = (payload: User[] | null): void => {
 		usersList.value = payload
 	}
 
@@ -75,19 +85,19 @@ export const useDataStore = defineStore('data', () => {
     }
 	}
 
-	const taskPatchRequest = async (id: number): Promise<void> => {
-		try{
-			if(userStore.userInfo){
-				setIsLoadingTasks(true)
-				const {status, data} = await useApiCall.patch(`tasks?projectId=${id}`)
-				if(status === 200 || status === 201){
-					setTasksList(data)
-				}
-			}
-		} catch (error) {
-			console.log(error)
-		} finally {
-      setIsLoadingTasks(false)
+	// Изменение данных тасков
+	const taskPatchRequest = async (id: number, payload: PatchTaskResponse): Promise<void> => {  
+    
+    try {  
+			const { status, data } = await useApiCall.patch(`tasks/${id}`, payload);  
+			console.log(status, data)
+			if (status === 200 || status === 201) {  
+				changeTaskData(data)  
+			} else {  
+				console.error(`Error: Unexpected status code ${status}`); 
+			}  
+    } catch (error) {  
+			console.error("Error during task patch request:", error); 
     }
 	}
 
@@ -115,6 +125,7 @@ export const useDataStore = defineStore('data', () => {
 		usersList,
 		setProjectList,
 		usersListRequest,
-		canProceed
+		canProceed,
+		taskPatchRequest
   }
 })

@@ -1,6 +1,7 @@
-import { defineComponent, ref, watch } from 'vue'
-import { MenuItemDropdown } from '@/types/common'
+import { defineComponent, ref } from 'vue'
 import clickOutside from '@/directives/clickOutside'
+import { DROPDOWN_STATUS_MENU } from '@/config/menu'
+import { TasksStatuses } from '@/types/projects'
 
 export default defineComponent({
   name: 'DropdownMenu',
@@ -10,28 +11,12 @@ export default defineComponent({
       required: false,
       default: '',
     },
-    menuItems: {
-      type: Array<MenuItemDropdown>,
-      required: true,
-    },
-    menuIcon: {
-      type: String,
-			default: '',
-    },
-    menuOpen: {
-      type: Boolean,
-      default: false,
-    },
-		color: {
-      type: String,
-      default: '#000000',
-    },
   },
   directives: {
     clickOutside,
   },
-  setup(props) {
-    const menuIsOpen = ref<boolean>(props.menuOpen)
+  setup(_, { emit }) {
+    const menuIsOpen = ref<boolean>(false)
     const clickY = ref<number>(0)
     const windowHeight = ref<number>(window.innerHeight)
     const menuPositionTop = ref<boolean>(false)
@@ -42,30 +27,36 @@ export default defineComponent({
       menuPositionTop.value = windowHeight.value / 2 < clickY.value
     }
 
-    const close = (): void => {
+    const getTitleByStatus = (status: string) => {  
+			const foundStatus = DROPDOWN_STATUS_MENU.find(item => item.status === status) 
+			return foundStatus ? foundStatus.title : null
+		}  
+	
+		const getColorByStatus = (status: string) => {  
+			const foundColor = DROPDOWN_STATUS_MENU.find(item => item.status === status) 
+			return foundColor ? foundColor.color : '#000000'
+		} 
+
+    const closeHandler = (): void => {
       if (menuIsOpen.value) {
         menuIsOpen.value = false
       }
     }
 
-    const handleClick = (status: string): void => {
-      console.log(status)
-      close()
+    const handleClick = (status: TasksStatuses): void => {
+      emit('changeSelectHandler', status)
+      closeHandler()
     }
 
-    watch(
-      () => props.menuOpen,
-      (newValue) => {
-        menuIsOpen.value = newValue
-      },
-    )
-
     return {
-      close,
+      closeHandler,
       toggleMenuHandler,
       menuIsOpen,
       menuPositionTop,
       handleClick,
+      getTitleByStatus,
+      getColorByStatus,
+      DROPDOWN_STATUS_MENU
     }
   },
 })

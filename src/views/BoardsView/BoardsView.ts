@@ -3,12 +3,14 @@ import { useDataStore } from '@/store/data'
 import MainLayout from "@/layouts/MainLayout/MainLayout.vue"
 import { useRoute } from 'vue-router'
 import TaskCard from '@/components/TaskCard/TaskCard.vue'
+import CreateTaskComponent from '@/components/CreateTaskComponent/CreateTaskComponent.vue'
 
 export default defineComponent({
   name: 'BoardsView',
 	components: {
 		MainLayout,
-    TaskCard
+    TaskCard,
+    CreateTaskComponent
 	},
   setup() {
     const route = useRoute()
