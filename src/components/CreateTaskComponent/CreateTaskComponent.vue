@@ -1,13 +1,18 @@
 <template>
-	<div class='task__wrapper'>
+	<div 
+		class='task__wrapper'
+		:class='{"visible": uxuiStore.getIsCreateTaskPanelVisible}'
+		>
+		<button class='task__show-button' @click='uxuiStore.setIsCreateTaskPanelVisible(true)'>Add</button>
 		<h2 class='task__title'>Создание задачи</h2>
-
+	
 		<InputComponent 
 			label='Задание' 
 			name='task' 
 			type='text'
 			placeholder='Введите задание'
 			@update:modelValue='getInputData'
+			:modelValue='blankDataTask.task'
 		/>
 
 		<InputComponent 
@@ -24,15 +29,21 @@
 			type='text'
 			placeholder='Введите комментарий'
 			@update:modelValue='getInputData'
+			:textareaValue='blankDataTask.comment'
 		/>
-		<SelectMenu 
-		
+
+		<SelectMenu   
+			label='Выберите исполнителя'  
+			:title='getTitleById(blankDataTask.executorId)'  
+			:persons='dataStore.usersList || []'
+			@changeSelectHandler='changeExecutorHandler' 
 		/>
-		{{ dataStore.usersList }}
-		<DropdownMenu 
+
+		<StatusMenu 
 			:title='blankDataTask.status'
 			@changeSelectHandler='changeSelectHandler'
 		/>
+		
 		<button 
 			class='task__button-create'
 			:disabled='disableButtonFlag'

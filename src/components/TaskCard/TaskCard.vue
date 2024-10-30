@@ -2,11 +2,14 @@
 	<div class='task__wrapper'>
 		<span class='task__span'>Задание:</span>
 		<h3 class='task__title'>{{task.task}}</h3>
-		<p class='task__text'><span class='task__span'>Исполнитель:</span> {{ fetchUserById(task.executorId) }}</p>
+		<p class='task__text'>  
+			<span class='task__span'>Исполнитель:</span>   
+			{{ task.executorId !== null ? fetchUserById(task.executorId) : 'Не назначен' }}  
+		</p>  
 		<p class='task__text'><span class='task__span'>Статус:</span>
-		<DropdownMenu 
+		<StatusMenu 
 			:title='task.status'
-			@changeSelectHandler='changeSelectHandler'
+			@changeSelectHandler='changeStatusHandler'
 		/>
 		</p>
 		<div class='task__button-area' :class="{ active: infoIsVisible }">
@@ -22,8 +25,8 @@
 			</button>
 		</div>
 		<div class='task__hidden-info' :class="{ visible: infoIsVisible }">
-			<p class='task__text'><span class='task__span'>Выдано:</span>{{ task.timeCreate }}</p>
-			<p class='task__text'><span class='task__span'>Дедлайн:</span>{{ task.deadline }}</p>
+			<p class='task__text'><span class='task__span'>Выдано:</span>{{ getFormatDate(task.timeCreate) }}</p>
+			<p class='task__text'><span class='task__span'>Дедлайн:</span>{{ getFormatDate(task.deadline) }}</p>
 			<div class='task__comment-wrapper'>
 				<span class='task__span'>Примечание:</span>
 				<p class='task__comment-text'>{{ task.comment }}</p>

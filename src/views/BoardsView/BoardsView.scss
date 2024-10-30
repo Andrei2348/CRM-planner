@@ -15,10 +15,9 @@
 		color: $white;
 		@include heading(22);
 	}
-}
-
-.boards__create-aside{
-	position: fixed;
-	right: 0;
-	top: 0;
+	&__create-aside{
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
 }

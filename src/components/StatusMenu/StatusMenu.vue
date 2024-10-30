@@ -30,5 +30,5 @@
   </div>
 </template>
 
-<script lang="ts" src="./DropdownMenu.ts"></script>
-<style lang="scss" scoped src="./DropdownMenu.scss"></style>
+<script lang="ts" src="./StatusMenu.ts"></script>
+<style lang="scss" scoped src="./StatusMenu.scss"></style>

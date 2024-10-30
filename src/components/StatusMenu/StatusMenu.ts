@@ -4,7 +4,7 @@ import { DROPDOWN_STATUS_MENU } from '@/config/menu'
 import { TasksStatuses } from '@/types/projects'
 
 export default defineComponent({
-  name: 'DropdownMenu',
+  name: 'StatusMenu',
   props: {
     title: {
       type: String,

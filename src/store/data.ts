@@ -47,6 +47,13 @@ export const useDataStore = defineStore('data', () => {
 		usersList.value = payload
 	}
 
+	const addTaskData = (payload: Task) => {
+		if(!tasksList.value){
+			tasksList.value = []
+		}
+		tasksList.value.push(payload)
+	}
+
 	const canProceed = computed(() => {  
 		return !isLoadingTasks.value && !isLoadingUsers.value;  
 	});
@@ -87,7 +94,6 @@ export const useDataStore = defineStore('data', () => {
 
 	// Изменение данных тасков
 	const taskPatchRequest = async (id: number, payload: PatchTaskResponse): Promise<void> => {  
-    
     try {  
 			const { status, data } = await useApiCall.patch(`tasks/${id}`, payload);  
 			console.log(status, data)
@@ -101,6 +107,22 @@ export const useDataStore = defineStore('data', () => {
     }
 	}
 
+	// Создание таски
+	const taskCreateRequest = async (payload: PatchTaskResponse): Promise<void> => {  
+    try {  
+			const { status, data } = await useApiCall.post('tasks/', payload);  
+			console.log(status, data)
+			if (status === 200 || status === 201) {  
+				addTaskData(data)  
+			} else {  
+				console.error(`Error: Unexpected status code ${status}`); 
+			}  
+    } catch (error) {  
+			console.error("Error during task patch request:", error); 
+    }
+	}
+
+	// Получение списка пользователей в проекте
 	const usersListRequest = async (projectId: number): Promise<void> => {
 		try{
 			if(userStore.userInfo){
@@ -126,6 +148,7 @@ export const useDataStore = defineStore('data', () => {
 		setProjectList,
 		usersListRequest,
 		canProceed,
-		taskPatchRequest
+		taskPatchRequest,
+		taskCreateRequest
   }
 })

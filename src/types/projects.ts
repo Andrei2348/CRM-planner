@@ -6,7 +6,7 @@ export interface User {
 export interface Task {  
 	id?: number;  
 	projectId: number;  
-	executorId: number;  
+	executorId: number | null;  
 	task: string;  
 	timeCreate: string;  
 	deadline: string;  

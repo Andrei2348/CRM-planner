@@ -19,7 +19,9 @@
 		>
 			Список задач пока пуст.
 		</div>
-		<CreateTaskComponent class='boards__create-aside' />
+		<CreateTaskComponent 
+			class='boards__create-aside' 
+		/>
 	</MainLayout>
 </template>
 

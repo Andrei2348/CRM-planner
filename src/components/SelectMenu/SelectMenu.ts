@@ -1,8 +1,6 @@
 import { defineComponent, ref } from 'vue';  
 import clickOutside from '@/directives/clickOutside';    
-import { TasksStatuses } from '@/types/projects';  
 import { User } from '@/types/projects'
-
 
 export default defineComponent({  
   name: 'SelectMenu',  
@@ -37,16 +35,14 @@ export default defineComponent({
       menuPositionTop.value = windowHeight.value / 2 < clickY.value;  
     };  
 
-    
-
     const close = (): void => {  
       if (menuIsOpen.value) {  
         menuIsOpen.value = false;  
       }  
     };  
 
-    const handleClick = (username: string): void => {  
-      emit('changeSelectHandler', username);  
+    const handleClick = (item: User): void => {  
+      emit('changeSelectHandler', item);  
       close();  
     };  
 

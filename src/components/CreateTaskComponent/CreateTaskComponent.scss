@@ -2,9 +2,31 @@
 	height: 100vh;
 	width: 400px;
 	background-color: $darkBlue2;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 22px;
+	position: relative;
+	transform: translateX(100%);
+	transition: all ease 0.4s;
+}
+.task__wrapper.visible{
+	transform: translateX(0);
+}
+.task__title{
+	color: $white;
+	@include textMedium(22);
 }
 .task__button-create{
 	padding: 12px 54px;
 	display: inline-block;
 	@include primaryButton;
+}
+.task__show-button{
+	position: absolute;
+	left: -30px;
+	top: 40px;
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
 }

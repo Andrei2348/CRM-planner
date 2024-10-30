@@ -1,11 +1,11 @@
 <template>
   <div 
 		v-click-outside="close" 
-		class="select" 
+		class="select"
   	@click="toggleMenuHandler">
 		<p class='select__label'>{{ label }}</p>
     <div class="select__face">
-      <div class="dropdown__title" v-if="title != ''"></div>
+      <div class="select__title" v-if="title != ''">{{ title }}</div>
     </div>
     <div
       v-if="menuIsOpen"
@@ -19,7 +19,7 @@
           v-for="item in persons"
           :class="['select__menu-item', { empty: item.username === '' }]"
           :key="item.id"
-          @click="handleClick(item.username)"
+          @click="handleClick(item)"
         >
           {{ item.username }}
         </li>

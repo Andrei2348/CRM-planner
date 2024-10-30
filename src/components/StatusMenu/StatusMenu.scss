@@ -1,15 +1,10 @@
 .dropdown{
 	position: relative;
 	cursor: pointer;
-	&__icon{
-		position: absolute;
-	}
 	&__face{
 		border-radius: 50px;
 		padding: 6px 10px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		display: inline-block;
 	}
 	&__title{
 		color: $white;

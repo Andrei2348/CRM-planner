@@ -1,0 +1,64 @@
+.select{
+	position: relative;
+	cursor: pointer;
+	&__icon{
+		position: absolute;
+	}
+	&__label{
+		margin-bottom: 8px;
+		color: $white;
+		@include textLight(16);
+	}
+	&__face{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 18px;
+		line-height: 1;
+		font-weight: 300;
+		padding: 12px 30px 12px 6px;
+		outline: none;
+		border: 1px solid $gray;
+		color: $white;
+		border-radius: 4px;
+		background-color: transparent;
+	}
+	&__title{
+		color: $white;
+		white-space: nowrap;
+		@include textMedium(14);
+	}
+	&__menu{
+		position: absolute;
+		border-radius: 6px;
+		background-color: $white;
+		box-shadow: 0px 0px 10.2px 0px #9F9F9F47;
+		z-index: 2000;
+		padding: 6px 0;
+		left: 0;
+		width: 100%;
+		&-item{
+			@include textRegular(14);
+			color: $black;
+			cursor: pointer;
+			padding: 7px 10px;
+			transform: all ease-out 0.5s;
+			white-space: nowrap;
+			&.empty{
+				display: none;
+			}
+			&:hover{
+				background-color: $gray5;
+			}
+		}
+		&-top{
+			top: auto;
+			bottom: 64px;
+		}
+		&-bottom{
+			bottom: auto;
+			top: 64px;
+		}
+	}
+}

@@ -2,6 +2,7 @@ import { defineComponent, PropType, ref } from 'vue'
 import { Task } from '@/types/projects'
 import { useUserStore } from '@/store/user'
 import { useDataStore } from '@/store/data'
+import { getFormatDate } from '@/helpers/dateFormatter'
 
 export default defineComponent({
   name: 'TaskCard',
@@ -28,8 +29,10 @@ export default defineComponent({
 			return undefined  
 		}
 
-		const changeSelectHandler = (status: string) => {
-			dataStore.taskPatchRequest(props.task.id, {'status': status})
+		const changeStatusHandler = (status: string) => {
+			if(props.task.id){
+				dataStore.taskPatchRequest(props.task.id, {'status': status})
+			}
 		}
 
     return {
@@ -37,7 +40,8 @@ export default defineComponent({
 			fetchUserById,
 			showInfoHandler,
 			infoIsVisible,
-			changeSelectHandler
+			changeStatusHandler,
+			getFormatDate
     }
   },
 })
