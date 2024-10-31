@@ -1,4 +1,4 @@
-import { ImenuItem, MenuItemDropdown } from '@/types/common'
+import { ImenuItem, StatusItemDropdown } from '@/types/common'
 
 export const MENU_DATA: ImenuItem[] = [
 	{
@@ -29,23 +29,47 @@ export const MENU_DATA: ImenuItem[] = [
 	},
 ]
 
-export const DROPDOWN_STATUS_MENU: MenuItemDropdown[] = [
+export const DROPDOWN_STATUS_MENU: StatusItemDropdown[] = [
 	{
-		'id': 0,
+		'id': 1,
 		'title': 'В разработке',
 		'status': 'inProgress',
 		'color': '#D8320E'
 	},
 	{
-		'id': 1,
+		'id': 2,
 		'title': 'На ревью',
 		'status': 'review',
 		'color': '#a7a41f'
 	},
 	{
-		'id': 2,
+		'id': 3,
+		'title': 'На тестировании',
+		'status': 'tested',
+		'color': '#4184bb'
+	},
+	{
+		'id': 4,
 		'title': 'Завершено',
 		'status': 'finished',
 		'color': '#22690d'
+	},
+	{
+		'id': 5,
+		'title': 'Приостановлено',
+		'status': 'blocked',
+		'color': '#B22222'
+	},
+	{
+		'id': 6,
+		'title': 'Отложено',
+		'status': 'deferred',
+		'color': '#2E8B57'
+	},
+	{
+		'id': 7,
+		'title': 'Отмена',
+		'status': 'cancelled',
+		'color': '#808000'
 	}
 ]

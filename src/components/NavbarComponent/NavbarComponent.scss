@@ -8,6 +8,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	z-index: 100;
 	&__user{
 		color: $white;
 		padding-right: 30px;

@@ -1,11 +1,11 @@
 .boards{
+	min-width: 2500px;
 	&__wrapper{
-		margin-left: 280px;
-		padding-top: 60px;
+		margin-left: 260px;
 		display: flex;
-		align-items: start;
-		flex-wrap: wrap;
-		gap: 10px;
+		align-items: stretch;
+		flex-wrap: nowrap;
+		overflow-x: auto;
 	}
 	&__empty-list{
 		position: absolute;

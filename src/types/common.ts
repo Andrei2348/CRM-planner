@@ -6,7 +6,7 @@ export interface ImenuItem {
 	icon: string
 }
 
-export interface MenuItemDropdown {
+export interface StatusItemDropdown {
   id: number,
   title: string,
   status: TasksStatuses,

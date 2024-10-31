@@ -1,8 +1,5 @@
-export interface User {  
-	id: number;  
-	username: string;  
-}  
-  
+import { User } from './user'
+
 export interface Task {  
 	id?: number;  
 	projectId: number;  
@@ -14,7 +11,7 @@ export interface Task {
 	status: TasksStatuses;   
 }  
 
-export type TasksStatuses = 'inProgress' | 'finished' | 'review';
+export type TasksStatuses = 'inProgress' | 'review' | 'tested' | 'finished' | 'blocked' | 'deferred' | 'cancelled';
   
 export interface Project {  
 	id: number;  

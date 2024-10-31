@@ -6,6 +6,10 @@
 		<p class='select__label'>{{ label }}</p>
     <div class="select__face">
       <div class="select__title" v-if="title != ''">{{ title }}</div>
+      <SvgIcon 
+					class='select__icon-button' 
+					:class="{ active: menuIsOpen }" 
+					icon='chevron-right'/>
     </div>
     <div
       v-if="menuIsOpen"

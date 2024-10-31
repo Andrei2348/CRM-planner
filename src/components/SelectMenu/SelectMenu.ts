@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue';  
 import clickOutside from '@/directives/clickOutside';    
-import { User } from '@/types/projects'
+import { User } from '@/types/user'
 
 export default defineComponent({  
   name: 'SelectMenu',  

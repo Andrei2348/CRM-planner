@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { Project, Task, User, PatchTaskResponse } from '@/types/projects'
+import { Project, Task, PatchTaskResponse } from '@/types/projects'
+import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
 
 export const useDataStore = defineStore('data', () => {

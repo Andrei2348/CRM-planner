@@ -33,6 +33,7 @@
 			type='date'
 			placeholder='Дедлайн'
 			@update:modelValue='getInputData'
+			:modelValue='blankDataTask.deadline'
 		/>
 
 		<SelectMenu   
@@ -45,6 +46,7 @@
 		<div class="task__status-wrapper">
 			<p class="task__label">Статус задания</p>
 			<StatusMenu 
+				class='task__status-dropdown'
 				:title='blankDataTask.status'
 				@changeSelectHandler='changeSelectHandler'
 			/>

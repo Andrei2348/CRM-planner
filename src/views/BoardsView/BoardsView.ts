@@ -2,15 +2,16 @@ import { defineComponent, onBeforeMount } from 'vue'
 import { useDataStore } from '@/store/data'
 import MainLayout from "@/layouts/MainLayout/MainLayout.vue"
 import { useRoute } from 'vue-router'
-import TaskCard from '@/components/TaskCard/TaskCard.vue'
 import CreateTaskComponent from '@/components/CreateTaskComponent/CreateTaskComponent.vue'
+import TasksArea from '@/components/TasksArea/TasksArea.vue'
+import { DROPDOWN_STATUS_MENU } from '@/config/menu'
 
 export default defineComponent({
   name: 'BoardsView',
 	components: {
 		MainLayout,
-    TaskCard,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TasksArea
 	},
   setup() {
     const route = useRoute()
@@ -24,7 +25,8 @@ export default defineComponent({
     });
 
     return {
-      dataStore
+      dataStore,
+      DROPDOWN_STATUS_MENU
     }
   },
 })

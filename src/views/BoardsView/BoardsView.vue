@@ -1,15 +1,15 @@
 <template>
-	<MainLayout>
+	<MainLayout class='boards'>
 	<div 
-		class='boards__wrapper' 
+		class="boards__wrapper" 
 		v-if='dataStore.canProceed && 
 		dataStore.tasksList'
 	>
-		<TaskCard  
-			v-for="task in dataStore.tasksList"  
-			:key="task.id"  
-			:task="task"  
-		/>  
+		<TasksArea 
+			v-for="taskArea in DROPDOWN_STATUS_MENU"  
+			:key="taskArea.id"  
+			:taskArea="taskArea"
+			:tasks="dataStore.tasksList" />
 	</div>
 	<div 
 			v-if='(!dataStore.tasksList ||
