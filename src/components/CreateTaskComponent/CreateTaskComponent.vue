@@ -3,7 +3,19 @@
 		class='task__wrapper'
 		:class='{"visible": uxuiStore.getIsCreateTaskPanelVisible}'
 		>
-		<button class='task__show-button' @click='uxuiStore.setIsCreateTaskPanelVisible(true)'>Add</button>
+		<button 
+			class='task__show-button' 
+			:class='{"hidden": uxuiStore.getIsCreateTaskPanelVisible}'
+			@click='uxuiStore.setIsCreateTaskPanelVisible(true)'
+		>
+			+
+		</button>
+		<button 
+			class='task__close-button' 
+			@click='uxuiStore.setIsCreateTaskPanelVisible(false)'
+		>
+			<p class="task__close-button--text">+</p>
+		</button>
 		<h2 class='task__title'>Создание задачи</h2>
 	
 		<InputComponent 
@@ -23,6 +35,21 @@
 			@update:modelValue='getInputData'
 		/>
 
+		<SelectMenu   
+			label='Выберите исполнителя'  
+			:title='getTitleById(blankDataTask.executorId)'  
+			:persons='dataStore.usersList || []'
+			@changeSelectHandler='changeExecutorHandler' 
+		/>
+		
+		<div class="task__status-wrapper">
+			<p class="task__label">Статус задания</p>
+			<StatusMenu 
+				:title='blankDataTask.status'
+				@changeSelectHandler='changeSelectHandler'
+			/>
+		</div>
+
 		<TextAreaComponent 
 			label='Комментарий' 
 			name='comment' 
@@ -30,18 +57,6 @@
 			placeholder='Введите комментарий'
 			@update:modelValue='getInputData'
 			:textareaValue='blankDataTask.comment'
-		/>
-
-		<SelectMenu   
-			label='Выберите исполнителя'  
-			:title='getTitleById(blankDataTask.executorId)'  
-			:persons='dataStore.usersList || []'
-			@changeSelectHandler='changeExecutorHandler' 
-		/>
-
-		<StatusMenu 
-			:title='blankDataTask.status'
-			@changeSelectHandler='changeSelectHandler'
 		/>
 		
 		<button 

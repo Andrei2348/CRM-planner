@@ -28,7 +28,6 @@ export default defineComponent({
 
     const resetForm = () => {  
       blankDataTask.projectId = Number(route.params.id)
-      blankDataTask.executorId = null 
       blankDataTask.task = ''
       blankDataTask.timeCreate = new Date().toLocaleDateString('en-CA') 
       blankDataTask.deadline = ''  
@@ -47,7 +46,7 @@ export default defineComponent({
 
     const getInputData = (key: keyof Task, value: string | number): void => {   
       (blankDataTask[key] as string | number) = value  
-    }  
+    } 
 
     const createTaskHandler = (): void => {   
       dataStore.taskCreateRequest(blankDataTask)
@@ -81,6 +80,12 @@ export default defineComponent({
         blankDataTask.executorId = null  
       }  
     }, { immediate: true })
+
+    watch(() => uxuiStore.getIsCreateTaskPanelVisible, (newValue) => {  
+      if (newValue) {  
+        resetForm()
+      }  
+    })
 
     return {  
       DROPDOWN_STATUS_MENU,  

@@ -1,11 +1,12 @@
 .task__wrapper{
 	height: 100vh;
 	width: 400px;
-	background-color: $darkBlue2;
+	background-color: $modalLayer;
+	backdrop-filter: blur(10px);
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	padding: 22px;
+	padding: 16px 22px 22px;
 	position: relative;
 	transform: translateX(100%);
 	transition: all ease 0.4s;
@@ -14,8 +15,20 @@
 	transform: translateX(0);
 }
 .task__title{
+	margin-right: 60px;
+	position: relative;
+	padding-bottom: 20px;
 	color: $white;
 	@include textMedium(22);
+	&::after{
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		background-color: $gray2;
+		bottom: 16px;
+		left: 0;
+	}
 }
 .task__button-create{
 	padding: 12px 54px;
@@ -24,9 +37,46 @@
 }
 .task__show-button{
 	position: absolute;
-	left: -30px;
+	left: -40px;
 	top: 40px;
-	height: 30px;
-	width: 30px;
+	height: 40px;
+	width: 40px;
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	border: none;
 	cursor: pointer;
+	font-size: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: $white;
+	background-color: $yellow;
+	transition: all ease 0.4s;
+	&.hidden{
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+.task__label{
+	margin-bottom: 8px;
+	color: $white;
+	@include textLight(16);
+}
+.task__close-button{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 40px;
+	width: 40px;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $yellow;
+	&--text{
+		font-size: 26px;
+		transform: rotate(45deg);
+		color: $white;
+	}
 }

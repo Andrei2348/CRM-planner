@@ -16,10 +16,12 @@ export default defineComponent({
     const route = useRoute()
     const dataStore = useDataStore()
 
-    onBeforeMount(() => {
-      dataStore.tasksListRequest(Number(route.params.id))
-      dataStore.usersListRequest(Number(route.params.id))
-    })
+    onBeforeMount(async () => {  
+      await Promise.all([  
+        dataStore.tasksListRequest(Number(route.params.id)),  
+        dataStore.usersListRequest(Number(route.params.id)),  
+      ]);  
+    });
 
     return {
       dataStore
