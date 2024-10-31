@@ -149,3 +149,40 @@ body {
   margin: 0 auto;
   padding: 0 10px;
 }
+ 
+body::-webkit-scrollbar {  
+  width: 9px; 
+  height: 9px;
+}  
+
+/* Стили для "ползунка" (thumb) вертикального скроллбара */  
+body::-webkit-scrollbar-thumb {  
+  background-color: #592286;  
+  border-radius: 2px; 
+}  
+
+/* Стили для "ползунка" (thumb) при наведении */  
+body::-webkit-scrollbar-thumb:hover {  
+  background-color: #592286;
+}  
+
+/* Стили для трека (дорожки), по которому движется "ползунок" */  
+body::-webkit-scrollbar-track {  
+  background: #707777;
+  border-radius: 2px;  
+}  
+
+/* Стили для горизонтального скроллбара */  
+body::-webkit-scrollbar:horizontal {  
+  height: 9px;  
+}  
+
+/* Стили для "ползунка" (thumb) горизонтального скроллбара */  
+body::-webkit-scrollbar-thumb:horizontal {  
+  background-color: #592286; 
+}  
+
+/* Стили для "ползунка" (thumb) горизонтального скроллбара при наведении */  
+body::-webkit-scrollbar-thumb:horizontal:hover {  
+  background-color: #592286;
+}
