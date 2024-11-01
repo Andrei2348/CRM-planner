@@ -4,6 +4,13 @@
 		<SvgIcon icon="log-out" />
 		</button>
 		<MenuComponent />
+		<div class="aside__date-wrapper">
+			<DateElement 
+				:inline=true
+				objectKey=''
+				class='aside__date-picker'
+			/>
+		</div>
 	</aside>
 </template>
 

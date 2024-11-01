@@ -58,11 +58,6 @@
 			visibility: hidden;
 		}
 	}
-	&__label{
-		margin-bottom: 8px;
-		color: $white;
-		@include textLight(16);
-	}
 	&__close-button{
 		position: absolute;
 		right: 0;
@@ -84,4 +79,18 @@
 	&__status-dropdown{
 		display: inline-block;
 	}
+	&__label{
+		display: block;
+		margin-bottom: 8px;
+		color: $white;
+		@include textLight(16);
+	}
+}
+
+.task__datapicker{
+	width: 356px;
+	background-color: transparent;
+}
+::v-deep(.dp__main){
+	width: 100% !important;
 }

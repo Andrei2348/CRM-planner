@@ -1,149 +1,114 @@
-.custom{
-  &-prev-button{
-    position: absolute;
-    right: 34px;
-    top: 12px;
-  }
-  &-input{
-    &-field {
-      @include input;
+:root {
+  /*General*/
+  --dp-font-family: "Roboto", sans-serif;
+  --dp-border-radius: 4px; /*Configurable border-radius*/
+  --dp-cell-border-radius: 4px; /*Specific border radius for the calendar cell*/
+  --dp-common-transition: all 0.1s ease-in; /*Generic transition applied on buttons and calendar cells*/
+
+  /*Sizing*/
+  --dp-button-height: 30px; /*Size for buttons in overlays*/
+  --dp-month-year-row-height: 30px; /*Height of the month-year select row*/
+  --dp-month-year-row-button-size: 30px; /*Specific height for the next/previous buttons*/
+  --dp-button-icon-height: 20px; /*Icon sizing in buttons*/
+  --dp-cell-size: 30px; /*Width and height of calendar cell*/
+  --dp-cell-padding: 5px; /*Padding in the cell*/
+  --dp-common-padding: 5px; /*Common padding used*/
+  --dp-input-icon-padding: 35px; /*Padding on the left side of the input if icon is present*/
+  --dp-input-padding: 6px 30px 6px 12px; /*Padding in the input*/
+  --dp-menu-min-width: 250px; /*Adjust the min width of the menu*/
+  --dp-action-buttons-padding: 2px 5px; /*Adjust padding for the action buttons in action row*/
+  --dp-row-margin:  0 0; /*Adjust the spacing between rows in the calendar*/
+  --dp-calendar-header-cell-padding:  0.5rem; /*Adjust padding in calendar header cells*/
+  --dp-two-calendars-spacing:  0px; /*Space between multiple calendars*/
+  --dp-overlay-col-padding:  3px; /*Padding in the overlay column*/
+  --dp-time-inc-dec-button-size:  32px; /*Sizing for arrow buttons in the time picker*/
+  --dp-menu-padding: 6px 8px; /*Menu padding*/
+  
+  /*Font sizes*/
+  --dp-font-size: 14px; /*Default font-size*/
+  --dp-preview-font-size: 12px; /*Font size of the date preview in the action row*/
+  --dp-time-font-size: 12px; /*Font size in the time picker*/
+  
+  /*Transitions*/
+  --dp-animation-duration: 0.1s; /*Transition duration*/
+  --dp-menu-appear-transition-timing: cubic-bezier(.4, 0, 1, 1); /*Timing on menu appear animation*/
+  --dp-transition-timing: ease-out; /*Timing on slide animations*/
+}
+
+.dp__theme_dark {
+  --dp-background-color: #141736;
+  --dp-text-color: #fff;
+  --dp-hover-color: #484848;
+  --dp-hover-text-color: #fff;
+  --dp-hover-icon-color: #959595;
+  --dp-primary-color: #005cb2;
+  --dp-primary-disabled-color: #61a8ea;
+  --dp-primary-text-color: #fff;
+  --dp-secondary-color: #a9a9a9;
+  --dp-border-color: #2d2d2d;
+  --dp-menu-border-color: #2d2d2d;
+  --dp-border-color-hover: #aaaeb7;
+  --dp-border-color-focus: #aaaeb7;
+  --dp-disabled-color: #737373;
+  --dp-disabled-color-text: #d0d0d0;
+  --dp-scroll-bar-background: #212121;
+  --dp-scroll-bar-color: #484848;
+  --dp-success-color: #00701a;
+  --dp-success-color-disabled: #428f59;
+  --dp-icon-color: #959595;
+  --dp-danger-color: #e53935;
+  --dp-marker-color: #e53935;
+  --dp-tooltip-color: #3e3e3e;
+  --dp-highlight-color: rgb(0 92 178 / 20%);
+  --dp-range-between-dates-background-color: var(--dp-hover-color, #484848);
+  --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
+  --dp-range-between-border-color: var(--dp-hover-color, #fff);
+}
+
+.dp__main{
+  cursor: pointer;
+  width: 250px !important;
+}
+
+.dp__input.dp__input_icon_pad{
+  @include input;
+}
+
+.custom-calendar{
+  &-cell {
+    @include textRegular(12);
+    padding: 7px;
+    &.dp__active_date {
+      background-color: $red;
+      color: $white;
     }
-  }
-  &-datepicker-menu {
-    box-shadow: $shadow;
-    border-radius: 14px;
-  }
-  &-calendar{
-    &-cell {
-      border-radius: 50%;
-      @include textRegular(12);
-      color: $black;
-      padding: 7px;
-      &.dp__active_date {
-        background-color: $red;
-        color: $white;
-      }
-      &.dp__active_date:hover {
-        background-color: $red;
-        color: $white;
-      }
-      &:hover {
-        background-color: $green;
-        color: $white;
-      }
-      &.marked-cell{
-        border: 2px solid $green;
-        border-radius: 50%;
-      }
+    &.dp__active_date:hover {
+      background-color: $red;
+    }
+    &:hover {
+      background-color: $green;
+    }
+    &.marked-cell{
+      border: 2px solid $green;
     }
   }
 }
-.picker{
-  position: relative;
-  &__icon{
-    height: 24px;
-    width: 24px;
-    stroke: $gray;
-  }
+.date__label{
+  display: block;
+  margin-bottom: 8px;
+  color: $white;
+  @include textLight(16);
 }
+
+.picker__icon{
+  height: 24px;
+  width: 24px;
+}
+
 div .dp__input_icon{
   position: absolute;
   right: 14px;
   left: auto;
   top: 50%;
   transform: translateY(-50%);
-}
-.dp--future{
-  color: $gray2;
-}
-.dp--clear-btn {
-  display: none !important;
-}
-.dp--header-wrap{
-  margin-bottom: 11px;
-}
-
-.dp{
-  &-custom-calendar .dp__calendar_item {
-    background-color: $red;
-  }
-  &__calendar_header{
-    &{
-      margin-bottom: 4px;
-    }
-    &_separator {
-      display: none;
-    }
-    &_item{
-      @include textBold(12);
-    }
-  }
-
-  &__month_year{
-    &_wrap{
-      justify-content: flex-start;
-      gap: 10px;
-    }
-    &_select {
-      width: auto;
-      padding: 0 6px;
-      &:hover{
-        background-color: $green;
-        color: $white;
-        border-radius: 8px;
-      }
-    }
-  }
-
-  &__inner{
-    &_nav:hover{
-      background-color: $green;
-    }
-    &_nav:hover svg{
-      fill: $white;
-    }
-    &_wrap{
-      position: relative;
-      height: 52px;
-    }
-  }
-
-  &__overlay{
-    &_cell {
-      cursor: pointer;
-      color: $black;
-      text-align: center;
-      &_active {
-        cursor: pointer;
-        border-radius: 8px;
-        text-align: center;
-        background: $white;
-        color: $black;
-        border: 1px solid $green;
-      }
-      &:hover {
-        background: $green;
-        color: $white;
-      }
-    }
-    &_action{
-      background-color: $white;
-      &:hover{
-        background-color: $green;
-      }
-      &:hover svg{
-        fill: $white;
-      }
-    }
-  }
-  &__menu {
-    border-radius: 8px;
-    border: 1px solid $gray3;
-  }
-}
-.date__label{
-  @include textRegular(14);
-  color: $black;
-  margin-bottom: 14px;
-  display: inline-block;
 }

@@ -14,12 +14,16 @@
 		margin: 4px 0 22px;
 		@include textMedium(16);
 	}
+	&__textarea{
+		margin-left: 6px;
+	}
 	&__subtitle{
 		color: $white;
-		margin-left: 20px;
+		margin-left: 14px;
 		@include textRegular(16);
 	}
 	&__span{
+		padding-left: 6px;
 		color: $gray;
 		width: 100%;
 		@include textLight(14);
@@ -34,7 +38,8 @@
 	}
 	&__comment{
 		&-wrapper{
-			margin-top: 16px;
+			margin-top: 36px;
+			position: relative;
 		}
 		&-text{
 			color: $white;
@@ -43,14 +48,22 @@
 		}
 	}
 	&__hidden-info{
-		display: none;
+		height: 0;
+		opacity: 0;
+		visibility: hidden;
+		display: flex;
+		flex-direction: column;
+		padding: 0;
 		background-color: $darkBlue2;
-		padding: 12px 6px 30px;
 		border-bottom-left-radius: 30px;
 		border-bottom-right-radius: 30px;
 		&.visible{
 			display: flex;
 			flex-direction: column;
+			padding: 12px 6px 30px 0;
+			opacity: 1;
+			visibility: visible;
+			height: auto;
 		}
 	}
 	&__button{
@@ -79,4 +92,35 @@
 			transform: rotate(270deg);
 		}
 	}
+	&__buttons-comment{
+		position: absolute;
+		top: -30px;
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+		height: 42px;
+		z-index: 10;
+	}
+	&__button-comment{
+		cursor: pointer;
+		@include circleButton(42px)
+	}
+	&__button-icon{
+		height: 16px;
+		width: 16px;
+		margin-left: 3px;
+	}
+}
+
+::v-deep(.textarea__label) {
+	color: $gray;
+	width: 100%;
+	@include textLight(14);
+}
+
+::v-deep(.textarea__area) {
+	padding: 6px;
+	height: auto;
+	color: $white;
+	@include textMedium(14);
 }

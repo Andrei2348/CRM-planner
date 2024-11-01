@@ -7,6 +7,7 @@
 			{{ task.executorId !== null ? fetchUserById(task.executorId) : 'Не назначен' }}  
 		</p>  
 		<p class='task__text'><span class='task__span'>Статус:</span>
+		<!-- Сюда прописать права пользователя для тимлида -->
 		<StatusMenu 
 			:title='task.status'
 			@changeSelectHandler='changeStatusHandler'
@@ -28,8 +29,26 @@
 			<p class='task__text'><span class='task__span'>Выдано:</span>{{ getFormatDate(task.timeCreate) }}</p>
 			<p class='task__text'><span class='task__span'>Дедлайн:</span>{{ getFormatDate(task.deadline) }}</p>
 			<div class='task__comment-wrapper'>
-				<span class='task__span'>Примечание:</span>
-				<p class='task__comment-text'>{{ task.comment }}</p>
+
+				<!-- Сюда прописать права пользователя для тимлида -->
+				<div class="task__buttons-comment">  
+          <button class='task__button-comment' v-if='readonlyFlag' @click='editCommentHandler'>
+						<SvgIcon class='task__button-icon' icon="edit" />
+					</button>  
+          <button class='task__button-comment' v-else @click='changeCommentHandler()'>
+						<SvgIcon class='task__button-icon' icon="save" />
+					</button>  
+        </div>  
+				<TextAreaComponent
+					class='task__textarea'
+					label='Примечание'
+					name='comment' 
+					type='text'
+					placeholder='Введите комментарий'
+					@update:modelValue='getInputData'
+					:textareaValue='commentValue.comment'
+					:readonly='readonlyFlag'
+				/>
 			</div>
 		</div>
 	</div>

@@ -1,9 +1,11 @@
 <template>  
   <div class='textarea__wrapper'>  
-    <label class='textarea__label' :for="name">{{ label }}</label>  
+    <label class='textarea__label' :for="name" v-if='label'>{{ label }}</label>  
     <div class="textarea__area-wrapper">  
-      <textarea  
+      <textarea 
+        ref="textarea" 
         class='textarea__area'  
+        :class='{"blocked": readonly}'
         :id="name"  
         :placeholder="placeholder"  
         v-model="textareaValue"  

@@ -11,6 +11,22 @@
 		border: none;
 		cursor: pointer;
 	}
+	&__date-wrapper{
+		display: flex;
+		justify-content: center;
+	}
+	&__date-picker{
+		position: relative;
+		width: 250px;
+		&::after{
+			content: '';
+			position: absolute;
+			top: 50px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	}
 }
 
 ::v-deep(.svg_image svg) {

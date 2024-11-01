@@ -27,13 +27,13 @@
 			:modelValue='blankDataTask.task'
 		/>
 
-		<InputComponent 
-			label='Дедлайн' 
-			name='deadline' 
-			type='date'
-			placeholder='Дедлайн'
-			@update:modelValue='getInputData'
-			:modelValue='blankDataTask.deadline'
+		<DateElement 
+			class="task__datapicker"
+			placeholder="Дата подписания"
+			objectKey="deadline"
+			value="Дедлайн"
+			@dataChanged="getInputData"
+			label="Дедлайн"
 		/>
 
 		<SelectMenu   

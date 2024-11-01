@@ -36,11 +36,11 @@ export default defineComponent({
       blankDataTask.status = 'inProgress' 
     }
     
-    const changeSelectHandler = (status: TasksStatuses) => {  
+    const changeSelectHandler = (status: TasksStatuses): void => {  
       blankDataTask.status = status  
     }
 
-    const changeExecutorHandler = (user: User) => {
+    const changeExecutorHandler = (user: User): void => {
       blankDataTask.executorId = user.id
       console.log(blankDataTask)
     } 
@@ -98,7 +98,7 @@ export default defineComponent({
       createTaskHandler,  
       getTitleById,
       changeExecutorHandler,
-      uxuiStore
+      uxuiStore,
     }  
   },  
 })

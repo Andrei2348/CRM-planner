@@ -19,6 +19,7 @@ export default defineComponent({
     placeholder: { type: String, required: false, default: '' },
     objectKey: { type: String, required: true },
     disabled: { type: Boolean, required: false, default: false },
+    inline: { type: Boolean, required: false, default: false },
   },
   emits: ['dataChanged'],
 
