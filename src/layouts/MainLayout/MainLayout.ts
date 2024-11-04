@@ -4,12 +4,14 @@ import NavbarComponent from '@/components/NavbarComponent/NavbarComponent.vue'
 import { clearStorageItem } from '@/helpers/localStorageHelpers'
 import { useUserStore } from '@/store/user'
 import { useRouter } from 'vue-router'
+import CreateLayout from '@/components/CreateLayout/CreateLayout.vue'
 
 export default defineComponent({
   name: 'MainLayout',
   components: {
     AsideComponent,
-    NavbarComponent
+    NavbarComponent,
+    CreateLayout
   },
   setup() {
     const router = useRouter()

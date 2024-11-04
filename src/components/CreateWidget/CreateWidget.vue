@@ -1,7 +1,7 @@
 <template>
 	<button 
 		class='task__show-button' 
-		@click='uxuiStore.setIsCreateTaskPanelVisible(true)'
+		@click='dataStore.setTaskForEdit(null)'
 	>
 		+
 	</button>

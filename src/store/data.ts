@@ -4,15 +4,18 @@ import useApiCall from '@/composables/useApiCall'
 import { Project, Task, PatchTaskResponse } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
+import { useUxuiStore } from '@/store/uxui'
 
 export const useDataStore = defineStore('data', () => {
 	const userStore = useUserStore()
+	const uxuiStore = useUxuiStore()
 	const projectList = ref<Project[] | null>(null)
 	const isLoadingProjects = ref(true)
 	const isLoadingTasks = ref(true)
 	const isLoadingUsers = ref(true)
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
+	const taskForEdit = ref<Task | null>(null)
 
 	const changeTaskData = (newTask: Task): void => {
 		if(tasksList.value){
@@ -23,6 +26,15 @@ export const useDataStore = defineStore('data', () => {
 			}  
 		}
 	}  
+
+	const setTaskForEdit = (payload: Task | null): void => {
+		uxuiStore.setIsCreateTaskPanelVisible(true)
+		taskForEdit.value = payload
+	}
+
+	const getTaskForEdit = computed(() => {  
+    return taskForEdit.value
+  }) 
 
 	const setIsLoadingProjects = (payload: boolean): void => {
 		isLoadingProjects.value = payload
@@ -150,6 +162,8 @@ export const useDataStore = defineStore('data', () => {
 		usersListRequest,
 		canProceed,
 		taskPatchRequest,
-		taskCreateRequest
+		taskCreateRequest,
+		setTaskForEdit,
+		getTaskForEdit
   }
 })

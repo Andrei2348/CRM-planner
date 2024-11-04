@@ -36,7 +36,7 @@ export default defineComponent({
 		}
 
 		const editCardHandler = (task: Task): void => {
-			console.log('edit', task)
+			dataStore.setTaskForEdit(task)
 		}
 
     return {

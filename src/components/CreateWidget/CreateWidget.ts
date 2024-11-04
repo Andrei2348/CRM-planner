@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue'
-import { useUxuiStore } from '@/store/uxui'
+import { useDataStore } from '@/store/data'
 
 export default defineComponent({
   name: 'CreateWidget',
   setup() {
-    const uxuiStore = useUxuiStore()
+    const dataStore = useDataStore()
     return {
-      uxuiStore
+      dataStore
     }
   },
 })

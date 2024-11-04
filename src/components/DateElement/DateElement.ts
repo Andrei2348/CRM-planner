@@ -31,7 +31,7 @@ export default defineComponent({
       const day = date.getDate()
       const month = date.getMonth() + 1
       const year = date.getFullYear()
-      return `${day}.${month}.${year}`
+      return `${year}.${month}.${day}`
     }
 
     const uiOptions: Partial<UIOptions> = {
@@ -61,12 +61,12 @@ export default defineComponent({
     }
 
     const textInputOptions = {
-      format: 'MM-dd-yyyy',
+      format: 'yyyy-MM-dd',
     }
 
     const formatDate = (dateString: DateType) => {
       const date = dayjs(dateString)
-      return date.format('DD-MM-YYYY')
+      return date.format('YYYY-MM-DD')
     }
 
     watch(

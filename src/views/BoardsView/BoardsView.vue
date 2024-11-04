@@ -23,9 +23,9 @@
 			:class='{"hidden": uxuiStore.getIsCreateTaskPanelVisible}'
 			class='boards__create-widget' 
 		/>
-		<CreateTaskComponent 
+		<!-- <CreateTaskComponent 
 			class='boards__create-aside' 
-		/>
+		/> -->
 	</MainLayout>
 </template>
 

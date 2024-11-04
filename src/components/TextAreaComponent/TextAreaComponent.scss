@@ -14,6 +14,7 @@
 		resize: none;
 		height: 120px;
 		@include input;
+		@include textLight(14);
 	}
 	&__area-wrapper{
 		width: 100%;

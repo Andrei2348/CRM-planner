@@ -1,4 +1,4 @@
-import { defineComponent, onBeforeMount, computed, reactive, watch } from 'vue'  
+import { defineComponent, onBeforeMount, computed, ref, watch } from 'vue'  
 import { DROPDOWN_STATUS_MENU } from '@/config/menu'  
 import { Task, TasksStatuses } from '@/types/projects'  
 import { User } from '@/types/user'
@@ -17,7 +17,7 @@ export default defineComponent({
     const dataStore = useDataStore() 
     const uxuiStore = useUxuiStore() 
 
-    const blankDataTask = reactive<Task>({  
+    const blankDataTask = ref<Task>({  
       projectId: Number(route.params.id),   
       executorId: null,  
       task: '',  
@@ -28,29 +28,28 @@ export default defineComponent({
     })
 
     const resetForm = () => {  
-      blankDataTask.projectId = Number(route.params.id)
-      blankDataTask.task = ''
-      blankDataTask.timeCreate = new Date().toLocaleDateString('en-CA') 
-      blankDataTask.deadline = ''  
-      blankDataTask.comment = ''  
-      blankDataTask.status = 'inProgress' 
+      blankDataTask.value.projectId = Number(route.params.id)
+      blankDataTask.value.task = ''
+      blankDataTask.value.timeCreate = new Date().toLocaleDateString('en-CA') 
+      blankDataTask.value.deadline = ''  
+      blankDataTask.value.comment = ''  
+      blankDataTask.value.status = 'inProgress' 
     }
     
     const changeSelectHandler = (status: TasksStatuses): void => {  
-      blankDataTask.status = status  
+      blankDataTask.value.status = status  
     }
 
     const changeExecutorHandler = (user: User): void => {
-      blankDataTask.executorId = user.id
-      console.log(blankDataTask)
+      blankDataTask.value.executorId = user.id
     } 
 
     const getInputData = (key: keyof Task, value: string | number): void => {   
-      (blankDataTask[key] as string | number) = value  
+      (blankDataTask.value[key] as string | number) = value  
     } 
 
     const createTaskHandler = (): void => {   
-      dataStore.taskCreateRequest(blankDataTask)
+      dataStore.taskCreateRequest(blankDataTask.value)
       resetForm()
     }  
 
@@ -62,23 +61,17 @@ export default defineComponent({
     }  
 
     const disableButtonFlag = computed(() => {  
-      return !(blankDataTask.projectId && 
-        blankDataTask.executorId && 
-        blankDataTask.task && 
-        blankDataTask.deadline)  
+      return !(blankDataTask.value.projectId && 
+        blankDataTask.value.executorId && 
+        blankDataTask.value.task && 
+        blankDataTask.value.deadline)  
     })  
-
-    onBeforeMount(() => {  
-      resetForm()
-      blankDataTask.projectId = Number(route.params.id);  
-      blankDataTask.timeCreate = new Date().toLocaleDateString('en-CA')
-    })
 
     watch(() => dataStore.usersList, (newUsersList) => {  
       if (newUsersList && newUsersList.length > 0) {  
-        blankDataTask.executorId = newUsersList[0].id  
+        blankDataTask.value.executorId = newUsersList[0].id  
       } else {  
-        blankDataTask.executorId = null  
+        blankDataTask.value.executorId = null  
       }  
     }, { immediate: true })
 
@@ -86,6 +79,16 @@ export default defineComponent({
       if (newValue) {  
         resetForm()
       }  
+    })
+
+    onBeforeMount(() => {  
+      resetForm()
+      if(dataStore.getTaskForEdit === null){
+        blankDataTask.value.projectId = Number(route.params.id);  
+        blankDataTask.value.timeCreate = new Date().toLocaleDateString('en-CA')
+      } else {
+        blankDataTask.value = dataStore.getTaskForEdit
+      }
     })
 
     return {  
