@@ -4,11 +4,9 @@ import useApiCall from '@/composables/useApiCall'
 import { Project, Task, PatchTaskResponse } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
-import { useUxuiStore } from '@/store/uxui'
 
 export const useDataStore = defineStore('data', () => {
 	const userStore = useUserStore()
-	const uxuiStore = useUxuiStore()
 	const projectList = ref<Project[] | null>(null)
 	const isLoadingProjects = ref(true)
 	const isLoadingTasks = ref(true)
@@ -16,6 +14,7 @@ export const useDataStore = defineStore('data', () => {
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
 	const taskForEdit = ref<Task | null>(null)
+	const selectedProject = ref<Project | null>(null)
 
 	const changeTaskData = (newTask: Task): void => {
 		if(tasksList.value){
@@ -28,7 +27,6 @@ export const useDataStore = defineStore('data', () => {
 	}  
 
 	const setTaskForEdit = (payload: Task | null): void => {
-		uxuiStore.setIsCreateTaskPanelVisible(true)
 		taskForEdit.value = payload
 	}
 
@@ -69,7 +67,15 @@ export const useDataStore = defineStore('data', () => {
 
 	const canProceed = computed(() => {  
 		return !isLoadingTasks.value && !isLoadingUsers.value;  
-	});
+	})
+
+	const setSelectedProject = (payload: Project | null) => {
+		selectedProject.value = payload
+	}
+
+	const getSelectedProject = computed(() => {  
+		return selectedProject.value  
+	})
 	
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
@@ -86,6 +92,21 @@ export const useDataStore = defineStore('data', () => {
 		} finally {
       setIsLoadingProjects(false)
     }
+	}
+
+	// Получение проекта по id
+	const projectInfoRequest = async (payload: number): Promise<void> => {
+		try{
+			if(userStore.userInfo){
+				const {status, data} = await useApiCall.get(`projects?id=${payload}`)
+				console.log(status, data)
+				// if(status === 200 || status === 201){
+				// 	setProjectList(data)
+				// }
+			}
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	// Получение списка задач по выбранному проекту
@@ -153,6 +174,7 @@ export const useDataStore = defineStore('data', () => {
 	}
   return {
 		projectsListRequest,
+		projectInfoRequest,
 		tasksListRequest,
 		isLoadingProjects,
 		projectList,
@@ -164,6 +186,8 @@ export const useDataStore = defineStore('data', () => {
 		taskPatchRequest,
 		taskCreateRequest,
 		setTaskForEdit,
-		getTaskForEdit
+		getTaskForEdit,
+		setSelectedProject,
+		getSelectedProject
   }
 })

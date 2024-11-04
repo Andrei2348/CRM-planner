@@ -21,8 +21,10 @@ export default defineComponent({
     const dataStore = useDataStore()
     const uxuiStore = useUxuiStore()
 
-    onBeforeMount(async () => {  
-      await Promise.all([  
+    onBeforeMount(async () => {
+
+      await Promise.all([
+        dataStore.projectInfoRequest(Number(route.params.id)),
         dataStore.tasksListRequest(Number(route.params.id)),  
         dataStore.usersListRequest(Number(route.params.id)),  
       ]);  

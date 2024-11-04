@@ -1,7 +1,7 @@
 <template>
 	<button 
 		class='task__show-button' 
-		@click='dataStore.setTaskForEdit(null)'
+		@click='useOpenCreatePanelHandler(null)'
 	>
 		+
 	</button>

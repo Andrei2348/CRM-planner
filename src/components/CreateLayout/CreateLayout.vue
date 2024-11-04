@@ -1,10 +1,13 @@
 <template>
-  <div class="modal__layer">
-    <div :class="['modal__wrapper', { 'empty-header': isEmptyHeader }]">
-      <div class="modal__header">
-        <slot name="modal__header" />
-      </div>
-      <component :is="currentModalComponent" class="modal__content" />
+  <div class="layout">
+    <div class='layout__wrapper'>
+			<button 
+				class='layout__close-button'
+				@click="useCloseCreatePanelHandler"
+			>
+				<p class="layout__close-button--text">+</p>
+			</button>
+      <component :is="currentCreateComponent" class="layout__content" />
     </div>
   </div>
 </template>

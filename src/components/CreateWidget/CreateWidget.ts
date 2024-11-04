@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue'
-import { useDataStore } from '@/store/data'
+import {useOpenCreatePanelHandler} from '@/composables/useTaskPanelOpen'
 
 export default defineComponent({
   name: 'CreateWidget',
   setup() {
-    const dataStore = useDataStore()
+    
     return {
-      dataStore
+      useOpenCreatePanelHandler
     }
   },
 })

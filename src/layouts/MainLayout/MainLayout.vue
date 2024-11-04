@@ -4,13 +4,8 @@
 		<NavbarComponent />
 		<slot />
 
-		<component v-if="uxuiStore.modalName.modalName !== ''" :is="CreateLayout">
-      <template
-        #modal__header
-        v-if="uxuiStore.modalName.modalName !== 'ConfirmationDelete'"
-      >
-        <ModalHeader :index="uxuiStore.modalName?.index" />
-      </template>
+		<component v-if="uxuiStore.getCreatePanelName !== ''" :is="CreateLayout">
+      <template #create__content />
     </component>
 		
 	</main>

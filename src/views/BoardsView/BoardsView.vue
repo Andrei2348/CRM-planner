@@ -20,12 +20,9 @@
 			Список задач пока пуст.
 		</div>
 		<CreateWidget 
-			:class='{"hidden": uxuiStore.getIsCreateTaskPanelVisible}'
+			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'
 			class='boards__create-widget' 
 		/>
-		<!-- <CreateTaskComponent 
-			class='boards__create-aside' 
-		/> -->
 	</MainLayout>
 </template>
 

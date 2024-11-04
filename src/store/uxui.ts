@@ -2,18 +2,18 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export const useUxuiStore = defineStore('uxui', () => {
-  const isCreateTaskPanelVisible = ref(false)
-  
-	const setIsCreateTaskPanelVisible = (payload: boolean) => {
-		isCreateTaskPanelVisible.value = payload
+  const createPanelName = ref<string>('') 
+
+	const setCreatePanelName = (payload: string): void => {
+		createPanelName.value = payload
 	}
 
-  const getIsCreateTaskPanelVisible = computed(() => {  
-    return isCreateTaskPanelVisible.value
+  const getCreatePanelName = computed(() => {  
+    return createPanelName.value
   }) 
 
   return {
-    setIsCreateTaskPanelVisible,
-		getIsCreateTaskPanelVisible
+    setCreatePanelName,
+		getCreatePanelName
   }
 })

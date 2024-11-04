@@ -40,7 +40,7 @@
 			<button 
 				v-if='userStore.getIsTeamLead'
 				class='task__button-edit' 
-				@click='editCardHandler(task)'
+				@click='useOpenCreatePanelHandler(task)'
 			>
 				<SvgIcon class='task__button-icon' icon="edit" />
 			</button>  

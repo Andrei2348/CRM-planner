@@ -1,0 +1,37 @@
+.layout{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  &__wrapper{
+		height: 100vh;
+		width: 400px;
+		background-color: $modalLayer;
+		backdrop-filter: blur(10px);
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 30;
+	}
+  &__close-button{
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 40px;
+		width: 40px;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: $yellow;
+		&--text{
+			font-size: 26px;
+			transform: rotate(45deg);
+			color: $white;
+		}
+	}
+}

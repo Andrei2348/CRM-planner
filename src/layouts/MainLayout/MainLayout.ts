@@ -3,6 +3,7 @@ import AsideComponent from '@/components/AsideComponent/AsideComponent.vue'
 import NavbarComponent from '@/components/NavbarComponent/NavbarComponent.vue'
 import { clearStorageItem } from '@/helpers/localStorageHelpers'
 import { useUserStore } from '@/store/user'
+import { useUxuiStore } from '@/store/uxui'
 import { useRouter } from 'vue-router'
 import CreateLayout from '@/components/CreateLayout/CreateLayout.vue'
 
@@ -16,6 +17,8 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const userStore = useUserStore()
+    const uxuiStore = useUxuiStore()
+
 
     const logoutUserHandler = () => {
       userStore.setIsLoginStatus(false)
@@ -25,7 +28,9 @@ export default defineComponent({
     }
 
     return {
-      logoutUserHandler
+      logoutUserHandler,
+      uxuiStore,
+      CreateLayout
     }
   }
 })

@@ -4,41 +4,36 @@ import {
   defineAsyncComponent,
   shallowRef,
   onBeforeMount,
-  onBeforeUnmount,
-  computed,
+  onBeforeUnmount
 } from 'vue'
-import { useUXUIStore } from '@/store/uxui'
+import { useUxuiStore } from '@/store/uxui'
+import { useCloseCreatePanelHandler } from '@/composables/useTaskPanelOpen'
 
 export default defineComponent({
-  name: 'ModalLayer',
+  name: 'CreateLayout',
   setup() {
-    const uxuiStore = useUXUIStore()
-    const currentModalComponent = shallowRef<ReturnType<
+    const uxuiStore = useUxuiStore()
+    const currentCreateComponent = shallowRef<ReturnType<
       typeof defineAsyncComponent
     > | null>(null)
 
     watchEffect(() => {
-      const componentName = uxuiStore.modalName.modalName
+      const componentName = uxuiStore.getCreatePanelName
       if (componentName) {
-        currentModalComponent.value = defineAsyncComponent(
+        currentCreateComponent.value = defineAsyncComponent(
           () => import(`@/components/${componentName}/${componentName}.vue`),
         )
       } else {
-        currentModalComponent.value = null
+        currentCreateComponent.value = null
       }
     })
 
     const closeOnEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        uxuiStore.setModalName('')
+        // Здесь закрываем через стор, т.к. панелей будет несколько
+        uxuiStore.setCreatePanelName('')
       }
     }
-
-    const isEmptyHeader = computed(() =>
-      ['ConfirmationDelete', 'FormationAct'].includes(
-        uxuiStore.modalName.modalName,
-      ),
-    )
 
     onBeforeMount(() => {
       window.addEventListener('keydown', closeOnEsc)
@@ -50,8 +45,8 @@ export default defineComponent({
 
     return {
       uxuiStore,
-      currentModalComponent,
-      isEmptyHeader,
+      currentCreateComponent,
+      useCloseCreatePanelHandler
     }
   },
 })

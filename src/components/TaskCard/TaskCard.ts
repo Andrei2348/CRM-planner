@@ -3,6 +3,7 @@ import { Task } from '@/types/projects'
 import { useUserStore } from '@/store/user'
 import { useDataStore } from '@/store/data'
 import { getFormatDate } from '@/helpers/dateFormatter'
+import {useOpenCreatePanelHandler} from '@/composables/useTaskPanelOpen'
 
 export default defineComponent({
   name: 'TaskCard',
@@ -35,18 +36,18 @@ export default defineComponent({
 			}
 		}
 
-		const editCardHandler = (task: Task): void => {
-			dataStore.setTaskForEdit(task)
-		}
+		// const editCardHandler = (task: Task): void => {
+		// 	dataStore.setTaskForEdit(task)
+		// }
 
     return {
       userStore,
-			fetchUserById,
-			showInfoHandler,
-			infoIsVisible,
-			changeStatusHandler,
-			getFormatDate,
-			editCardHandler
+		fetchUserById,
+		showInfoHandler,
+		infoIsVisible,
+		changeStatusHandler,
+		getFormatDate,
+		useOpenCreatePanelHandler
     }
   },
 })

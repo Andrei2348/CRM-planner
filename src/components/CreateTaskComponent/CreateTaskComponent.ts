@@ -5,7 +5,8 @@ import { User } from '@/types/user'
 import { useRoute } from 'vue-router'  
 import { useDataStore } from '@/store/data'  
 import { useUxuiStore } from '@/store/uxui'
-import SelectMenu from '@/components/SelectMenu/SelectMenu.vue'  
+import SelectMenu from '@/components/SelectMenu/SelectMenu.vue'
+import { useCloseCreatePanelHandler } from '@/composables/useTaskPanelOpen'
 
 export default defineComponent({  
   name: 'CreateTaskComponent',  
@@ -51,6 +52,7 @@ export default defineComponent({
     const createTaskHandler = (): void => {   
       dataStore.taskCreateRequest(blankDataTask.value)
       resetForm()
+      useCloseCreatePanelHandler()
     }  
 
     const getTitleById = (id: number | null) => {   
@@ -75,7 +77,7 @@ export default defineComponent({
       }  
     }, { immediate: true })
 
-    watch(() => uxuiStore.getIsCreateTaskPanelVisible, (newValue) => {  
+    watch(() => uxuiStore.getCreatePanelName, (newValue) => {  
       if (newValue) {  
         resetForm()
       }  
