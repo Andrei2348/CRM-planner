@@ -1,10 +1,11 @@
 import { defineComponent, onBeforeMount } from 'vue'
 import { useDataStore } from '@/store/data'
-import { useUserStore } from '@/store/user'
+import { useUxuiStore } from '@/store/uxui'
 import MainLayout from "@/layouts/MainLayout/MainLayout.vue"
 import { useRoute } from 'vue-router'
 import CreateTaskComponent from '@/components/CreateTaskComponent/CreateTaskComponent.vue'
 import TasksArea from '@/components/TasksArea/TasksArea.vue'
+import CreateWidget from '@/components/CreateWidget/CreateWidget.vue'
 import { DROPDOWN_STATUS_MENU } from '@/config/menu'
 
 export default defineComponent({
@@ -12,12 +13,13 @@ export default defineComponent({
 	components: {
 		MainLayout,
     CreateTaskComponent,
-    TasksArea
+    TasksArea,
+    CreateWidget
 	},
   setup() {
     const route = useRoute()
     const dataStore = useDataStore()
-    const userStore = useUserStore()
+    const uxuiStore = useUxuiStore()
 
     onBeforeMount(async () => {  
       await Promise.all([  
@@ -27,6 +29,7 @@ export default defineComponent({
     });
 
     return {
+      uxuiStore,
       dataStore,
       DROPDOWN_STATUS_MENU
     }

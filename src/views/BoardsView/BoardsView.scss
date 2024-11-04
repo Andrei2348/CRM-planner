@@ -1,12 +1,11 @@
 .boards{
 	min-width: 2500px;
+	position: relative;
 	&__wrapper{
 		margin-left: 260px;
 		display: flex;
 		align-items: stretch;
 		flex-wrap: nowrap;
-		padding-bottom: 40px;
-		min-height: 100vh;
 	}
 	&__empty-list{
 		position: absolute;
@@ -20,5 +19,16 @@
 		position: fixed;
 		right: 0;
 		top: 0;
+	}
+	&__create-widget{
+		position: fixed;
+		top: 40px;
+		right: 0;
+		transition: all ease 0.4s;
+		transition-delay: 0.4s;
+		transform: translateX(0);
+		&.hidden{
+			transform: translateX(100%);
+		}
 	}
 }

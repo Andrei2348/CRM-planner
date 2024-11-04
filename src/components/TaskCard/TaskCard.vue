@@ -25,21 +25,25 @@
 					icon='chevron-right'/>
 			</button>
 		</div>
-		<div class='task__hidden-info' :class="{ visible: infoIsVisible }">
+		<div 
+			class='task__hidden-info' 
+			:class="{ visible: infoIsVisible, teamlead: userStore.getIsTeamLead }"
+			>
 			<p class='task__text'><span class='task__span'>Выдано:</span>{{ getFormatDate(task.timeCreate) }}</p>
 			<p class='task__text'><span class='task__span'>Дедлайн:</span>{{ getFormatDate(task.deadline) }}</p>
 			<div class='task__comment-wrapper'>
-
-				<!-- Сюда прописать права пользователя для тимлида -->
-				<div class="task__buttons-comment" v-if='userStore.getIsTeamLead'>  
-          <button class='task__button-comment' @click='editCardHandler(task)'>
-						<SvgIcon class='task__button-icon' icon="edit" />
-					</button>    
-        </div>  
 				<p class='task__comment'>
 					{{ task.comment }}
 				</p>
 			</div>
+			<!-- Сюда прописать права пользователя для тимлида -->
+			<button 
+				v-if='userStore.getIsTeamLead'
+				class='task__button-edit' 
+				@click='editCardHandler(task)'
+			>
+				<SvgIcon class='task__button-icon' icon="edit" />
+			</button>  
 		</div>
 	</div>
 </template>

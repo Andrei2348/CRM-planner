@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch, onMounted } from 'vue' 
+import { defineComponent, ref, watch } from 'vue' 
 
 export default defineComponent({  
   name: 'TextAreaComponent',  
@@ -8,8 +8,8 @@ export default defineComponent({
       required: true  
     },  
     label: {  
-      type: String,
-      required: false,
+      type: String,  
+      required: true  
     },  
     placeholder: {  
       type: String,  
@@ -42,35 +42,17 @@ export default defineComponent({
   },  
   setup(props, { emit }) {  
     const textareaValue = ref(props.textareaValue)
-    const textareaHeight = ref<string>('auto')
-    const textarea = ref<HTMLTextAreaElement | null>(null)
-
-    const adjustHeight = () => {
-      if (textarea.value) { 
-        textarea.value.style.height = 'auto'
-        textarea.value.style.height = `${textarea.value.scrollHeight}px`
-      } 
-    }
 
     watch(textareaValue, (newValue) => {  
-      adjustHeight()  
       emit('update:modelValue', props.name, newValue)
-    })   
-     
+    }) 
+ 
     watch(() => props.textareaValue, (newValue) => {  
-      textareaValue.value = newValue
-      adjustHeight()
-    })
-
-    onMounted(() => {   
-      textareaValue.value = props.textareaValue
-      adjustHeight()  
-    })
+      textareaValue.value = newValue;  
+    })  
 
     return {  
-      textareaValue,
-      textareaHeight, 
-      textarea,
+      textareaValue  
     }
   }  
 })

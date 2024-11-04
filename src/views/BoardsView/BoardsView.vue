@@ -19,6 +19,10 @@
 		>
 			Список задач пока пуст.
 		</div>
+		<CreateWidget 
+			:class='{"hidden": uxuiStore.getIsCreateTaskPanelVisible}'
+			class='boards__create-widget' 
+		/>
 		<CreateTaskComponent 
 			class='boards__create-aside' 
 		/>

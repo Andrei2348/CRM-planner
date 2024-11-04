@@ -14,9 +14,6 @@
 		margin: 4px 0 22px;
 		@include textMedium(16);
 	}
-	&__textarea{
-		margin-left: 6px;
-	}
 	&__subtitle{
 		color: $white;
 		margin-left: 14px;
@@ -32,9 +29,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		margin-top: 16px;
 		color: $white;
 		@include textMedium(14);
-		margin-top: 16px;
 	}
 	&__comment{
 		&-wrapper{
@@ -48,33 +45,29 @@
 		}
 	}
 	&__hidden-info{
-		height: 0;
-		opacity: 0;
-		visibility: hidden;
-		display: flex;
-		flex-direction: column;
-		padding: 0;
+		display: none;
+		padding: 12px 6px 20px 0;
 		background-color: $darkBlue2;
 		border-bottom-left-radius: 30px;
 		border-bottom-right-radius: 30px;
+		position: relative;
 		&.visible{
 			display: flex;
 			flex-direction: column;
-			padding: 12px 6px 30px 0;
-			opacity: 1;
-			visibility: visible;
-			height: auto;
+		}
+		&.teamlead{
+			padding: 12px 6px 60px 0;
 		}
 	}
 	&__button{
-		@include circleButton;
 		margin-right: 2px;
+		@include circleButton;
 		&-area{
 			margin-top: 20px;
 			width: 100%;
 			background-color: $darkBlue2;
 			height: 56px;
-			border-radius: 30px;
+			border-radius: 26px;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -92,18 +85,12 @@
 			transform: rotate(270deg);
 		}
 	}
-	&__buttons-comment{
+	&__button-edit{
 		position: absolute;
-		top: -30px;
-		display: flex;
-		justify-content: flex-end;
-		width: 100%;
-		height: 42px;
-		z-index: 10;
-	}
-	&__button-comment{
+		bottom: 3px;
+		right: 3px;
 		cursor: pointer;
-		@include circleButton(42px)
+		@include circleButton(52px)
 	}
 	&__button-icon{
 		height: 16px;

@@ -7,19 +7,13 @@
 		gap: 8px;
 		position: relative;
 		padding-bottom: 0;
-		transition: all ease 0.5s;
+		transition: all ease 0.4s;
 	}
 	&__area{
 		background-color: $violet;
 		resize: none;
-		overflow: hidden;
-		// height: 120px;
-		// height: auto;
+		height: 120px;
 		@include input;
-		&.blocked{
-			border: none;
-			outline: none;
-		}
 	}
 	&__area-wrapper{
 		width: 100%;

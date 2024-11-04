@@ -1,4 +1,15 @@
 .task{
+	&__layout{
+		position: fixed;
+		height: 100vh;
+		width: 100vw;
+		transform: translateX(100%);
+		transition: all ease 0.4s;
+		&.visible{
+			z-index: 20;
+			transform: translateX(0);
+		}
+	}
 	&__wrapper{
 		height: 100vh;
 		width: 400px;
@@ -8,13 +19,10 @@
 		flex-direction: column;
 		gap: 20px;
 		padding: 16px 22px 22px;
-		position: relative;
-		transform: translateX(100%);
-		transition: all ease 0.4s;
-		z-index: 20;
-		&.visible{
-			transform: translateX(0);
-		}
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 30;
 	}
 	&__title{
 		margin-right: 60px;
@@ -36,28 +44,6 @@
 		padding: 12px 54px;
 		display: inline-block;
 		@include primaryButton;
-	}
-	&__show-button{
-		position: absolute;
-		left: -40px;
-		top: 40px;
-		height: 40px;
-		width: 40px;
-		border-top-left-radius: 50%;
-		border-bottom-left-radius: 50%;
-		border: none;
-		cursor: pointer;
-		font-size: 26px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: $white;
-		background-color: $yellow;
-		transition: all ease 0.4s;
-		&.hidden{
-			opacity: 0;
-			visibility: hidden;
-		}
 	}
 	&__close-button{
 		position: absolute;
@@ -86,12 +72,12 @@
 		color: $white;
 		@include textLight(16);
 	}
+	&__datapicker{
+		width: 356px;
+		background-color: transparent;
+	}
 }
 
-.task__datapicker{
-	width: 356px;
-	background-color: transparent;
-}
 ::v-deep(.dp__main){
 	width: 100% !important;
 }
