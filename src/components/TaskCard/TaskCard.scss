@@ -110,17 +110,9 @@
 		width: 16px;
 		margin-left: 3px;
 	}
-}
-
-::v-deep(.textarea__label) {
-	color: $gray;
-	width: 100%;
-	@include textLight(14);
-}
-
-::v-deep(.textarea__area) {
-	padding: 6px;
-	height: auto;
-	color: $white;
-	@include textMedium(14);
+	&__comment{
+		color: $white;
+		@include textMedium(14);
+		padding: 6px;
+	}
 }

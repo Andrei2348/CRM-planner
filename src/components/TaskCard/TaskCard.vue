@@ -31,24 +31,14 @@
 			<div class='task__comment-wrapper'>
 
 				<!-- Сюда прописать права пользователя для тимлида -->
-				<div class="task__buttons-comment">  
-          <button class='task__button-comment' v-if='readonlyFlag' @click='editCommentHandler'>
+				<div class="task__buttons-comment" v-if='userStore.getIsTeamLead'>  
+          <button class='task__button-comment' @click='editCardHandler(task)'>
 						<SvgIcon class='task__button-icon' icon="edit" />
-					</button>  
-          <button class='task__button-comment' v-else @click='changeCommentHandler()'>
-						<SvgIcon class='task__button-icon' icon="save" />
-					</button>  
+					</button>    
         </div>  
-				<TextAreaComponent
-					class='task__textarea'
-					label='Примечание'
-					name='comment' 
-					type='text'
-					placeholder='Введите комментарий'
-					@update:modelValue='getInputData'
-					:textareaValue='commentValue.comment'
-					:readonly='readonlyFlag'
-				/>
+				<p class='task__comment'>
+					{{ task.comment }}
+				</p>
 			</div>
 		</div>
 	</div>

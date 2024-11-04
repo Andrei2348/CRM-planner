@@ -1,5 +1,6 @@
 import { defineComponent, onBeforeMount } from 'vue'
 import { useDataStore } from '@/store/data'
+import { useUserStore } from '@/store/user'
 import MainLayout from "@/layouts/MainLayout/MainLayout.vue"
 import { useRoute } from 'vue-router'
 import CreateTaskComponent from '@/components/CreateTaskComponent/CreateTaskComponent.vue'
@@ -16,6 +17,7 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const dataStore = useDataStore()
+    const userStore = useUserStore()
 
     onBeforeMount(async () => {  
       await Promise.all([  

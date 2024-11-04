@@ -5,6 +5,8 @@
 		display: flex;
 		align-items: stretch;
 		flex-wrap: nowrap;
+		padding-bottom: 40px;
+		min-height: 100vh;
 	}
 	&__empty-list{
 		position: absolute;

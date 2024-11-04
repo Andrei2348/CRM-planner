@@ -9,7 +9,7 @@ export const useUxuiStore = defineStore('uxui', () => {
 	}
 
   const getIsCreateTaskPanelVisible = computed(() => {  
-    return isCreateTaskPanelVisible.value  
+    return isCreateTaskPanelVisible.value
   }) 
 
   return {

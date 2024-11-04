@@ -1,4 +1,4 @@
-import { defineComponent, PropType, reactive, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import { Task } from '@/types/projects'
 import { useUserStore } from '@/store/user'
 import { useDataStore } from '@/store/data'
@@ -16,16 +16,9 @@ export default defineComponent({
     const userStore = useUserStore()
 		const dataStore = useDataStore()
 		const infoIsVisible = ref(false)
-		const readonlyFlag = ref(true)
-		const commentValue = reactive(  
-			{'comment': props.task.comment || ''}  
-		)  
 
 		const showInfoHandler = (): void => {
 			infoIsVisible.value = !infoIsVisible.value
-			if(infoIsVisible.value && !readonlyFlag.value){
-				editCommentHandler()
-			}
 		}
    
 		const fetchUserById = (id: number): string | undefined => {  
@@ -42,21 +35,8 @@ export default defineComponent({
 			}
 		}
 
-		const getInputData = (key: string, value: string): void => {
-			if (key === 'comment') {  
-				commentValue.comment = value
-			} 
-		}
-
-		const editCommentHandler = () :void => {
-			readonlyFlag.value = !readonlyFlag.value
-		}
-
-		const changeCommentHandler = () :void => {
-			editCommentHandler()
-			if(props.task.id){
-				dataStore.taskPatchRequest(props.task.id, commentValue)
-			}
+		const editCardHandler = (task: Task): void => {
+			console.log('edit', task)
 		}
 
     return {
@@ -66,11 +46,7 @@ export default defineComponent({
 			infoIsVisible,
 			changeStatusHandler,
 			getFormatDate,
-			getInputData,
-			readonlyFlag,
-			editCommentHandler,
-			changeCommentHandler,
-			commentValue
+			editCardHandler
     }
   },
 })

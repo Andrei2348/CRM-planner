@@ -3,15 +3,15 @@
 		<h3 class='card__title'>{{project.name}}</h3>
 		<p class='card__text'>Участники: {{project.users.length}} человек.</p>
 		<div class="card__buttons-wrapper">
-			<button v-if='project.teamLead === userStore.userInfo?.id' class='card__button'>
+			<button v-if="isTeamLead" class='card__button'>
 				<SvgIcon icon='trash'/>
 			</button>
-			<router-link 
-				class='card__button'
-				:to="`/project/${project.id}`"
+			<button   
+				class='card__button'   
+				@click="goToProjectHandler"  
 			>  
-    		<SvgIcon icon='chevron-right'/>  
-			</router-link> 
+				<SvgIcon icon='chevron-right'/>  
+			</button>  
 		</div>
 	</div>
 </template>

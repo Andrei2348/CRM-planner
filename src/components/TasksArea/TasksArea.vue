@@ -2,14 +2,11 @@
 	<div class='tasks__container'>
 	<h3 class='tasks__title'>{{ taskArea.title }}</h3>
 	<div class="tasks__wrapper">
-
-	
 		<TaskCard  
 			v-for="task in filteredTasks"  
 			:key="task.id"  
 			:task="task"  
 		/>  
-	
 	</div>
 	</div>
 </template>

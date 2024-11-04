@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import useApiCall from '@/composables/useApiCall'
 import { UserLoginItem, UserItem, UserApiResponse, UserItemResponse } from '@/types/user'
 import { useRouter } from 'vue-router'
@@ -9,14 +9,23 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter()
   const isLoginStatus = ref(false)
   const userInfo = ref<UserItemResponse | null>(null)
+  const isTeamLead = ref(false)
 
-  const setUserInfo = (payload: UserItemResponse | null) => {
+  const setUserInfo = (payload: UserItemResponse | null): void => {
     userInfo.value = payload
   }
 
-  const setIsLoginStatus = (payload: boolean) => {
+  const setIsLoginStatus = (payload: boolean): void => {
     isLoginStatus.value = payload
   }
+
+  const setIsTeamLead = (payload: boolean): void => {
+    isTeamLead.value = payload
+  }
+
+  const getIsTeamLead = computed(() => {  
+    return isTeamLead.value 
+  }) 
 
 	const handleResponse = (status: number, response: UserApiResponse) => {
 		if (status === 200 || status === 201) {
@@ -69,6 +78,8 @@ export const useUserStore = defineStore('user', () => {
     setIsLoginStatus,
     userRegisterRequest,
     preLoginUserStatus,
-    setUserInfo
+    setUserInfo,
+    setIsTeamLead,
+    getIsTeamLead
   }
 })

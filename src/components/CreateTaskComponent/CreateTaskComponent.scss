@@ -11,6 +11,7 @@
 		position: relative;
 		transform: translateX(100%);
 		transition: all ease 0.4s;
+		z-index: 20;
 		&.visible{
 			transform: translateX(0);
 		}
