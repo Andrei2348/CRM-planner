@@ -1,8 +1,17 @@
 <template>
 	<nav class='navbar'>
-	<p class='navbar__user'>
-		{{ userStore.userInfo?.username }}
-	</p>
+	<button @click='asideShowHandler'>burger</button>
+	<div class="navbar__person-wrapper">
+		<p class='navbar__user'>
+			{{ userStore.getUserInfo?.username }}
+		</p>
+		<button 
+			class='navbar__logout-button' 
+			@click='logoutHandler'
+			>
+			<SvgIcon icon="log-out" />
+		</button>
+	</div>
 	</nav>
 </template>
 

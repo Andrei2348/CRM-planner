@@ -4,6 +4,7 @@ import { useUserStore } from '@/store/user'
 import { useDataStore } from '@/store/data'
 import { getFormatDate } from '@/helpers/dateFormatter'
 import {useOpenCreatePanelHandler} from '@/composables/useTaskPanelOpen'
+import { TasksStatuses } from '@/types/projects'
 
 export default defineComponent({
   name: 'TaskCard',
@@ -30,15 +31,11 @@ export default defineComponent({
 			return undefined  
 		}
 
-		const changeStatusHandler = (status: string): void => {
+		const changeStatusHandler = (status: TasksStatuses): void => {
 			if(props.task.id){
-				dataStore.taskPatchRequest(props.task.id, {'status': status})
+				dataStore.taskPatchRequest({'id': props.task.id, 'status': status})
 			}
 		}
-
-		// const editCardHandler = (task: Task): void => {
-		// 	dataStore.setTaskForEdit(task)
-		// }
 
     return {
       userStore,

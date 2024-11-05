@@ -2,6 +2,7 @@
 	<MainLayout class='boards'>
 	<div 
 		class="boards__wrapper" 
+		:class='{"visible": uxuiStore.getshowAsidePanel}'
 		v-if='dataStore.canProceed && 
 		dataStore.tasksList'
 	>

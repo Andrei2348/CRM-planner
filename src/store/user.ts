@@ -15,6 +15,10 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value = payload
   }
 
+  const getUserInfo = computed(() => {  
+    return userInfo.value 
+  }) 
+
   const setIsLoginStatus = (payload: boolean): void => {
     isLoginStatus.value = payload
   }
@@ -72,7 +76,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   return {
-    userInfo,
+    getUserInfo,
     isLoginStatus,
     userLoginRequest,
     setIsLoginStatus,

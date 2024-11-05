@@ -6,3 +6,21 @@
 	background-color: $mainBg;
 	z-index: 0;
 }
+.fade-enter-active {  
+	transition: all ease-in 0.9s; 
+	opacity: 0;  
+	transform: translateX(100%);
+} 
+.fade-leave-active{
+	transition: all ease-out 0.5s; 
+	opacity: 1;  
+	transform: translateX(0%);
+} 
+.fade-enter {  
+	opacity: 1;  
+	transform: translateX(0%);
+}  
+.fade-leave-to{
+	opacity: 0;  
+	transform: translateX(100%);
+}

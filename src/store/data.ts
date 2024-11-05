@@ -21,7 +21,6 @@ export const useDataStore = defineStore('data', () => {
 			const index = tasksList.value.findIndex(task => task.id === newTask.id) 
 			if (index !== -1) {  
 				tasksList.value[index] = { ...tasksList.value[index], ...newTask } 
-				console.log(tasksList.value)
 			}  
 		}
 	}  
@@ -80,9 +79,9 @@ export const useDataStore = defineStore('data', () => {
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
 		try{
-			if(userStore.userInfo){
+			if(userStore.getUserInfo){
 				setIsLoadingProjects(true)
-				const {status, data} = await useApiCall.get(`projects?users.id=${userStore.userInfo.id}`)
+				const {status, data} = await useApiCall.get(`projects?users.id=${userStore.getUserInfo.id}`)
 				if(status === 200 || status === 201){
 					setProjectList(data)
 				}
@@ -96,28 +95,27 @@ export const useDataStore = defineStore('data', () => {
 
 	// Получение проекта по id
 	const projectInfoRequest = async (payload: number): Promise<void> => {
-		try{
-			if(userStore.userInfo){
+		if(!selectedProject.value){
+			try{
 				const {status, data} = await useApiCall.get(`projects?id=${payload}`)
-				console.log(status, data)
-				// if(status === 200 || status === 201){
-				// 	setProjectList(data)
-				// }
+				if(status === 200 || status === 201){
+					if(data){
+						setSelectedProject(data[0])
+					}
+				}
+			} catch (error) {
+				console.log(error)
 			}
-		} catch (error) {
-			console.log(error)
 		}
 	}
 
 	// Получение списка задач по выбранному проекту
 	const tasksListRequest = async (id: number): Promise<void> => {
 		try{
-			if(userStore.userInfo){
-				setIsLoadingTasks(true)
-				const {status, data} = await useApiCall.get(`tasks?projectId=${id}`)
-				if(status === 200 || status === 201){
-					setTasksList(data)
-				}
+			setIsLoadingTasks(true)
+			const {status, data} = await useApiCall.get(`tasks?projectId=${id}`)
+			if(status === 200 || status === 201){
+				setTasksList(data)
 			}
 		} catch (error) {
 			console.log(error)
@@ -127,9 +125,9 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Изменение данных тасков
-	const taskPatchRequest = async (id: number, payload: PatchTaskResponse): Promise<void> => {  
+	const taskPatchRequest = async (payload: Task | PatchTaskResponse): Promise<void> => {  
     try {  
-			const { status, data } = await useApiCall.patch(`tasks/${id}`, payload);  
+			const { status, data } = await useApiCall.patch(`tasks/${payload.id}`, payload);  
 			console.log(status, data)
 			if (status === 200 || status === 201) {  
 				changeTaskData(data)  
@@ -142,10 +140,9 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Создание таски
-	const taskCreateRequest = async (payload: PatchTaskResponse): Promise<void> => {  
+	const taskCreateRequest = async (payload: Task): Promise<void> => {  
     try {  
 			const { status, data } = await useApiCall.post('tasks/', payload);  
-			console.log(status, data)
 			if (status === 200 || status === 201) {  
 				addTaskData(data)  
 			} else {  
@@ -159,12 +156,10 @@ export const useDataStore = defineStore('data', () => {
 	// Получение списка пользователей в проекте
 	const usersListRequest = async (projectId: number): Promise<void> => {
 		try{
-			if(userStore.userInfo){
-				setIsLoadingUsers(true)
-				const {status, data} = await useApiCall.get(`projects?id=${projectId}`)
-				if(status === 200 || status === 201){
-					setUsersList(data[0].users)
-				}
+			setIsLoadingUsers(true)
+			const {status, data} = await useApiCall.get(`projects?id=${projectId}`)
+			if(status === 200 || status === 201){
+				setUsersList(data[0].users)
 			}
 		} catch (error) {
 			console.log(error)
@@ -172,6 +167,7 @@ export const useDataStore = defineStore('data', () => {
       setIsLoadingUsers(false)
     }
 	}
+
   return {
 		projectsListRequest,
 		projectInfoRequest,

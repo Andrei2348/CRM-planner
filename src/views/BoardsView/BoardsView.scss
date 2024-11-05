@@ -2,10 +2,14 @@
 	min-width: 2500px;
 	position: relative;
 	&__wrapper{
-		margin-left: 260px;
+		margin-left: 40px;
 		display: flex;
 		align-items: stretch;
 		flex-wrap: nowrap;
+		transition: all ease-in-out 0.5s;
+		&.visible{
+			margin-left: 260px;
+		}
 	}
 	&__empty-list{
 		position: absolute;
@@ -22,7 +26,7 @@
 	}
 	&__create-widget{
 		position: fixed;
-		top: 40px;
+		top: 80px;
 		right: 0;
 		transition: all ease 0.4s;
 		transition-delay: 0.4s;

@@ -41,17 +41,17 @@
   @if $val == 16{
     font-size: 16px;
     font-weight: 700;
-    line-height: 16px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 14 {
     font-size: 14px;
     font-weight: 700;
-    line-height: 14px;
+    line-height: 1.3;
     text-align: center;
   } @else if $val == 12 {
     font-size: 12px;
     font-weight: 700;
-    line-height: 12px;
+    line-height: 1.3;
     text-align: center;
   }
 }
@@ -65,17 +65,17 @@
   } @else if $val == 16 {
     font-size: 16px;
     font-weight: 500;
-    line-height: 16px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 14 {
     font-size: 14px;
     font-weight: 500;
-    line-height: 14px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 12 {
     font-size: 12px;
     font-weight: 500;
-    line-height: 12px;
+    line-height: 1.3;
     text-align: left;
   }
 }
@@ -84,17 +84,17 @@
   @if $val == 16 {
     font-size: 16px;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 14 {
     font-size: 14px;
     font-weight: 400;
-    line-height: 14px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 12 {
     font-size: 12px;
     font-weight: 400;
-    line-height: 12px;
+    line-height: 1.3;
     text-align: left;
   }
 }
@@ -103,17 +103,17 @@
   @if $val == 16 {
     font-size: 16px;
     font-weight: 300;
-    line-height: 16px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 14 {
     font-size: 14px;
     font-weight: 300;
-    line-height: 14px;
+    line-height: 1.3;
     text-align: left;
   } @else if $val == 12 {
     font-size: 12px;
     font-weight: 300;
-    line-height: 12px;
+    line-height: 1.3;
     text-align: left;
   }
 }

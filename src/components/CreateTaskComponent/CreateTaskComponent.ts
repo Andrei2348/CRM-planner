@@ -49,8 +49,12 @@ export default defineComponent({
       (blankDataTask.value[key] as string | number) = value  
     } 
 
-    const createTaskHandler = (): void => {   
-      dataStore.taskCreateRequest(blankDataTask.value)
+    const createTaskHandler = (): void => {
+      if(blankDataTask.value.id){
+        dataStore.taskPatchRequest(blankDataTask.value)
+      } else {
+        dataStore.taskCreateRequest(blankDataTask.value)
+      }
       resetForm()
       useCloseCreatePanelHandler()
     }  
@@ -89,7 +93,7 @@ export default defineComponent({
         blankDataTask.value.projectId = Number(route.params.id);  
         blankDataTask.value.timeCreate = new Date().toLocaleDateString('en-CA')
       } else {
-        blankDataTask.value = dataStore.getTaskForEdit
+        blankDataTask.value = {...dataStore.getTaskForEdit}
       }
     })
 

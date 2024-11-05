@@ -1,6 +1,7 @@
 import { defineComponent, PropType, computed } from 'vue'
 import { Project } from '@/types/projects'
 import { useUserStore } from '@/store/user'
+import { useDataStore } from '@/store/data'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -13,13 +14,15 @@ export default defineComponent({
   }, 
   setup(props) {
     const userStore = useUserStore()
+    const dataStore = useDataStore()
     const router = useRouter()
 
-    const isTeamLead = computed(() => props.project.teamLead === userStore.userInfo?.id);  
+    const isTeamLead = computed(() => props.project.teamLead === userStore.getUserInfo?.id);  
 
-		const goToProjectHandler = () => {  
-			userStore.setIsTeamLead(isTeamLead.value);  
-			router.push(`/project/${props.project.id}`);  
+		const goToProjectHandler = (payload: Project) => {  
+			userStore.setIsTeamLead(isTeamLead.value)
+      dataStore.setSelectedProject(payload)
+			router.push(`/project/${props.project.id}`)  
 		};  
     return {
       userStore,

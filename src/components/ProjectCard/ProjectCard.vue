@@ -8,7 +8,7 @@
 			</button>
 			<button   
 				class='card__button'   
-				@click="goToProjectHandler"  
+				@click="goToProjectHandler(project)"  
 			>  
 				<SvgIcon icon='chevron-right'/>  
 			</button>  

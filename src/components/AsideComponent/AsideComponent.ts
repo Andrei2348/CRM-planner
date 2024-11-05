@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import MenuComponent from '@/components/MenuComponent/MenuComponent.vue'
+import { useUxuiStore } from '@/store/uxui'
 
 export default defineComponent({
   name: 'AsideComponent',
@@ -7,12 +8,12 @@ export default defineComponent({
     MenuComponent,
   },
   emits: ['logoutUserHandler',],
-  setup(_, { emit }) {
-    const logoutHandler = () => {
-      emit('logoutUserHandler')
-    }
+  setup() {
+    const uxuiStore = useUxuiStore()
+    
     return {
-      logoutHandler,
+      
+      uxuiStore
     }
   },
 })

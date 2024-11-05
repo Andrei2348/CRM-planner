@@ -1,13 +1,13 @@
 <template>
 	<main class="main">
-		<AsideComponent @logoutUserHandler='logoutUserHandler'/>
-		<NavbarComponent />
+		<AsideComponent />
+		<NavbarComponent @logoutUserHandler='logoutUserHandler'/>
 		<slot />
-
-		<component v-if="uxuiStore.getCreatePanelName !== ''" :is="CreateLayout">
-      <template #create__content />
-    </component>
-		
+    <transition name="fade"> 
+      <component v-if="uxuiStore.getCreatePanelName !== ''" :is="CreateLayout">
+        <template #create__content />
+      </component>
+		</transition>
 	</main>
 </template>
 

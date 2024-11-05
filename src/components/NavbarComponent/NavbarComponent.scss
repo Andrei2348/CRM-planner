@@ -1,5 +1,5 @@
 .navbar{
-	width: calc(100vw - 260px);
+	width:100vw;
 	background-color: $black;
 	height: 40px;
 	position: fixed;
@@ -7,11 +7,21 @@
 	right: 0;
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
+	padding: 0 10px;
 	z-index: 10;
+	&__person-wrapper{
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
 	&__user{
 		color: $white;
-		padding-right: 30px;
 		@include textRegular(16);
+	}
+	&__logout-button{
+		background: transparent;
+		border: none;
+		cursor: pointer;
 	}
 }
