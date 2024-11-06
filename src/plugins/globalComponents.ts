@@ -4,6 +4,7 @@ import InputComponent from '@/components/InputComponent/InputComponent.vue'
 import TextAreaComponent from '@/components/TextAreaComponent/TextAreaComponent.vue'
 import StatusMenu from '@/components/StatusMenu/StatusMenu.vue'
 import DateElement from '@/components/DateElement/DateElement.vue'
+import ColorPicker from '@/components/ColorPicker/ColorPicker.vue'
 
 const globalComponents = (app: App) => {
   app.component('SvgIcon', SvgIcon)
@@ -11,5 +12,6 @@ const globalComponents = (app: App) => {
   app.component('TextAreaComponent', TextAreaComponent)
   app.component('StatusMenu', StatusMenu)
   app.component('DateElement', DateElement)
+  app.component('ColorPicker', ColorPicker)
 }
 export default globalComponents

@@ -23,6 +23,7 @@
 		<CreateWidget 
 			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'
 			class='boards__create-widget' 
+			componentName='CreateTaskComponent'
 		/>
 	</MainLayout>
 </template>

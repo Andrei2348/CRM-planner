@@ -18,6 +18,7 @@ export default defineComponent({
     const dataStore = useDataStore() 
     const uxuiStore = useUxuiStore() 
 
+    const editFlag = ref(false)
     const blankDataTask = ref<Task>({  
       projectId: Number(route.params.id),   
       executorId: null,  
@@ -25,15 +26,17 @@ export default defineComponent({
       timeCreate: '',  
       deadline: '',  
       comment: '',  
+      color: '#FF5733',
       status: 'inProgress'  
     })
 
-    const resetForm = () => {  
+    const resetForm = (): void => {  
       blankDataTask.value.projectId = Number(route.params.id)
       blankDataTask.value.task = ''
       blankDataTask.value.timeCreate = new Date().toLocaleDateString('en-CA') 
       blankDataTask.value.deadline = ''  
       blankDataTask.value.comment = ''  
+      blankDataTask.value.color = '#FF5733'  
       blankDataTask.value.status = 'inProgress' 
     }
     
@@ -94,6 +97,7 @@ export default defineComponent({
         blankDataTask.value.timeCreate = new Date().toLocaleDateString('en-CA')
       } else {
         blankDataTask.value = {...dataStore.getTaskForEdit}
+        editFlag.value = true
       }
     })
 
@@ -108,6 +112,7 @@ export default defineComponent({
       getTitleById,
       changeExecutorHandler,
       uxuiStore,
+      editFlag
     }  
   },  
 })

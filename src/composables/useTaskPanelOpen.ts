@@ -5,9 +5,9 @@ import { Task } from '@/types/projects'
 const dataStore = useDataStore()
 const uxuiStore = useUxuiStore()
 
-export const useOpenCreatePanelHandler = (payload: Task | null): void => {
+export const useOpenCreatePanelHandler = (componentName: string, payload: Task | null): void => {
   dataStore.setTaskForEdit(payload)
-  uxuiStore.setCreatePanelName('CreateTaskComponent')
+  uxuiStore.setCreatePanelName(componentName)
 }
 
 export const useCloseCreatePanelHandler = (): void => {

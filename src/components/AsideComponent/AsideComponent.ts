@@ -10,9 +10,7 @@ export default defineComponent({
   emits: ['logoutUserHandler',],
   setup() {
     const uxuiStore = useUxuiStore()
-    
     return {
-      
       uxuiStore
     }
   },

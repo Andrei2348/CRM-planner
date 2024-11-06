@@ -1,25 +1,32 @@
 .task{
 	&__wrapper{
+		position: relative;
+		z-index: 60;
+	}
+	&__container{
+		padding: 16px 22px 22px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		padding: 16px 22px 22px;
+		width: 100%;
+		overflow-x: hidden;
+		height: calc(100vh - 100px);
+		@include custom-scrollbar;
 	}
-	
 	&__title{
+		padding: 16px 22px 22px;
 		margin-right: 60px;
 		position: relative;
-		padding-bottom: 20px;
 		color: $white;
 		@include textMedium(22);
 		&::after{
 			content: '';
 			position: absolute;
-			width: 100%;
-			height: 2px;
+			width: 90%;
+			height: 1px;
 			background-color: $gray2;
 			bottom: 16px;
-			left: 0;
+			left: 22px;
 		}
 	}
 	&__button-create{
@@ -38,7 +45,7 @@
 		@include textLight(16);
 	}
 	&__datapicker{
-		width: 356px;
+		width: 100%;
 		background-color: transparent;
 	}
 }

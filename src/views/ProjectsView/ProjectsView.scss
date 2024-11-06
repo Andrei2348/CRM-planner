@@ -1,11 +1,16 @@
 .projects{
 	&__list{
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		margin-left: 280px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		margin-left: 50px;
 		margin-right: 20px;
-		padding-top: 60px;
+		padding-top: 50px;
 		gap: 10px;
+		transition: all ease 0.5s;
+		&.visible{
+			margin-left: 280px;
+		}
 	}
 	&__empty-list{
 		position: absolute;

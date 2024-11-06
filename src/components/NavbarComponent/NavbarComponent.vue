@@ -1,17 +1,22 @@
 <template>
 	<nav class='navbar'>
-	<button @click='asideShowHandler'>burger</button>
-	<div class="navbar__person-wrapper">
-		<p class='navbar__user'>
-			{{ userStore.getUserInfo?.username }}
-		</p>
 		<button 
-			class='navbar__logout-button' 
-			@click='logoutHandler'
-			>
-			<SvgIcon icon="log-out" />
+			class="navbar__burger" 
+			@click='asideShowHandler'
+		>
+			<div class="navbar__line"></div>
 		</button>
-	</div>
+		<div class="navbar__person-wrapper">
+			<p class='navbar__user'>
+				{{ userStore.getUserInfo?.username }}
+			</p>
+			<button 
+				class='navbar__logout-button' 
+				@click='logoutHandler'
+				>
+				<SvgIcon icon="log-out" />
+			</button>
+		</div>
 	</nav>
 </template>
 

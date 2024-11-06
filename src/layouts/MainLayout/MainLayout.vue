@@ -4,9 +4,7 @@
 		<NavbarComponent @logoutUserHandler='logoutUserHandler'/>
 		<slot />
     <transition name="fade"> 
-      <component v-if="uxuiStore.getCreatePanelName !== ''" :is="CreateLayout">
-        <template #create__content />
-      </component>
+      <component v-if="uxuiStore.getCreatePanelName !== ''" :is="CreateLayout" />
 		</transition>
 	</main>
 </template>

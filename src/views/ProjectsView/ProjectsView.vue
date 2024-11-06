@@ -4,6 +4,7 @@
 			v-if='dataStore.projectList &&
 			!dataStore.isLoadingProjects' 
 			class='projects__list'
+			:class='{"visible": uxuiStore.getshowAsidePanel}'
 		>
 			<ProjectCard  
         v-for="project in dataStore.projectList"  
@@ -19,6 +20,11 @@
 		>
 			Список проектов пока пуст.
 		</div>
+		<CreateWidget 
+			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'
+			class='boards__create-widget' 
+			componentName='CreateProjectComponent'
+		/>
 	</MainLayout>
 </template>
 

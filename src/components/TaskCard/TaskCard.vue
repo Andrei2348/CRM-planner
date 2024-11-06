@@ -2,6 +2,7 @@
 	<div class='task__wrapper'>
 		<span class='task__span'>Задание:</span>
 		<h3 class='task__title'>{{task.task}}</h3>
+		<div class='task__color-underline' :style='{ backgroundColor: task.color }'></div>
 		<p class='task__text'>  
 			<span class='task__span'>Исполнитель:</span>   
 			{{ task.executorId !== null ? fetchUserById(task.executorId) : 'Не назначен' }}  
@@ -40,7 +41,7 @@
 			<button 
 				v-if='userStore.getIsTeamLead'
 				class='task__button-edit' 
-				@click='useOpenCreatePanelHandler(task)'
+				@click='useOpenCreatePanelHandler("CreateTaskComponent", task)'
 			>
 				<SvgIcon class='task__button-icon' icon="edit" />
 			</button>  

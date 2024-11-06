@@ -6,7 +6,6 @@ export const MENU_DATA: ImenuItem[] = [
 		name: 'Проекты',
 		url: '/'
 	},
-	
 	{
 		icon:'payments',
 		name: 'Payments',

@@ -1,7 +1,7 @@
 <template>
 	<button 
 		class='task__show-button' 
-		@click='useOpenCreatePanelHandler(null)'
+		@click='useOpenCreatePanelHandler(componentName, null)'
 	>
 		+
 	</button>

@@ -7,11 +7,13 @@ export interface Task {
 	task: string,  
 	timeCreate: string,  
 	deadline: string,  
-	comment: string,  
+	comment: string,
+	color: Colors,  
 	status: TasksStatuses  
 }  
 
 export type TasksStatuses = 'inProgress' | 'review' | 'tested' | 'finished' | 'blocked' | 'deferred' | 'cancelled'
+export type Colors = '#FF5733' |  '#33FF57' | '#3357FF' | '#F1C40F' | '#9B59B6' | '#A5260A'
   
 export interface Project {  
 	id: number, 

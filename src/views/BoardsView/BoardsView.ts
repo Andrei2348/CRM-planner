@@ -6,8 +6,8 @@ import MainLayout from "@/layouts/MainLayout/MainLayout.vue"
 import { useRoute } from 'vue-router'
 import CreateTaskComponent from '@/components/CreateTaskComponent/CreateTaskComponent.vue'
 import TasksArea from '@/components/TasksArea/TasksArea.vue'
-import CreateWidget from '@/components/CreateWidget/CreateWidget.vue'
 import { DROPDOWN_STATUS_MENU } from '@/config/menu'
+import CreateWidget from '@/components/CreateWidget/CreateWidget.vue'
 
 export default defineComponent({
   name: 'BoardsView',
