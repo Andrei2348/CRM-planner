@@ -1,65 +1,33 @@
 <template>
-	<div class="task__wrapper">
-		<!-- <h2 class='task__title'>Задача</h2>
-		<div class="task__container">
+	<div class="projects__wrapper">
+	
+		<h2 class='projects__title'>проект</h2>
+		<div class="projects__container">
 		
 			<InputComponent 
-				label='Задание' 
+				label='Название проекта' 
 				name='task' 
 				type='text'
-				placeholder='Введите задание'
-				@update:modelValue='getInputData'
-				:modelValue='blankDataTask.task'
-			/> -->
+				placeholder='Введите название проекта'
+			/>
 
-			<!-- <DateElement 
-				class="task__datapicker"
-				placeholder="Дата подписания"
-				objectKey="deadline"
-				:value="blankDataTask.deadline"
-				@dataChanged="getInputData"
-				label="Дедлайн"
-			/> -->
-
-			<!-- <SelectMenu   
-				label='Выберите исполнителя'  
-				:title='getTitleById(blankDataTask.executorId)'  
-				:persons='dataStore.usersList || []'
-				@changeSelectHandler='changeExecutorHandler' 
-			/> -->
-	
-			<!-- <div class="task__status-wrapper">
-				<p class="task__label">Статус задания</p>
-				<StatusMenu 
-					class='task__status-dropdown'
-					:title='blankDataTask.status'
-					@changeSelectHandler='changeSelectHandler'
-				/>
-			</div> -->
-
-			<!-- <TextAreaComponent 
-				label='Комментарий' 
-				name='comment' 
+			<TextAreaComponent 
+				label='Описание проекта' 
+				name='description' 
 				type='text'
-				placeholder='Введите комментарий'
-				@update:modelValue='getInputData'
-				:textareaValue='blankDataTask.comment'
-			/> -->
+				placeholder='Введите описание проекта'
+			/>
 
-			<!-- <ColorPicker 
+			<ColorPicker 
 				name='color'
-				:color='blankDataTask.color'
-				@colorChanged='getInputData'
-			/> -->
+			/>
 	
-			<!-- <button 
-				class='task__button-create'
-				:disabled='disableButtonFlag'
-				@click='createTaskHandler'
+			<button 
+				class='projects__button-create'
 				>
-				{{editFlag? 'Редактировать' : 'Создать'}}
-			</button> -->
-		<!-- </div> -->
+				Создать проект
+			</button>
+		</div>
 	</div>
 </template>
 

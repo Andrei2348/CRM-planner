@@ -22,7 +22,7 @@
 		</div>
 		<CreateWidget 
 			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'
-			class='boards__create-widget' 
+			class='projects__create-widget' 
 			componentName='CreateProjectComponent'
 		/>
 	</MainLayout>

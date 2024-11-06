@@ -19,6 +19,7 @@ export interface Project {
 	id: number, 
 	name: string,
 	teamLead: number,
+	description: string,
 	users: User[],  
 }  
 

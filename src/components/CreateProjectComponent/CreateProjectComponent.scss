@@ -1,0 +1,44 @@
+.projects{
+	&__wrapper{
+		position: relative;
+		z-index: 60;
+	}
+	&__container{
+		padding: 16px 22px 22px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		width: 100%;
+		overflow-x: hidden;
+		height: calc(100vh - 100px);
+		@include custom-scrollbar;
+	}
+	&__title{
+		padding: 16px 22px 22px;
+		margin-right: 60px;
+		position: relative;
+		color: $white;
+		@include textMedium(22);
+		&::after{
+			content: '';
+			position: absolute;
+			width: 90%;
+			height: 1px;
+			background-color: $gray2;
+			bottom: 16px;
+			left: 22px;
+		}
+	}
+	&__button-create{
+		padding: 12px 54px;
+		display: inline-block;
+		@include primaryButton;
+	}
+	&__label{
+		display: block;
+		margin-bottom: 8px;
+		color: $white;
+		@include textLight(16);
+	}
+}
+

@@ -20,4 +20,15 @@
 		color: $white;
 		@include heading(22);
 	}
+	&__create-widget{
+		position: fixed;
+		top: 80px;
+		right: 0;
+		transition: all ease 0.4s;
+		transition-delay: 0.4s;
+		transform: translateX(0);
+		&.hidden{
+			transform: translateX(100%);
+		}
+	}
 }
