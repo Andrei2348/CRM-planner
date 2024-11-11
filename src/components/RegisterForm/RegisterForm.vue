@@ -34,6 +34,7 @@
 			name='repassword'
 			:error='displayErrors.repassword'
 			placeholder='Повторите пароль'
+			autocomplete='new-password'
 			@update:modelValue='getInputData'
 			@focus="handleFocus('repassword')"
 			/>
