@@ -1,16 +1,25 @@
 .register{
 	&__wrapper{
-		width: 470px;
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
 		padding: 20px;
-		border: 1px solid $gray;
-		border-radius: 4px;
-		background-color: $violetBg;
-		-webkit-box-shadow: $shadow;
-		-moz-box-shadow: $shadow;
-		box-shadow: $shadow;
+		background-color: $modalLayer;
+		backdrop-filter: blur(10px);
+		-webkit-box-shadow: $shadow3;
+		-moz-box-shadow: $shadow3;
+		box-shadow: $shadow3;
+		width: 100vw;
+		height: 100vh;
+		overflow: auto;
+		@include screen('550px'){
+			width: 470px;
+			border: 1px solid $gray2;
+			border-radius: 8px;
+		}
+		@include notebook{
+			height: auto;
+		}
 	}
 	&__button{
 		padding: 12px 54px;
