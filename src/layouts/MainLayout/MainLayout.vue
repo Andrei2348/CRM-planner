@@ -6,6 +6,9 @@
     <transition name="fade"> 
       <component v-if="uxuiStore.getCreatePanelName !== ''" :is="CreateLayout" />
 		</transition>
+		<transition>
+			<component v-if="uxuiStore.getModalName !== ''" :is="ModalLayout" />
+		</transition>
 	</main>
 </template>
 

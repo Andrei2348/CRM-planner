@@ -1,12 +1,24 @@
 <template>
 	<div class='card__wrapper'>
 		<h3 class='card__title'>{{project.name}}</h3>
+		<div class='card__color-underline' :style='{ backgroundColor: project.color }'></div>
 		<p class='card__text'>{{project.description}}</p>
 		<p class='card__text'>Участники: {{project.users.length}} человек.</p>
 		<div class="card__buttons-wrapper">
-			<button v-if="isTeamLead" class='card__button'>
-				<SvgIcon icon='trash'/>
-			</button>
+			<button 
+				v-if='isTeamLead'
+				class='card__button' 
+				@click='useOpenCreatePanelHandler("CreateProjectComponent", project)'
+			>
+				<SvgIcon icon="edit" />
+			</button> 
+			<button   
+				v-if="isTeamLead && project.id !== undefined"   
+				class='card__button'  
+				@click='deleteProjectHandler(project.id)'  
+			>  
+    		<SvgIcon icon='trash'/>  
+			</button>  
 			<button   
 				class='card__button'   
 				@click="goToProjectHandler(project)"  

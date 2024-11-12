@@ -1,11 +1,11 @@
 <template>
-	<aside class='aside' :class='{ "visible": uxuiStore.getshowAsidePanel }' >
+	<aside class='aside' :class='{ "visible": uxuiStore.getShowAsidePanel }' >
 		<MenuComponent />
 		<div class="aside__date-wrapper">
 			<DateElement 
 				:inline=true
 				objectKey=''
-				:class='{"visible": uxuiStore.getshowAsidePanel}'
+				:class='{"visible": uxuiStore.getShowAsidePanel}'
 				class='aside__date-picker'
 			/>
 		</div>

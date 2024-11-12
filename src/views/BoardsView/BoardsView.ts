@@ -26,7 +26,7 @@ export default defineComponent({
     // Определение, являетесь ли тимлидом
     watch( [() => userStore.getUserInfo, () => dataStore.getSelectedProject], ([newUserInfo, newSelectedProject]) => { 
       if (newUserInfo && newSelectedProject) { 
-        userStore.setIsTeamLead(newUserInfo.id === newSelectedProject.teamLead) 
+        userStore.setIsTeamLead(newUserInfo.id === newSelectedProject.user_id) 
       } else { 
         userStore.setIsTeamLead(false) 
       } 

@@ -1,0 +1,19 @@
+.modal{
+  padding: 54px 22px;
+  &__text{
+    color: $white;
+    @include heading(22);
+  }
+  &__buttons-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  &__button-cancel{
+    @include secondaryButton
+  }
+  &__button-suggest{
+    @include primaryButton
+  }
+}

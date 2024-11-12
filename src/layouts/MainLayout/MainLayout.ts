@@ -6,13 +6,15 @@ import { useUserStore } from '@/store/user'
 import { useUxuiStore } from '@/store/uxui'
 import { useRouter } from 'vue-router'
 import CreateLayout from '@/components/CreateLayout/CreateLayout.vue'
+import ModalLayout from '@/components/ModalLayout/ModalLayout.vue'
 
 export default defineComponent({
   name: 'MainLayout',
   components: {
     AsideComponent,
     NavbarComponent,
-    CreateLayout
+    CreateLayout,
+    ModalLayout
   },
   setup() {
     const router = useRouter()
@@ -30,7 +32,8 @@ export default defineComponent({
     return {
       logoutUserHandler,
       uxuiStore,
-      CreateLayout
+      CreateLayout,
+      ModalLayout
     }
   }
 })

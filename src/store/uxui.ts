@@ -6,6 +6,7 @@ export const useUxuiStore = defineStore('uxui', () => {
   const { enableBodyScroll, disableBodyScroll } = useLockBodyScroll()
   const createPanelName = ref<string>('') 
   const showAsidePanel = ref(false)
+  const modalName = ref<string>('')
 
 	const setCreatePanelName = (payload: string): void => {
 		createPanelName.value = payload
@@ -15,19 +16,28 @@ export const useUxuiStore = defineStore('uxui', () => {
     return createPanelName.value
   }) 
 
-  const setshowAsidePanel = (payload: boolean): void => {
+  const setShowAsidePanel = (payload: boolean): void => {
 		showAsidePanel.value = payload
 	}
 
-  const getshowAsidePanel = computed(() => {  
+  const getShowAsidePanel = computed(() => {  
     return showAsidePanel.value
   }) 
 
+  const setModalName = (payload: string): void => {
+    modalName.value = payload
+  }
+
+  const getModalName = computed(() => {  
+    return modalName.value
+  }) 
+
+
   // Сюда добавить признаки для блокировки скролла
   watch(
-    () => [createPanelName.value, ],
-    ([newCreatePanelName, ]) => {
-      newCreatePanelName !== ''
+    () => [createPanelName.value, modalName.value],
+    ([newCreatePanelName, newModalName]) => {
+      newCreatePanelName !== '' || newModalName !== ''
         ? disableBodyScroll()
         : enableBodyScroll()
     },
@@ -36,7 +46,9 @@ export const useUxuiStore = defineStore('uxui', () => {
   return {
     setCreatePanelName,
 		getCreatePanelName,
-    setshowAsidePanel,
-    getshowAsidePanel
+    setShowAsidePanel,
+    getShowAsidePanel,
+    setModalName,
+    getModalName
   }
 })

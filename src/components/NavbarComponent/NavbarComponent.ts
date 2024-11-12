@@ -14,7 +14,7 @@ export default defineComponent({
     }
 
     const asideShowHandler = (): void => {
-      uxuiStore.setshowAsidePanel(!uxuiStore.getshowAsidePanel)
+      uxuiStore.setShowAsidePanel(!uxuiStore.getShowAsidePanel)
     }
     
     return {

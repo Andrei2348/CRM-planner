@@ -5,11 +5,11 @@
 			:key="item.name"   
 			:to="item.url"
 			class="menu__router-link"
-			:class='{"visible": uxuiStore.getshowAsidePanel}'
+			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>  
 			<SvgIcon :icon='item.icon' iconClass='menu__svg-image'/>
 			<p 
-				:class='{"visible": uxuiStore.getshowAsidePanel}'
+				:class='{"visible": uxuiStore.getShowAsidePanel}'
 				class='menu__router-text'
 			>
 				{{ item.name }}

@@ -14,6 +14,7 @@ export const useDataStore = defineStore('data', () => {
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
 	const taskForEdit = ref<Task | null>(null)
+	const projectForEdit = ref<Project | null>(null)
 	const selectedProject = ref<Project | null>(null)
 
 	const changeTaskData = (newTask: Task): void => {
@@ -29,8 +30,16 @@ export const useDataStore = defineStore('data', () => {
 		taskForEdit.value = payload
 	}
 
+	const setProjectForEdit = (payload: Project | null): void => {
+		projectForEdit.value = payload
+	}
+
 	const getTaskForEdit = computed(() => {  
     return taskForEdit.value
+  }) 
+
+	const getProjectForEdit = computed(() => {  
+    return projectForEdit.value
   }) 
 
 	const setIsLoadingProjects = (payload: boolean): void => {
@@ -75,6 +84,19 @@ export const useDataStore = defineStore('data', () => {
 	const getSelectedProject = computed(() => {  
 		return selectedProject.value  
 	})
+
+	const updateProjectsList = (changedProject: Project): void => {  
+		if (projectList.value) {  
+			projectList.value = projectList.value.map(project => 
+				project.id === changedProject.id ? { ...project, ...changedProject } : project
+			)
+		}
+	}  
+
+	const addProjectToProjectList = (payload: Project): void => {  
+    projectList.value = projectList.value ?? []  
+    projectList.value.push(payload)
+	}
 	
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
@@ -127,29 +149,24 @@ export const useDataStore = defineStore('data', () => {
 	// Изменение данных тасков
 	const taskPatchRequest = async (payload: Task | PatchTaskResponse): Promise<void> => {  
     try {  
-			const { status, data } = await useApiCall.patch(`tasks/${payload.id}`, payload);  
-			console.log(status, data)
+			const { status, data } = await useApiCall.patch(`tasks/${payload.id}`, payload)  
 			if (status === 200 || status === 201) {  
 				changeTaskData(data)  
-			} else {  
-				console.error(`Error: Unexpected status code ${status}`); 
-			}  
+			}
     } catch (error) {  
-			console.error("Error during task patch request:", error); 
+			console.error(error) 
     }
 	}
 
 	// Создание таски
 	const taskCreateRequest = async (payload: Task): Promise<void> => {  
     try {  
-			const { status, data } = await useApiCall.post('tasks/', payload);  
+			const { status, data } = await useApiCall.post('tasks/', payload)  
 			if (status === 200 || status === 201) {  
 				addTaskData(data)  
-			} else {  
-				console.error(`Error: Unexpected status code ${status}`); 
-			}  
+			}
     } catch (error) {  
-			console.error("Error during task patch request:", error); 
+			console.error(error) 
     }
 	}
 
@@ -168,6 +185,30 @@ export const useDataStore = defineStore('data', () => {
     }
 	}
 
+	// Создание нового проекта
+	const projectCreateRequest = async (payload: Project) => {
+		try {  
+			const { status, data } = await useApiCall.post('projects/', payload)  
+			if (status === 200 || status === 201) {  
+				addProjectToProjectList(data)
+			} 
+    } catch (error) {  
+			console.error(error) 
+    }
+	}
+
+	// Редактирование существующего проекта
+	const projectPatchRequest = async (payload: Project) => {
+		try {  
+			const { status, data } = await useApiCall.patch(`projects/${payload.id}`, payload)  
+			if (status === 200 || status === 201) {   
+				updateProjectsList(data) 
+			} 
+    } catch (error) {  
+			console.error(error)
+    }
+	}
+
   return {
 		projectsListRequest,
 		projectInfoRequest,
@@ -182,8 +223,12 @@ export const useDataStore = defineStore('data', () => {
 		taskPatchRequest,
 		taskCreateRequest,
 		setTaskForEdit,
+		setProjectForEdit,
 		getTaskForEdit,
 		setSelectedProject,
-		getSelectedProject
+		getSelectedProject,
+		projectCreateRequest,
+		projectPatchRequest,
+		getProjectForEdit
   }
 })
