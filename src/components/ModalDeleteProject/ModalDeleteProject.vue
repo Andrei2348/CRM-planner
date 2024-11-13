@@ -5,8 +5,18 @@
   </h3>
 
 	<div class="modal__buttons-wrapper">
-	<button class="modal__button-cancel">Отмена</button>
-	<button class="modal__button-suggest">Удалить</button>
+	<button 
+		class="modal__button-cancel" 
+		@click='closeModalHandler'
+	>
+		Отмена
+	</button>
+	<button 
+		class="modal__button-suggest"
+		@click='suggestDeleteHandler'
+	>
+		Удалить
+	</button>
 	</div>
 	</div>
 </template>

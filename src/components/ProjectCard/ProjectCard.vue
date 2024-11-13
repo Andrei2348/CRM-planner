@@ -15,7 +15,7 @@
 			<button   
 				v-if="isTeamLead && project.id !== undefined"   
 				class='card__button'  
-				@click='deleteProjectHandler(project.id)'  
+				@click='deleteProjectHandler(project)'  
 			>  
     		<SvgIcon icon='trash'/>  
 			</button>  

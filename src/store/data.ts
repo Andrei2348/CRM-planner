@@ -4,9 +4,11 @@ import useApiCall from '@/composables/useApiCall'
 import { Project, Task, PatchTaskResponse } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
+import { useUxuiStore } from '@/store/uxui'
 
 export const useDataStore = defineStore('data', () => {
 	const userStore = useUserStore()
+	const uxuiStore = useUxuiStore()
 	const projectList = ref<Project[] | null>(null)
 	const isLoadingProjects = ref(true)
 	const isLoadingTasks = ref(true)
@@ -97,6 +99,12 @@ export const useDataStore = defineStore('data', () => {
     projectList.value = projectList.value ?? []  
     projectList.value.push(payload)
 	}
+
+	const removeProjectById = (id: number | null): void => {  
+		if(projectList.value){
+			projectList.value = projectList.value.filter(item => item.id !== id)  
+		}
+	}  
 	
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
@@ -206,8 +214,29 @@ export const useDataStore = defineStore('data', () => {
 			} 
     } catch (error) {  
 			console.error(error)
-    }
+		}
 	}
+
+	// Удаление выбранного проекта
+	const projectDeleteRequest = async () => {
+		console.log('deleteHandler', projectForEdit.value)
+		if(projectForEdit.value && projectForEdit.value.id){
+			try {  
+				const { status } = await useApiCall.delete(`projects/${projectForEdit.value.id}`)  
+				if (status === 200 || status === 201) {  
+					removeProjectById(projectForEdit.value.id)  
+					setProjectForEdit(null)
+					uxuiStore.setModalName('')
+				} 
+			} catch (error) {  
+				console.error(error)
+			}
+		}
+	}
+
+
+	
+
 
   return {
 		projectsListRequest,
@@ -229,6 +258,7 @@ export const useDataStore = defineStore('data', () => {
 		getSelectedProject,
 		projectCreateRequest,
 		projectPatchRequest,
+		projectDeleteRequest,
 		getProjectForEdit
   }
 })

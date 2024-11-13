@@ -74,6 +74,21 @@
   }
 }
 
+@mixin yellowButton($height: 52px) {
+  @include button($height);
+  justify-content: flex-start;
+  background: $yellow;
+  color: $white;
+  &:hover {
+    background: $darkYellow;
+  }
+  &:disabled {
+    background: $lightYellow;
+    color: $gray2;
+    cursor: unset;
+  }
+}
+
 @mixin circleButton($height: 52px) {
   border: none;
   background: $darkViolet;

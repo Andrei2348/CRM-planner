@@ -28,8 +28,8 @@ export default defineComponent({
 			router.push(`/project/${props.project.id}`)  
 		}
 
-    const deleteProjectHandler = (id: number) => {
-      console.log(id)
+    const deleteProjectHandler = (payload: Project) => {
+      dataStore.setProjectForEdit(payload)
       uxuiStore.setModalName('ModalDeleteProject')
     }
 

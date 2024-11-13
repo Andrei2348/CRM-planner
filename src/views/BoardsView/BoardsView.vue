@@ -2,9 +2,10 @@
 	<MainLayout class='boards'>
 	<div 
 		class="boards__wrapper" 
-		:class='{"visible": uxuiStore.getshowAsidePanel}'
+		:class='{"visible": uxuiStore.getShowAsidePanel}'
 		v-if='dataStore.canProceed && 
-		dataStore.tasksList'
+		dataStore.tasksList &&
+		dataStore.tasksList.length > 0'
 	>
 		<TasksArea 
 			v-for="taskArea in DROPDOWN_STATUS_MENU"  

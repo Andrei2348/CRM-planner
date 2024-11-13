@@ -1,7 +1,9 @@
 .boards{
-	min-width: 2500px;
 	position: relative;
+	width: 100%;
 	&__wrapper{
+		background-color: $mainBg;
+		min-width: 2300px;
 		margin-left: 40px;
 		display: flex;
 		align-items: stretch;
