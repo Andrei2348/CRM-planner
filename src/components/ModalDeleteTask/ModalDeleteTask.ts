@@ -3,13 +3,13 @@ import { useDataStore } from '@/store/data'
 import { useModalClose } from '@/composables/useModalClose'
 
 export default defineComponent({  
-  name: 'ModalDeleteProject',  
+  name: 'ModalDeleteTask',  
   
   setup() { 
     const dataStore = useDataStore()
 
     const suggestDeleteHandler = async () => {
-      await dataStore.projectDeleteRequest()
+      await dataStore.taskDeleteRequest()
       useModalClose()
     }
 

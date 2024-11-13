@@ -8,12 +8,18 @@
 			{{ task.executorId !== null ? fetchUserById(task.executorId) : 'Не назначен' }}  
 		</p>  
 		<p class='task__text'><span class='task__span'>Статус:</span>
-		<!-- Сюда прописать права пользователя для тимлида -->
 		<StatusMenu 
+			class='task__dropdown-status'
+			:class='{"active": userStore.getIsTeamLead}'
 			:title='task.status'
+			:openPermission='userStore.getIsTeamLead'
 			@changeSelectHandler='changeStatusHandler'
 		/>
 		</p>
+		<div class='task__text' v-if="daysUntilDeadline !== ''">  
+			<span class='task__span'>До дедлайна:</span> 
+			<span class='task__deadline'>{{ daysUntilDeadline }}</span> 
+		</div> 
 		<div class='task__button-area' :class="{ active: infoIsVisible }">
 			<p class='task__subtitle'>Инфо:</p>
 			<button 
@@ -37,14 +43,23 @@
 					{{ task.comment }}
 				</p>
 			</div>
-			<!-- Сюда прописать права пользователя для тимлида -->
-			<button 
+			<div 
 				v-if='userStore.getIsTeamLead'
-				class='task__button-edit' 
-				@click='useOpenCreatePanelHandler("CreateTaskComponent", task)'
+				class='task__button-wrapper'
 			>
-				<SvgIcon class='task__button-icon' icon="edit" />
-			</button>  
+				<button 
+					class='task__button-edit' 
+					@click='deleteTaskHandler(task)'
+				>
+					<SvgIcon class='task__button-icon' icon="trash" />
+				</button> 
+				<button 
+					class='task__button-edit' 
+					@click='useOpenCreatePanelHandler("CreateTaskComponent", task)'
+				>
+					<SvgIcon class='task__button-icon' icon="edit" />
+				</button>  
+			</div>
 		</div>
 	</div>
 </template>

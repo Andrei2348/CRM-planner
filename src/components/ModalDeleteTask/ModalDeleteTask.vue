@@ -1,7 +1,7 @@
 <template>
 	<div class='modal'>
 		<h3 class='modal__text'>
-			Вы уверены, что хотите удалить этот проект?
+			Вы уверены, что хотите удалить это задание?
 		</h3>
 		<div class="modal__buttons-wrapper">
 			<button 
@@ -20,5 +20,5 @@
 	</div>
 </template>
 
-<script lang="ts" src="./ModalDeleteProject.ts"></script>
-<style lang="scss" scoped src="./ModalDeleteProject.scss"></style>
+<script lang="ts" src="./ModalDeleteTask.ts"></script>
+<style lang="scss" scoped src="./ModalDeleteTask.scss"></style>

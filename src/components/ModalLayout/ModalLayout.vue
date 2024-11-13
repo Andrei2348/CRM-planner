@@ -3,7 +3,7 @@
 		<div class="modal__wrapper">
       <button 
 				class='modal__close-button'
-				@click="closeModalHandler"
+				@click="useModalClose"
 			>
 				<p class="modal__close-button--text">+</p>
 			</button>

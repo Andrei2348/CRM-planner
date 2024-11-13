@@ -29,6 +29,14 @@
 		width: 100%;
 		@include textLight(14);
 	}
+	&__deadline{
+		white-space: nowrap;
+		padding: 3px 8px;
+		background-color: $red;
+		border-radius: 3px;
+		color: $white;
+		@include textRegular(14);
+	}
 	&__text{
 		display: flex;
 		align-items: center;
@@ -90,9 +98,6 @@
 		}
 	}
 	&__button-edit{
-		position: absolute;
-		bottom: 3px;
-		right: 3px;
 		cursor: pointer;
 		@include circleButton(52px)
 	}
@@ -101,9 +106,20 @@
 		width: 24px;
 		margin-left: 3px;
 	}
+	&__button-wrapper{
+		position: absolute;
+		bottom: 3px;
+		right: 3px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 	&__comment{
 		color: $white;
 		@include textMedium(14);
 		padding: 6px;
+	}
+	&__dropdown-status.active{
+		cursor: pointer;
 	}
 }

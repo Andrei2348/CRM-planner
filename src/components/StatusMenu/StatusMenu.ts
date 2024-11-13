@@ -11,6 +11,11 @@ export default defineComponent({
       required: false,
       default: '',
     },
+    openPermission: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
   },
   directives: {
     clickOutside,

@@ -10,7 +10,7 @@
       <div class="dropdown__title" v-if="title != ''">{{ getTitleByStatus(title) }}</div>
     </div>
     <div
-      v-if="menuIsOpen"
+      v-if="menuIsOpen && openPermission"
       :class="[
         'dropdown__menu',
         menuPositionTop ? 'dropdown__menu-top' : 'dropdown__menu-bottom',

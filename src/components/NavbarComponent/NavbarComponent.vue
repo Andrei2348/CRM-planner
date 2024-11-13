@@ -6,6 +6,7 @@
 		>
 			<div class="navbar__line"></div>
 		</button>
+		<SearchComponent />
 		<div class="navbar__person-wrapper">
 			<p class='navbar__user'>
 				{{ userStore.getUserInfo?.username }}

@@ -33,12 +33,17 @@ export default defineComponent({
       uxuiStore.setModalName('ModalDeleteProject')
     }
 
+    const isUserInProject = computed(() => {  
+      return props.project.users.some(user => user.id === userStore.getUserInfo?.id)  
+    })
+
     return {
       userStore,
       goToProjectHandler,
       isTeamLead,
       useOpenCreatePanelHandler,
-      deleteProjectHandler
+      deleteProjectHandler,
+      isUserInProject
     }
   },
 })

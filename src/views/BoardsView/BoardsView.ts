@@ -43,6 +43,7 @@ export default defineComponent({
     return {
       uxuiStore,
       dataStore,
+      userStore,
       DROPDOWN_STATUS_MENU
     }
   },

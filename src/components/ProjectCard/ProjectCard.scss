@@ -37,4 +37,7 @@
 		margin-top: 10px;
 		@include circleButton;
 	}
+	&__button-request{
+		@include yellowButton;
+	}
 }

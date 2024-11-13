@@ -1,5 +1,6 @@
 import { defineComponent, shallowRef, defineAsyncComponent, watchEffect } from 'vue' 
 import { useUxuiStore } from '@/store/uxui' 
+import { useModalClose } from '@/composables/useModalClose'
 
 export default defineComponent({  
   name: 'ModalLayout',  
@@ -11,10 +12,6 @@ export default defineComponent({
       typeof defineAsyncComponent
     > | null>(null)
     
-    const closeModalHandler = () => {
-      uxuiStore.setModalName('')
-    }
-
     watchEffect(() => {
       const componentName = uxuiStore.getModalName
       if (componentName) {
@@ -27,7 +24,7 @@ export default defineComponent({
     })
     
     return {  
-      closeModalHandler,
+      useModalClose,
       currentSuggestComponent 
     }  
   },  

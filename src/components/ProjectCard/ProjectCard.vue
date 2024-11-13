@@ -4,7 +4,7 @@
 		<div class='card__color-underline' :style='{ backgroundColor: project.color }'></div>
 		<p class='card__text'>{{project.description}}</p>
 		<p class='card__text'>Участники: {{project.users.length}} человек.</p>
-		<div class="card__buttons-wrapper">
+		<div class="card__buttons-wrapper" v-if='isUserInProject'>
 			<button 
 				v-if='isTeamLead'
 				class='card__button' 
@@ -25,6 +25,13 @@
 			>  
 				<SvgIcon icon='chevron-right'/>  
 			</button>  
+		</div>
+		<div v-else class="card__buttons-wrapper">
+			<button   
+				class='card__button-request'     
+			>  
+				Подать заявку  
+			</button>
 		</div>
 	</div>
 </template>

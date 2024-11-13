@@ -22,6 +22,7 @@
 			Список задач пока пуст.
 		</div>
 		<CreateWidget 
+			v-if='userStore.getIsTeamLead'
 			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'
 			class='boards__create-widget' 
 			componentName='CreateTaskComponent'

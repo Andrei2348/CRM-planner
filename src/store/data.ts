@@ -4,11 +4,9 @@ import useApiCall from '@/composables/useApiCall'
 import { Project, Task, PatchTaskResponse } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
-import { useUxuiStore } from '@/store/uxui'
 
 export const useDataStore = defineStore('data', () => {
 	const userStore = useUserStore()
-	const uxuiStore = useUxuiStore()
 	const projectList = ref<Project[] | null>(null)
 	const isLoadingProjects = ref(true)
 	const isLoadingTasks = ref(true)
@@ -98,14 +96,20 @@ export const useDataStore = defineStore('data', () => {
 	const addProjectToProjectList = (payload: Project): void => {  
     projectList.value = projectList.value ?? []  
     projectList.value.push(payload)
+	} 
+	
+	const removeProjectById = (id: number | null): void => {  
+    if (projectList.value) {  
+			projectList.value = projectList.value.filter(item => item.id !== id);  
+    }  
 	}
 
-	const removeProjectById = (id: number | null): void => {  
-		if(projectList.value){
-			projectList.value = projectList.value.filter(item => item.id !== id)  
-		}
-	}  
-	
+	const removeTaskById = (id: number | null): void => {  
+    if (tasksList.value) {  
+			tasksList.value = tasksList.value.filter(item => item.id !== id);  
+    }  
+	}
+
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
 		try{
@@ -194,7 +198,7 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Создание нового проекта
-	const projectCreateRequest = async (payload: Project) => {
+	const projectCreateRequest = async (payload: Project): Promise<void> => {
 		try {  
 			const { status, data } = await useApiCall.post('projects/', payload)  
 			if (status === 200 || status === 201) {  
@@ -206,7 +210,7 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Редактирование существующего проекта
-	const projectPatchRequest = async (payload: Project) => {
+	const projectPatchRequest = async (payload: Project): Promise<void> => {
 		try {  
 			const { status, data } = await useApiCall.patch(`projects/${payload.id}`, payload)  
 			if (status === 200 || status === 201) {   
@@ -218,15 +222,12 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Удаление выбранного проекта
-	const projectDeleteRequest = async () => {
-		console.log('deleteHandler', projectForEdit.value)
+	const projectDeleteRequest = async (): Promise<void> => {
 		if(projectForEdit.value && projectForEdit.value.id){
 			try {  
 				const { status } = await useApiCall.delete(`projects/${projectForEdit.value.id}`)  
 				if (status === 200 || status === 201) {  
 					removeProjectById(projectForEdit.value.id)  
-					setProjectForEdit(null)
-					uxuiStore.setModalName('')
 				} 
 			} catch (error) {  
 				console.error(error)
@@ -234,9 +235,36 @@ export const useDataStore = defineStore('data', () => {
 		}
 	}
 
+	// Удаление выбранного задания
+	const taskDeleteRequest = async (): Promise<void> => {
+		if(taskForEdit.value && taskForEdit.value.id){
+			try {  
+				const { status } = await useApiCall.delete(`tasks/${taskForEdit.value.id}`)  
+				if (status === 200 || status === 201) {  
+					removeTaskById(taskForEdit.value.id)  
+				} 
+			} catch (error) {  
+				console.error(error)
+			}
+		}
+	}
 
-	
-
+	// Поиск проектов
+	const searchProjectsListRequest = async (payload: string): Promise<void> => {
+		try{
+			if(userStore.getUserInfo){
+				setIsLoadingProjects(true)
+				const {status, data} = await useApiCall.get(`projects?name=*${payload}*`)
+				if(status === 200 || status === 201){
+					setProjectList(data)
+				}
+			}
+		} catch (error) {
+			console.log(error)
+		} finally {
+      setIsLoadingProjects(false)
+    }
+	}
 
   return {
 		projectsListRequest,
@@ -259,6 +287,8 @@ export const useDataStore = defineStore('data', () => {
 		projectCreateRequest,
 		projectPatchRequest,
 		projectDeleteRequest,
-		getProjectForEdit
+		taskDeleteRequest,
+		getProjectForEdit,
+		searchProjectsListRequest
   }
 })
