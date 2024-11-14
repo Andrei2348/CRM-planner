@@ -3,7 +3,8 @@ import { TasksStatuses } from './projects'
 export interface ImenuItem {
 	name: string,
 	url: string,
-	icon: string
+	icon: string,
+  prefix: string | null
 }
 
 export interface StatusItemDropdown {

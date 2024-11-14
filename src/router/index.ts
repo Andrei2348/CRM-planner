@@ -15,6 +15,11 @@ const routes = [
     component: () => import('@/views/BoardsView/BoardsView.vue'),
   },
   {
+    path: '/users/:id',
+    name: RouteNamesEnum.users,
+    component: () => import('@/views/UsersView/UsersView.vue'),
+  },
+  {
     path: '/login',
     name: RouteNamesEnum.login,
     component: () => import('@/views/LoginView/LoginView.vue'),

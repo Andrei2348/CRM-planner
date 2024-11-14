@@ -66,6 +66,10 @@ export const useDataStore = defineStore('data', () => {
 		usersList.value = payload
 	}
 
+	const getUsersList = computed(() => {  
+		return usersList.value 
+	})
+
 	const addTaskData = (payload: Task) => {
 		if(!tasksList.value){
 			tasksList.value = []
@@ -289,6 +293,7 @@ export const useDataStore = defineStore('data', () => {
 		projectDeleteRequest,
 		taskDeleteRequest,
 		getProjectForEdit,
-		searchProjectsListRequest
+		searchProjectsListRequest,
+		getUsersList
   }
 })

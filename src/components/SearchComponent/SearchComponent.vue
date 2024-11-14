@@ -1,11 +1,12 @@
 <template>
 	<div class='search'>
 		<input
-        class="search__input"
-        type="text"
-        placeholder="Начать поиск..."
-        @input="searchProjectHandler"
-      />
+      class="search__input"
+      type="text"
+      placeholder="Начать поиск..."
+      @input="searchProjectHandler"
+    />
+    <SvgIcon icon="search" />
 	</div>
 </template>
 

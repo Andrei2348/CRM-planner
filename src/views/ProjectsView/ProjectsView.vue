@@ -4,7 +4,7 @@
 			v-if='dataStore.projectList &&
 			!dataStore.isLoadingProjects' 
 			class='projects__list'
-			:class='{"visible": uxuiStore.getshowAsidePanel}'
+			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>
 			<ProjectCard  
         v-for="project in dataStore.projectList"  

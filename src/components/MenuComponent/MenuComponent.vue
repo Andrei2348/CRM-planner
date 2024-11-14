@@ -2,8 +2,8 @@
 	<div class='menu__wrapper'>  
 		<Router-link   
 			v-for='item in MENU_DATA'   
-			:key="item.name"   
-			:to="item.url"
+			:key="item.name"
+			:to="item.prefix !== null ? `${item.url}/${selectedId}` : item.url"
 			class="menu__router-link"
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>  
@@ -16,7 +16,7 @@
 			</p>  
 		</Router-link>  
 	</div>  
-</template>  
+</template>
 
 <script lang="ts" src="./MenuComponent.ts"></script>  
 <style lang="scss" scoped src="./MenuComponent.scss"></style>

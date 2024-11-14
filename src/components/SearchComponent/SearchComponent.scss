@@ -1,0 +1,14 @@
+.search{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &__input{
+    padding: 6px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $gray2;
+    background-color: transparent;
+    color: $white;
+    @include textMedium(16);
+  }
+}

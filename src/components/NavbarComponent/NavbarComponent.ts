@@ -1,7 +1,8 @@
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useUserStore } from '@/store/user'
 import { useUxuiStore } from '@/store/uxui'
 import SearchComponent from '@/components/SearchComponent/SearchComponent.vue'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'NavbarComponent',
@@ -11,6 +12,7 @@ export default defineComponent({
   setup(_, { emit }) {
 		const userStore = useUserStore()
     const uxuiStore = useUxuiStore()
+    const route = useRoute()
 
     const logoutHandler = (): void => {
       emit('logoutUserHandler')
@@ -19,12 +21,17 @@ export default defineComponent({
     const asideShowHandler = (): void => {
       uxuiStore.setShowAsidePanel(!uxuiStore.getShowAsidePanel)
     }
+
+    const showSearch = computed(() => {   
+      return route.path === '/'  
+    });
     
     return {
 			userStore,
       uxuiStore,
       logoutHandler,
-      asideShowHandler
+      asideShowHandler,
+      showSearch
 		}
   },
 })

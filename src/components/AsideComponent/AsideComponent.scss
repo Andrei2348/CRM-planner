@@ -1,11 +1,11 @@
 .aside{
 	position: fixed;
 	left: 0;
-	top: 40px;
+	top: 60px;
 	height: 100vh;
 	background-color: $black;
 	z-index: 50;
-	width: 40px;
+	width: 60px;
 	border-top: 1px solid $gray2;
 	transition: all ease-in-out 0.5s;
 	&.visible{

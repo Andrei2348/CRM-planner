@@ -3,5 +3,7 @@ export enum RouteNamesEnum {
   boards = "boards",
   login = "login",
   register = "register",
-  notFound = "notFound"
+  notFound = "notFound",
+  users = "users"
 }
+

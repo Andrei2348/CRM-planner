@@ -75,6 +75,19 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const getUserInfoRequest = async (id: number): Promise<UserItemResponse | null | undefined> => {
+    try {
+      const { status, data } = await useApiCall.get(`/users/${id}`)
+      if(status === 200 || status === 201){
+        return data[0]
+      } else {
+        return
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     getUserInfo,
     isLoginStatus,
@@ -84,6 +97,7 @@ export const useUserStore = defineStore('user', () => {
     preLoginUserStatus,
     setUserInfo,
     setIsTeamLead,
-    getIsTeamLead
+    getIsTeamLead,
+    getUserInfoRequest
   }
 })

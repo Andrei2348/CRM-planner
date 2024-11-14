@@ -4,27 +4,32 @@ export const MENU_DATA: ImenuItem[] = [
 	{
 		icon:'home',
 		name: 'Проекты',
-		url: '/'
+		url: '/',
+		prefix: null
+	},
+	{
+		icon:'home',
+		name: 'Задания',
+		url: '/project',
+		prefix: ''
 	},
 	{
 		icon:'payments',
-		name: 'Payments',
-		url: '/payments'
+		name: 'Участники',
+		url: '/users',
+		prefix: ''
 	},
 	{
 		icon:'orders',
-		name: 'Orders',
-		url: '/orders'
-	},
-	{
-		icon:'feedback',
-		name: 'Feedback',
-		url: '/feedback'
+		name: 'Полезные ссылки',
+		url: '/links',
+		prefix: ''
 	},
 	{
 		icon:'settings',
-		name: 'Settings',
-		url: '/settings'
+		name: 'Настройки',
+		url: '/settings',
+		prefix: null
 	},
 ]
 
