@@ -92,7 +92,6 @@
 @mixin circleButton($height: 52px) {
   border: none;
   background: $darkViolet;
-  color: $white;
   height: $height;
   width: $height;
   display: flex;
@@ -105,10 +104,27 @@
   }
   &:disabled {
     background: $lightBlue;
+    cursor: unset;
+  }
+}
+
+@mixin circleButtonTransparent($height: 52px) {
+  border: none;
+  background: transparent;
+  height: $height;
+  width: $height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  &:disabled {
+    background: $lightBlue;
     color: $gray2;
     cursor: unset;
   }
 }
+
 
 @mixin grayButton($height: 52px) {
   @include button($height);

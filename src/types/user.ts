@@ -12,6 +12,9 @@ export interface UserItem {
 
 export interface UserItemResponse extends UserItem {
   id: number;
+  telegram?: 'string';
+  phone?: 'string';
+  description?: 'string'
 }
 
 export interface UserLoginItem {

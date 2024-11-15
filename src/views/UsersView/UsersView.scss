@@ -2,15 +2,15 @@
   position: relative;
   &__wrapper{
 		background-color: $mainBg;
-		min-width: 2300px;
-		margin-left: 60px;
+		margin-left: 80px;
 		display: flex;
-		align-items: stretch;
-		flex-wrap: nowrap;
+		flex-direction: column;
+		gap: 10px;
+		
 		transition: all ease-in-out 0.5s;
     padding-top: 80px;
 		&.visible{
-			margin-left: 260px;
+			margin-left: 280px;
 		}
 	}
 }

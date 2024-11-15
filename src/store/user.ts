@@ -79,7 +79,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       const { status, data } = await useApiCall.get(`/users/${id}`)
       if(status === 200 || status === 201){
-        return data[0]
+        return data
       } else {
         return
       }

@@ -1,0 +1,57 @@
+.user{
+  &__wrapper{
+    padding: 22px;
+    border: 1px solid $gray;
+    border-radius: 8px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: $modalLayerNoTransparent;
+  }
+  &__info-button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    @include circleButton;
+  }
+  &__moreinfo{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    &-context{
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    &-text{
+      color: $white;
+      @include textMedium(16);
+    }
+    &-title{
+      color: $white;
+      @include textBold(22);
+    }
+    &-label{
+      white-space: nowrap;
+      display: inline-block;
+      color: $gray;
+      @include textLight(14);
+    }
+  }
+  &__moreinfo-empty{
+    margin-top: 10px;
+  }
+  &__moreinfo-header{
+    position: relative;
+    &::after{
+      content: '';
+      position: absolute;
+      top: 8px;
+      right: -220px;
+      height: 1px;
+      width: 200px;
+      background-color: $gray2;
+    }
+  }
+}

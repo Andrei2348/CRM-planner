@@ -16,16 +16,25 @@ export default defineComponent({
   setup(props) {
     const userStore = useUserStore()
     const userInfo = ref<UserItemResponse | null | undefined>(null)
+    const disabledFlag = ref(false)
 
     const getUserInfoHandler = async () => { 
+      disabledFlag.value = true
       if (userInfo.value === null){
         userInfo.value = await userStore.getUserInfoRequest(props.user.id)
       }   
     } 
 
+    const editUserInfoHandler = (id: number) => {
+      console.log(id)
+    }
+
     return {
       userStore,
-      getUserInfoHandler
+      getUserInfoHandler,
+      userInfo,
+      disabledFlag,
+      editUserInfoHandler
     }
   },
 })
