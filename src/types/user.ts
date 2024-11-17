@@ -1,28 +1,28 @@
 export interface User {
-  id: number;
-  username: string;
+  id: number,
+  username: string
 }
 
 export interface UserItem {
-  username: string;
-  email: string;
-  password: string;
-  repassword?: string;
+  username: string,
+  email: string,
+  password: string,
+  repassword?: string
 }
 
 export interface UserItemResponse extends UserItem {
-  id: number;
-  telegram?: 'string';
-  phone?: 'string';
+  id: number,
+  telegram?: 'string',
+  phone?: 'string',
   description?: 'string'
 }
 
 export interface UserLoginItem {
-  email: string;
-  password: string;
+  email: string,
+  password: string
 }
 
 export interface UserApiResponse {
-  data: UserItemResponse;
-  token: string;
+  data: UserItemResponse,
+  token: string
 }

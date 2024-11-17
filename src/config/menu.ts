@@ -1,35 +1,33 @@
-import { ImenuItem, StatusItemDropdown } from '@/types/common'
+import { MenuItem, StatusItemDropdown } from '@/types/common'
 
-export const MENU_DATA: ImenuItem[] = [
+export const MENU_DATA: MenuItem[] = [
 	{
-		icon:'home',
+		icon:'projects',
 		name: 'Проекты',
 		url: '/',
-		prefix: null
+		prefix: null,
+		color: '#22d337'
 	},
 	{
-		icon:'home',
+		icon:'tasks',
 		name: 'Задания',
 		url: '/project',
-		prefix: ''
+		prefix: '',
+		color: '#e01f1f'
 	},
 	{
-		icon:'payments',
+		icon:'users',
 		name: 'Участники',
 		url: '/users',
-		prefix: ''
-	},
-	{
-		icon:'orders',
-		name: 'Полезные ссылки',
-		url: '/links',
-		prefix: ''
+		prefix: '',
+		color: '#e9e22b'
 	},
 	{
 		icon:'settings',
-		name: 'Настройки',
-		url: '/settings',
-		prefix: null
+		name: 'Профиль',
+		url: '/profile',
+		prefix: null,
+		color: '#94d5eb'
 	},
 ]
 

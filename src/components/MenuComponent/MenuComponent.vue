@@ -11,6 +11,7 @@
 			<p 
 				:class='{"visible": uxuiStore.getShowAsidePanel}'
 				class='menu__router-text'
+				:style='{ color: item.color }'
 			>
 				{{ item.name }}
 			</p>  

@@ -26,5 +26,5 @@ export interface Project {
 
 export interface PatchTaskResponse{
 	id: number,
-  status?: TasksStatuses,
+  status?: TasksStatuses
 }
