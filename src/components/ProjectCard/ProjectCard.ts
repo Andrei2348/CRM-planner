@@ -5,6 +5,7 @@ import { useDataStore } from '@/store/data'
 import { useUxuiStore } from '@/store/uxui'
 import { useRouter } from 'vue-router'
 import { useOpenCreatePanelHandler } from '@/composables/useTaskPanelOpen'
+import { ParticipationDataProject } from '@/types/projects'
 
 export default defineComponent({
   name: 'ProjectCard',
@@ -37,13 +38,26 @@ export default defineComponent({
       return props.project.users.some(user => user.id === userStore.getUserInfo?.id)  
     })
 
+    const projectRequestHandler = (payload: Project) => {  
+      const participationData: ParticipationDataProject = {  
+        project_id: payload.id as number, 
+        project_name: payload.name, 
+        user_id: userStore.getUserInfo?.id as number,  
+        user_name: userStore.getUserInfo?.username as string,
+        teamlead_id: payload.user_id as number 
+      } 
+      
+      dataStore.projectParticipationRequest(participationData)  
+    }
+
     return {
       userStore,
       goToProjectHandler,
       isTeamLead,
       useOpenCreatePanelHandler,
       deleteProjectHandler,
-      isUserInProject
+      isUserInProject,
+      projectRequestHandler
     }
   },
 })

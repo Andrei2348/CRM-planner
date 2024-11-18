@@ -8,6 +8,7 @@
     border: none;
     border-bottom: 1px solid $gray2;
     background-color: transparent;
+    width: 300px;
     color: $white;
     @include textMedium(16);
   }

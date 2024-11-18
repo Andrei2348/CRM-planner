@@ -40,7 +40,6 @@ export default defineComponent({
       (blankDataProject.value[key] as string | number) = value  
     } 
     
-
     const createProjectHandler = (): void => {
       if(blankDataProject.value.id){
         dataStore.projectPatchRequest(blankDataProject.value)
@@ -51,7 +50,6 @@ export default defineComponent({
       useCloseCreatePanelHandler()
     }  
  
-
     const disableButtonFlag = computed(() => {  
       return !(blankDataProject.value.name && 
         blankDataProject.value.description)  

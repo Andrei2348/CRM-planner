@@ -33,12 +33,18 @@ export default defineComponent({
     }, {deep: true})
 
     onBeforeMount(async () => {
-      await Promise.all([
+      const userInfo = userStore.getUserInfo;
+      const requests = [
         dataStore.projectInfoRequest(Number(route.params.id)),
-        dataStore.tasksListRequest(Number(route.params.id)),  
-        dataStore.usersListRequest(Number(route.params.id)),  
-      ]);
-    });
+        dataStore.tasksListRequest(Number(route.params.id)),
+        dataStore.usersListRequest(Number(route.params.id))
+      ]
+      if (userInfo) {
+        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id))
+      }
+      await Promise.all(requests)
+    })
+    
 
     return {
       uxuiStore,

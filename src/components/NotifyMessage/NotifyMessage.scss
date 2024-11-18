@@ -1,0 +1,13 @@
+.notify__buttons-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 10px;
+}
+.notify__button{
+  @include secondaryButton;
+}
+.notify__text{
+  @include textLight(16);
+}

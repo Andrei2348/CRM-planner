@@ -1,6 +1,5 @@
 <template>
 	<div class="projects__wrapper">
-		{{userStore.getUserInfo}}
 		<h2 class='projects__title'>проект</h2>
 		<div class="projects__container">
 		

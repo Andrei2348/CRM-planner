@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { Project, Task, PatchTaskResponse } from '@/types/projects'
+import { Project, Task, PatchTaskResponse, ParticipationDataProject } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
 
@@ -16,6 +16,7 @@ export const useDataStore = defineStore('data', () => {
 	const taskForEdit = ref<Task | null>(null)
 	const projectForEdit = ref<Project | null>(null)
 	const selectedProject = ref<Project | null>(null)
+	const notifyProjectList = ref<ParticipationDataProject[] | null>(null)
 
 	const changeTaskData = (newTask: Task): void => {
 		if(tasksList.value){
@@ -112,6 +113,29 @@ export const useDataStore = defineStore('data', () => {
     if (tasksList.value) {  
 			tasksList.value = tasksList.value.filter(item => item.id !== id);  
     }  
+	}
+
+	const setNotifyProjectList = (payload: ParticipationDataProject[]) => {
+		if (!notifyProjectList.value) {
+			notifyProjectList.value = []
+		}
+	
+		payload.forEach(newItem => {
+			const exists = notifyProjectList.value!.some(existingItem => existingItem.id === newItem.id)
+			if (!exists) {
+				notifyProjectList.value!.push(newItem)
+			}
+		})
+	}
+	
+	const getNotifyProjectList = computed(() => {  
+		return notifyProjectList.value  
+	})
+
+	const removeNotifyProject = (id: number) => { 
+		if(notifyProjectList.value){
+			notifyProjectList.value = notifyProjectList.value.filter(item => item.id !== id)  
+		}
 	}
 
 	// Получение списка проектов
@@ -270,6 +294,46 @@ export const useDataStore = defineStore('data', () => {
     }
 	}
 
+	// Создание запроса на участие в проекте
+	const projectParticipationRequest = async (payload: ParticipationDataProject): Promise<void> => {
+		try {  
+			const { status, data } = await useApiCall.post('project-request/', payload)  
+			if (status === 200 || status === 201) {  
+				console.log(data)
+				// Сюда добавиьт оповещение об отправке заявки на участие в проекте
+			} 
+    } catch (error) {  
+			console.error(error) 
+    }
+	}
+
+	// Получение списка запросов
+	const getProjectsParticipationRequest = async (payload: number | null): Promise<void> => {
+		if(payload !== null){
+			try{
+				const {status, data} = await useApiCall.get(`project-request?teamlead_id=${payload}`)
+				if(status === 200 || status === 201){
+					setNotifyProjectList(data)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
+
+	const deleteProjectsParticipationRequest = async (payload: number | null): Promise<void> => {
+		if(payload){
+			try{
+				const {status} = await useApiCall.delete(`project-request/${payload}`)
+				if(status === 200 || status === 201){
+					removeNotifyProject(payload)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
+
   return {
 		projectsListRequest,
 		projectInfoRequest,
@@ -294,6 +358,10 @@ export const useDataStore = defineStore('data', () => {
 		taskDeleteRequest,
 		getProjectForEdit,
 		searchProjectsListRequest,
-		getUsersList
+		getUsersList,
+		projectParticipationRequest,
+		getProjectsParticipationRequest,
+		getNotifyProjectList,
+		deleteProjectsParticipationRequest
   }
 })

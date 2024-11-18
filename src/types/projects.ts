@@ -28,3 +28,12 @@ export interface PatchTaskResponse{
 	id: number,
   status?: TasksStatuses
 }
+
+export interface ParticipationDataProject{
+	id?: number,
+	project_id: number,
+	project_name: string,
+	user_id: number,
+	user_name: string,
+	teamlead_id: number
+}

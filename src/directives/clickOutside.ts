@@ -1,7 +1,11 @@
 import { Directive } from 'vue'
 
+type ClickOutsideHTMLElement = HTMLElement & {
+  clickOutsideEvent?: EventListenerOrEventListenerObject
+}
+
 const clickOutside: Directive = {
-  beforeMount(el: HTMLElement, binding) {
+  beforeMount(el: ClickOutsideHTMLElement, binding) {
     el.clickOutsideEvent = function (event: Event) {
       if (!(el === event.target || el.contains(event.target as Node))) {
         binding.value(event)
@@ -9,7 +13,7 @@ const clickOutside: Directive = {
     }
     document.addEventListener('click', el.clickOutsideEvent)
   },
-  unmounted(el: HTMLElement) {
+  unmounted(el: ClickOutsideHTMLElement) {
     if (el.clickOutsideEvent) {
       document.removeEventListener('click', el.clickOutsideEvent)
     }
@@ -17,3 +21,4 @@ const clickOutside: Directive = {
 }
 
 export default clickOutside
+

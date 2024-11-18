@@ -11,6 +11,26 @@
 			<p class='navbar__user'>
 				{{ userStore.getUserInfo?.username }}
 			</p>
+			<div class="navbar__notify-wrapper" v-click-outside="closeNotify">
+				<button 
+					class='navbar__logout-button navbar__notify-button' 
+					@click="toggleNotify"
+					>
+					<SvgIcon icon="message" />
+					<span 
+						class='navbar__notify-span'
+						v-if='dataStore.getNotifyProjectList && 
+						dataStore.getNotifyProjectList?.length > 0'
+					>
+						{{ dataStore.getNotifyProjectList?.length }}
+					</span>
+				</button>
+				<NotifyLayout 
+					v-if="showNotifyPermission"
+					class="navbar__notify-area" 
+					@closeNotify='closeNotify'
+				/>
+			</div>
 			<button 
 				class='navbar__logout-button' 
 				@click='logoutHandler'

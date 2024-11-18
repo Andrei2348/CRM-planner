@@ -9,6 +9,7 @@
 		align-items: flex-start;
 		justify-content: flex-start;
 		gap: 12px;
+		position: relative;
 		box-shadow: $shadow3;
 	}
 	&__color-underline{
@@ -40,4 +41,14 @@
 	&__button-request{
 		@include yellowButton;
 	}
+	&__priority{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+}
+
+::v-deep(.card__priority-icon svg) {
+  width: 36px;
+  height: 36px;
 }

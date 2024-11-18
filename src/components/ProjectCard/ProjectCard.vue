@@ -1,5 +1,8 @@
 <template>
 	<div class='card__wrapper'>
+		<div class="card__priority" v-if='isTeamLead'>
+			<SvgIcon icon="crown" class="card__priority-icon" />
+		</div>
 		<h3 class='card__title'>{{project.name}}</h3>
 		<div class='card__color-underline' :style='{ backgroundColor: project.color }'></div>
 		<p class='card__text'>{{project.description}}</p>
@@ -28,7 +31,8 @@
 		</div>
 		<div v-else class="card__buttons-wrapper">
 			<button   
-				class='card__button-request'     
+				class='card__button-request' 
+				@click='projectRequestHandler(project)'    
 			>  
 				Подать заявку  
 			</button>
