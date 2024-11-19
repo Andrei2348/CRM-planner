@@ -1,11 +1,11 @@
-import { defineComponent, onBeforeMount, computed } from 'vue'
+import { defineComponent, onBeforeMount, computed, ref } from 'vue'
 import { useDataStore } from '@/store/data'
 import { useUxuiStore } from '@/store/uxui'
 import { useUserStore } from '@/store/user'
 import { useRoute } from 'vue-router'
 import MainLayout from "@/layouts/MainLayout/MainLayout.vue"
 import UserCard from '@/components/UserCard/UserCard.vue'
-import { UserItemResponse } from '@/types/user'
+import { Project } from '@/types/projects'
 
 export default defineComponent({
   name: 'UsersView',
@@ -18,6 +18,29 @@ export default defineComponent({
     const dataStore = useDataStore()
     const uxuiStore = useUxuiStore()
     const userStore = useUserStore()
+    const projectInfo = ref<Project | null>(null)
+
+    const deleteUserHandler = async (id: number) => {  
+      try {  
+        await dataStore.projectInfoRequest(Number(route.params.id)) 
+        projectInfo.value = dataStore.getSelectedProject   
+        if (  
+          projectInfo.value &&   
+          projectInfo.value.users &&   
+          Array.isArray(projectInfo.value.users) &&   
+          projectInfo.value.users.length > 1  
+        ) 
+        {  
+          const changedUsersList = projectInfo.value.users.filter(user => user.id !== id)  
+          projectInfo.value.users = changedUsersList   
+
+          await dataStore.projectPatchRequest(projectInfo.value)  
+          await dataStore.usersListRequest(Number(route.params.id))  
+        } 
+      } catch (error) {  
+        console.error('Ошибка при удалении пользователя:', error)  
+      }  
+    }
 
     const filteredUsersList = computed(() => { 
       const userInfo = userStore.getUserInfo 
@@ -36,7 +59,8 @@ export default defineComponent({
       dataStore,
       uxuiStore,
       userStore,
-      filteredUsersList
+      filteredUsersList,
+      deleteUserHandler
     }
   },
 })

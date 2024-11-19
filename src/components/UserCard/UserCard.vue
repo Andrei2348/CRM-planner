@@ -5,12 +5,17 @@
     </div>
     <span class="user__moreinfo-title">{{ user.username }}</span>
     
-    <button class='user__info-button' @click='getUserInfoHandler' :disabled="disabledFlag">
-      <SvgIcon icon='info' />
-    </button>
-    <button class='user__info-button' @click='editUserInfoHandler(user.id)'>
-      <SvgIcon icon='info' />
-    </button>
+    <div class="user__info-buttons-wrapper">
+      <button class='user__info-button' @click='getUserInfoHandler' :disabled="disabledFlag">
+        <SvgIcon icon='info' />
+      </button>
+      <button 
+        v-if='userStore.getIsTeamLead'
+        class='user__info-button' 
+        @click='deleteUserInfoHandler(user.id)'>
+        <SvgIcon icon='trash'/>
+      </button>
+    </div>
     <div 
       class=user__moreinfo 
       v-if="userInfo && 

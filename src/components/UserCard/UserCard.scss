@@ -10,9 +10,6 @@
     background-color: $modalLayerNoTransparent;
   }
   &__info-button{
-    position: absolute;
-    top: 20px;
-    right: 20px;
     @include circleButton;
   }
   &__moreinfo{
@@ -54,4 +51,12 @@
       background-color: $gray2;
     }
   }
+}
+.user__info-buttons-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

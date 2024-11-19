@@ -156,8 +156,10 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Получение проекта по id
+	// !!!!!!!!!!!!!!!!
+	// Возможно придется делать return
 	const projectInfoRequest = async (payload: number): Promise<void> => {
-		if(!selectedProject.value){
+		// if(!selectedProject.value){
 			try{
 				const {status, data} = await useApiCall.get(`projects?id=${payload}`)
 				if(status === 200 || status === 201){
@@ -168,7 +170,7 @@ export const useDataStore = defineStore('data', () => {
 			} catch (error) {
 				console.log(error)
 			}
-		}
+		// }
 	}
 
 	// Получение списка задач по выбранному проекту

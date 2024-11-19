@@ -3,7 +3,6 @@ import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
 import { UserItemResponse } from '@/types/user'
 
-
 export default defineComponent({
   name: 'UserCard',
   props: {  
@@ -13,7 +12,7 @@ export default defineComponent({
 		},
   }, 
 
-  setup(props) {
+  setup(props, { emit }) {
     const userStore = useUserStore()
     const userInfo = ref<UserItemResponse | null | undefined>(null)
     const disabledFlag = ref(false)
@@ -25,8 +24,8 @@ export default defineComponent({
       }   
     } 
 
-    const editUserInfoHandler = (id: number) => {
-      console.log(id)
+    const deleteUserInfoHandler = async (id: number) => {    
+      emit('deleteUserHandler', id)
     }
 
     return {
@@ -34,7 +33,7 @@ export default defineComponent({
       getUserInfoHandler,
       userInfo,
       disabledFlag,
-      editUserInfoHandler
+      deleteUserInfoHandler
     }
   },
 })

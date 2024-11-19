@@ -1,19 +1,20 @@
 <template>
 	<MainLayout class='users'>
 		<div 
-		v-if='filteredUsersList.length > 0'
-		class="users__wrapper" 
-		:class='{"visible": uxuiStore.getShowAsidePanel}'
-	>
-	<UserCard 
-		v-for="user in filteredUsersList" 
-		:key="user.id" 
-		:user="user" 
-	/>
+			v-if='filteredUsersList.length > 0'
+			class="users__wrapper" 
+			:class='{"visible": uxuiStore.getShowAsidePanel}'
+		>
+			<UserCard 
+				v-for="user in filteredUsersList" 
+				:key="user.id" 
+				:user="user" 
+				@deleteUserHandler='deleteUserHandler'
+			/>
 		</div>
 		<div
 			v-else
-			class="users__wrapper" 
+			class="users__wrapper users__empty-list" 
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>
 		Список участников пока пуст
