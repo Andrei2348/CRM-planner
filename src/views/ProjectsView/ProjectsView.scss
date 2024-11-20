@@ -12,14 +12,6 @@
 			margin-left: 280px;
 		}
 	}
-	&__empty-list{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		color: $white;
-		@include heading(22);
-	}
 	&__create-widget{
 		position: fixed;
 		top: 110px;

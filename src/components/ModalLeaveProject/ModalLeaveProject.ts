@@ -11,16 +11,21 @@ export default defineComponent({
   setup() { 
     const dataStore = useDataStore()
     const userStore = useUserStore()
-
     const suggestLeaveHandler = async () => {
-      if(dataStore.getProjectForEdit && userStore.getUserInfo){
-        const projectInfo: Project = dataStore.getProjectForEdit
-        const userInfo: User = userStore.getUserInfo 
-        projectInfo.users =  projectInfo.users.filter(user => user.id !== userInfo.id)
-        await dataStore.projectPatchRequest(projectInfo)
-        await dataStore.projectsListRequest()
+      try {
+        if(dataStore.getProjectForEdit && userStore.getUserInfo){
+          const projectInfo: Project = dataStore.getProjectForEdit
+          const userInfo: User = userStore.getUserInfo 
+          projectInfo.users =  projectInfo.users.filter(user => user.id !== userInfo.id)
+          await dataStore.projectPatchRequest(projectInfo)
+          await dataStore.projectsListRequest()
+        }
+      } catch (error) {  
+        console.error('Ошибка при удалении пользователя:', error)  
+      } 
+      finally {
+        useModalClose()
       }
-      useModalClose()
     }
 
     return {  

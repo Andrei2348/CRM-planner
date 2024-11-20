@@ -12,14 +12,13 @@
         :project="project"  
       />  
 		</div>
-		<div 
+		<EmptyListComponent 
 			v-if='(!dataStore.projectList ||
 			dataStore.projectList.length === 0) &&
 			!dataStore.isLoadingProjects'
 			class='projects__empty-list'
-		>
-			Список проектов пока пуст.
-		</div>
+			message='Список проектов пока пуст.'
+		/>
 		<CreateWidget 
 			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'
 			class='projects__create-widget' 

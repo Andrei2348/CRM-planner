@@ -1,26 +1,24 @@
 <template>
 	<MainLayout class='boards'>
-	<div 
-		class="boards__wrapper" 
-		:class='{"visible": uxuiStore.getShowAsidePanel}'
-		v-if='dataStore.canProceed && 
-		dataStore.tasksList &&
-		dataStore.tasksList.length > 0'
-	>
-		<TasksArea 
-			v-for="taskArea in DROPDOWN_STATUS_MENU"  
-			:key="taskArea.id"  
-			:taskArea="taskArea"
-			:tasks="dataStore.tasksList" />
-	</div>
-	<div 
+		<div 
+			class="boards__wrapper" 
+			:class='{"visible": uxuiStore.getShowAsidePanel}'
+			v-if='dataStore.canProceed && 
+			dataStore.tasksList &&
+			dataStore.tasksList.length > 0'
+		>
+			<TasksArea 
+				v-for="taskArea in DROPDOWN_STATUS_MENU"  
+				:key="taskArea.id"  
+				:taskArea="taskArea"
+				:tasks="dataStore.tasksList" />
+		</div>
+		<EmptyListComponent 
 			v-if='(!dataStore.tasksList ||
 			dataStore.tasksList.length === 0) &&
 			dataStore.canProceed'
-			class='boards__empty-list'
-		>
-			Список задач пока пуст.
-		</div>
+			message='Список задач пока пуст.'
+		/>
 		<CreateWidget 
 			v-if='userStore.getIsTeamLead'
 			:class='{"hidden": !(uxuiStore.getCreatePanelName === "")}'

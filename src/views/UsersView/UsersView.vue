@@ -12,13 +12,10 @@
 				@deleteUserHandler='deleteUserHandler'
 			/>
 		</div>
-		<div
+		<EmptyListComponent
 			v-else
-			class="users__wrapper users__empty-list" 
-			:class='{"visible": uxuiStore.getShowAsidePanel}'
-		>
-		Список участников пока пуст
-		</div>
+			message='Список участников пока пуст'
+		/>
 	</MainLayout>
 </template>
 
