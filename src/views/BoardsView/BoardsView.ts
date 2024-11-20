@@ -1,4 +1,4 @@
-import { defineComponent, onBeforeMount, watch } from 'vue'
+import { defineComponent, onBeforeMount } from 'vue'
 import { useDataStore } from '@/store/data'
 import { useUxuiStore } from '@/store/uxui'
 import { useUserStore } from '@/store/user'
@@ -23,19 +23,11 @@ export default defineComponent({
     const uxuiStore = useUxuiStore()
     const userStore = useUserStore()
 
-    // Определение, являетесь ли тимлидом
-    watch( [() => userStore.getUserInfo, () => dataStore.getSelectedProject], ([newUserInfo, newSelectedProject]) => { 
-      if (newUserInfo && newSelectedProject) { 
-        userStore.setIsTeamLead(newUserInfo.id === newSelectedProject.user_id) 
-      } else { 
-        userStore.setIsTeamLead(false) 
-      } 
-    }, {deep: true})
-
     onBeforeMount(async () => {
-      const userInfo = userStore.getUserInfo;
+      uxuiStore.setSelectedPage(2)
+      const userInfo = userStore.getUserInfo
       const requests = [
-        dataStore.projectInfoRequest(Number(route.params.id)),
+        userStore.checkIfTeamLead(),
         dataStore.tasksListRequest(Number(route.params.id)),
         dataStore.usersListRequest(Number(route.params.id))
       ]
@@ -45,7 +37,6 @@ export default defineComponent({
       await Promise.all(requests)
     })
     
-
     return {
       uxuiStore,
       dataStore,

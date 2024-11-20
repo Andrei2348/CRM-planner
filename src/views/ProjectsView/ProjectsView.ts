@@ -19,6 +19,7 @@ export default defineComponent({
     const userStore = useUserStore()
 
     onBeforeMount(async () => {
+      uxuiStore.setSelectedPage(1)
       const userInfo = userStore.getUserInfo
       const requests = [dataStore.projectsListRequest()]
       if (userInfo) {

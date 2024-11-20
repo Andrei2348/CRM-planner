@@ -50,6 +50,12 @@ export default defineComponent({
       dataStore.projectParticipationRequest(participationData)  
     }
 
+    const leaveTheProjectHandler = (payload: Project) => {
+      console.log(payload)
+      dataStore.setProjectForEdit(payload)
+      uxuiStore.setModalName('ModalLeaveProject')
+    }
+
     return {
       userStore,
       goToProjectHandler,
@@ -57,7 +63,8 @@ export default defineComponent({
       useOpenCreatePanelHandler,
       deleteProjectHandler,
       isUserInProject,
-      projectRequestHandler
+      projectRequestHandler,
+      leaveTheProjectHandler
     }
   },
 })

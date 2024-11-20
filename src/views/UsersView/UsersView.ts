@@ -31,9 +31,8 @@ export default defineComponent({
           projectInfo.value.users.length > 1  
         ) 
         {  
-          const changedUsersList = projectInfo.value.users.filter(user => user.id !== id)  
-          projectInfo.value.users = changedUsersList   
-
+          projectInfo.value.users = projectInfo.value.users.filter(user => user.id !== id)  
+          
           await dataStore.projectPatchRequest(projectInfo.value)  
           await dataStore.usersListRequest(Number(route.params.id))  
         } 
@@ -52,6 +51,8 @@ export default defineComponent({
     })
 
     onBeforeMount(async () => {
+      uxuiStore.setSelectedPage(3)
+      await userStore.checkIfTeamLead()
       await dataStore.usersListRequest(Number(route.params.id))
     })
 

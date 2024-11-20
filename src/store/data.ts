@@ -4,8 +4,11 @@ import useApiCall from '@/composables/useApiCall'
 import { Project, Task, PatchTaskResponse, ParticipationDataProject } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
+import { useRoute } from 'vue-router'
+
 
 export const useDataStore = defineStore('data', () => {
+	const route = useRoute()
 	const userStore = useUserStore()
 	const projectList = ref<Project[] | null>(null)
 	const isLoadingProjects = ref(true)
@@ -156,21 +159,17 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Получение проекта по id
-	// !!!!!!!!!!!!!!!!
-	// Возможно придется делать return
-	const projectInfoRequest = async (payload: number): Promise<void> => {
-		// if(!selectedProject.value){
-			try{
-				const {status, data} = await useApiCall.get(`projects?id=${payload}`)
-				if(status === 200 || status === 201){
-					if(data){
-						setSelectedProject(data[0])
-					}
+	const projectInfoRequest = async (payload: number = Number(route.params.id)): Promise<void> => {
+		try{
+			const {status, data} = await useApiCall.get(`projects?id=${payload}`)
+			if(status === 200 || status === 201){
+				if(data){
+					setSelectedProject(data[0])
 				}
-			} catch (error) {
-				console.log(error)
 			}
-		// }
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	// Получение списка задач по выбранному проекту

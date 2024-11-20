@@ -7,6 +7,7 @@ export const useUxuiStore = defineStore('uxui', () => {
   const createPanelName = ref<string>('') 
   const showAsidePanel = ref(false)
   const modalName = ref<string>('')
+  const selectedPage = ref<number>(1)
 
 	const setCreatePanelName = (payload: string): void => {
 		createPanelName.value = payload
@@ -32,6 +33,13 @@ export const useUxuiStore = defineStore('uxui', () => {
     return modalName.value
   }) 
 
+  const setSelectedPage = (payload: number) => {
+    selectedPage.value = payload
+  }
+
+  const getSelectedPage = computed(() => {
+    return selectedPage.value
+  })
 
   // Сюда добавить признаки для блокировки скролла
   watch(
@@ -49,6 +57,8 @@ export const useUxuiStore = defineStore('uxui', () => {
     setShowAsidePanel,
     getShowAsidePanel,
     setModalName,
-    getModalName
+    getModalName,
+    setSelectedPage,
+    getSelectedPage
   }
 })

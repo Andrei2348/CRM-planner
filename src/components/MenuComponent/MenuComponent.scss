@@ -18,9 +18,17 @@
 		justify-content: center;
 		padding: 10px 0 10px 7px;
 		gap: 10px;
+		background-color: transparent;
+		border: none;
+		position: relative;
 		transition: all ease-in-out 0.5s;
+		cursor: pointer;
 		&:hover{
 			background-color: $gray2;
+		}
+		&:disabled{
+			background-color: $disabledAsibeBCG;
+			cursor: unset;
 		}
 		&.visible{
 			padding: 10px;
@@ -39,6 +47,14 @@
 			visibility: visible;
 			width: 100%;
 		}
+	}
+
+	&__button-span{
+		height: 16px;
+		width: 16px;
+		border-radius: 50%;
+		position: absolute;
+		right: -6px;
 	}
 }
 

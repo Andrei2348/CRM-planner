@@ -4,9 +4,11 @@ import useApiCall from '@/composables/useApiCall'
 import { UserLoginItem, UserItem, UserApiResponse, UserItemResponse } from '@/types/user'
 import { useRouter } from 'vue-router'
 import { setStorageItemWithExpiry } from '@/helpers/localStorageHelpers'
+import { useDataStore } from '@/store/data'
 
 export const useUserStore = defineStore('user', () => {
   const router = useRouter()
+  const dataStore = useDataStore()
   const isLoginStatus = ref(false)
   const userInfo = ref<UserItemResponse | null>(null)
   const isTeamLead = ref(false)
@@ -30,6 +32,15 @@ export const useUserStore = defineStore('user', () => {
   const getIsTeamLead = computed(() => {  
     return isTeamLead.value 
   }) 
+
+  const checkIfTeamLead = async () => { 
+    await dataStore.projectInfoRequest()
+    if (userInfo.value && dataStore.getSelectedProject) { 
+      isTeamLead.value = userInfo.value.id === dataStore.getSelectedProject.user_id
+    } else { 
+      isTeamLead.value = false 
+    }
+  }
 
 	const handleResponse = (status: number, response: UserApiResponse) => {
 		if (status === 200 || status === 201) {
@@ -98,6 +109,7 @@ export const useUserStore = defineStore('user', () => {
     setUserInfo,
     setIsTeamLead,
     getIsTeamLead,
-    getUserInfoRequest
+    getUserInfoRequest,
+    checkIfTeamLead
   }
 })

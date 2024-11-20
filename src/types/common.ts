@@ -1,11 +1,13 @@
 import { TasksStatuses } from './projects'
 
 export interface MenuItem {
+  id: number,
 	name: string,
 	url: string,
 	icon: string,
   prefix: string | null,
-  color: string
+  color: string,
+  in_project: boolean
 }
 
 export interface StatusItemDropdown {

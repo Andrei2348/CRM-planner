@@ -2,32 +2,40 @@ import { MenuItem, StatusItemDropdown } from '@/types/common'
 
 export const MENU_DATA: MenuItem[] = [
 	{
+		id: 1,
 		icon:'projects',
 		name: 'Проекты',
 		url: '/',
 		prefix: null,
-		color: '#22d337'
+		color: '#22d337',
+		in_project: true
 	},
 	{
+		id: 2,
 		icon:'tasks',
 		name: 'Задания',
 		url: '/project',
 		prefix: '',
-		color: '#e01f1f'
+		color: '#e01f1f',
+		in_project: true
 	},
 	{
+		id: 3,
 		icon:'users',
 		name: 'Участники',
 		url: '/users',
 		prefix: '',
-		color: '#e9e22b'
+		color: '#e9e22b',
+		in_project: true
 	},
 	{
+		id: 4,
 		icon:'settings',
 		name: 'Профиль',
 		url: '/profile',
 		prefix: null,
-		color: '#94d5eb'
+		color: '#94d5eb',
+		in_project: false
 	},
 ]
 

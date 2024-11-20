@@ -22,6 +22,13 @@
 			>  
     		<SvgIcon icon='trash'/>  
 			</button>  
+			<button 
+				v-if='!isTeamLead'
+				class='card__button' 
+				@click='leaveTheProjectHandler(project)'
+			>
+				<SvgIcon icon="log-out" />
+			</button>
 			<button   
 				class='card__button'   
 				@click="goToProjectHandler(project)"  
