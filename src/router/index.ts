@@ -20,6 +20,11 @@ const routes = [
     component: () => import('@/views/UsersView/UsersView.vue'),
   },
   {
+    path: '/links/:id',
+    name: RouteNamesEnum.links,
+    component: () => import('@/views/LinksView/LinksView.vue'),
+  },
+  {
     path: '/login',
     name: RouteNamesEnum.login,
     component: () => import('@/views/LoginView/LoginView.vue'),

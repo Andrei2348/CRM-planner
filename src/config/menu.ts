@@ -30,11 +30,20 @@ export const MENU_DATA: MenuItem[] = [
 	},
 	{
 		id: 4,
+		icon:'link',
+		name: 'Полезные ссылки',
+		url: '/links',
+		prefix: '',
+		color: '#94d5eb',
+		in_project: true
+	},
+	{
+		id: 5,
 		icon:'settings',
 		name: 'Профиль',
 		url: '/profile',
 		prefix: null,
-		color: '#94d5eb',
+		color: '#d436b2',
 		in_project: false
 	},
 ]
