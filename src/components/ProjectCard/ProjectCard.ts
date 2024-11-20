@@ -39,6 +39,7 @@ export default defineComponent({
     })
 
     const projectRequestHandler = (payload: Project) => {  
+      
       const participationData: ParticipationDataProject = {  
         project_id: payload.id as number, 
         project_name: payload.name, 
@@ -51,7 +52,6 @@ export default defineComponent({
     }
 
     const leaveTheProjectHandler = (payload: Project) => {
-      console.log(payload)
       dataStore.setProjectForEdit(payload)
       uxuiStore.setModalName('ModalLeaveProject')
     }
