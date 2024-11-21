@@ -1,7 +1,7 @@
 <template>
 	<div class="projects__wrapper">
 		<h2 class='projects__title'>проект</h2>
-		<div class="projects__container">
+		<form class="projects__container" @submit.prevent="createProjectHandler">
 		
 			<InputComponent 
 				label='Название проекта' 
@@ -29,12 +29,11 @@
 	
 			<button 
 				class='projects__button-create'
-				@click='createProjectHandler'
 				:disabled='disableButtonFlag'
 				>
 				{{editFlag? 'Редактировать' : 'Создать'}} проект
 			</button>
-		</div>
+		</form>
 	</div>
 </template>
 

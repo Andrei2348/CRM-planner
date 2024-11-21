@@ -1,27 +1,29 @@
-<template>
-	<MainLayout class='links'>
-		<div
-      class='links__wrapper'
-      :class='{"visible": uxuiStore.getShowAsidePanel}'
-    >
-      <h3 class="links__title">Полезные ссылки:</h3> 
-      
-      <form class="links__inputs-container">
-        <InputComponent 
-          label='Введите ссылку'
-          type='text'
-          placeholder="Введите ссылку"
-        />
-        <InputComponent 
-          label='Введите описание ссылки'
-          type='text'
-          placeholder='Введите описание ссылки'
-        />
-        <button class='links__inputs-button'>Создать ссылку</button>
-      </form>
-    </div>
-	</MainLayout>
-</template>
+<template>  
+	<MainLayout class='links'>  
+		<div 
+			class="links__list" 
+			:class='{"visible": uxuiStore.getShowAsidePanel}'
+			v-if='dataStore.getLinksList && dataStore.getLinksList.length > 0'>
+			<LinkCard   
+				v-for="link in dataStore.getLinksList"   
+				:key="link.id"   
+				:data="link"  
+			/>  
+		</div>
 
-<script lang="ts" src="./LinksView.ts"></script>
+		<EmptyListComponent   
+			v-if="!dataStore.getLinksList || dataStore.getLinksList.length === 0"  
+			message="Список ссылок пока пуст."  
+		/>  
+		  
+		<CreateWidget   
+			:class="{ 'hidden': uxuiStore.getCreatePanelName !== '' }"  
+			class="links__create-widget"   
+			componentName="CreateLinkComponent"  
+		/>  
+		
+	</MainLayout>  
+</template>  
+
+<script lang="ts" src="./LinksView.ts"></script>  
 <style lang="scss" scoped src="./LinksView.scss"></style>

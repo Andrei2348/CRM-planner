@@ -35,5 +35,15 @@ export interface ParticipationDataProject{
 	project_name: string,
 	user_id: number,
 	user_name: string,
-	teamlead_id: number
+	teamleadId: number
+}
+
+export interface Link{
+	id?: number,
+	link: string,
+	description: string,
+	user_id: number,
+	author: string,
+	date: string,
+	projectId: number
 }

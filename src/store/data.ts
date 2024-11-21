@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { Project, Task, PatchTaskResponse, ParticipationDataProject } from '@/types/projects'
+import { Project, Task, PatchTaskResponse, ParticipationDataProject, Link } from '@/types/projects'
 import { User } from '@/types/user'
 import { useUserStore } from '@/store/user'
 import { useRoute } from 'vue-router'
@@ -20,6 +20,7 @@ export const useDataStore = defineStore('data', () => {
 	const projectForEdit = ref<Project | null>(null)
 	const selectedProject = ref<Project | null>(null)
 	const notifyProjectList = ref<ParticipationDataProject[] | null>(null)
+	const linksList = ref<Link[] | null>(null)
 
 	const changeTaskData = (newTask: Task): void => {
 		if(tasksList.value){
@@ -91,6 +92,14 @@ export const useDataStore = defineStore('data', () => {
 
 	const getSelectedProject = computed(() => {  
 		return selectedProject.value  
+	})
+
+	const setLinksList = (payload: Link[] | null) => {
+		linksList.value = payload
+	}
+
+	const getLinksList = computed(() => {  
+		return linksList.value  
 	})
 
 	const updateProjectsList = (changedProject: Project): void => {  
@@ -312,7 +321,7 @@ export const useDataStore = defineStore('data', () => {
 	const getProjectsParticipationRequest = async (payload: number | null): Promise<void> => {
 		if(payload !== null){
 			try{
-				const {status, data} = await useApiCall.get(`project-request?teamlead_id=${payload}`)
+				const {status, data} = await useApiCall.get(`project-request?teamleadId=${payload}`)
 				if(status === 200 || status === 201){
 					setNotifyProjectList(data)
 				}
@@ -322,6 +331,7 @@ export const useDataStore = defineStore('data', () => {
 		}
 	}
 
+	// Удаление заявки на участие в проекте
 	const deleteProjectsParticipationRequest = async (payload: number | null): Promise<void> => {
 		if(payload){
 			try{
@@ -332,6 +342,31 @@ export const useDataStore = defineStore('data', () => {
 			} catch (error) {
 				console.log(error)
 			}
+		}
+	}
+
+	// Создание нового проекта
+	const linkCreateRequest = async (payload: Link): Promise<void> => {
+		try {  
+			const { status, data } = await useApiCall.post('links/', payload)  
+			if (status === 200 || status === 201) {  
+				console.log(data)
+			} 
+    } catch (error) {  
+			console.error(error) 
+    }
+	}
+
+	// Получение списка ссылок
+	const linksListRequest = async (projectId: number): Promise<void> => {
+		console.log(projectId)
+		try{
+			const {status, data} = await useApiCall.get(`links?projectId=${projectId}`)
+			if(status === 200 || status === 201){
+				setLinksList(data)
+			}
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
@@ -363,6 +398,9 @@ export const useDataStore = defineStore('data', () => {
 		projectParticipationRequest,
 		getProjectsParticipationRequest,
 		getNotifyProjectList,
-		deleteProjectsParticipationRequest
+		deleteProjectsParticipationRequest,
+		linkCreateRequest,
+		linksListRequest,
+		getLinksList
   }
 })

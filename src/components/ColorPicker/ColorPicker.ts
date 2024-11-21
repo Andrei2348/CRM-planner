@@ -23,12 +23,12 @@ export default defineComponent({
       '#F1C40F',  
       '#9B59B6',  
       '#A5260A',  
-    ]);  
+    ])
 
-    const selectedColor = ref<Colors>(props.color);  
+    const selectedColor = ref<Colors>(props.color) 
 
     const selectColor = (color: Colors) => {  
-      selectedColor.value = color;  
+      selectedColor.value = color 
       emit('colorChanged', props.name, color) 
     }  
 
@@ -36,6 +36,6 @@ export default defineComponent({
       colors,  
       selectedColor,  
       selectColor,  
-    };  
+    }  
   },  
 })

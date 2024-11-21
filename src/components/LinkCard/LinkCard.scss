@@ -1,0 +1,52 @@
+.link{
+  &__wrapper{
+    padding: 22px;
+    background: $violetBg;
+    padding: 15px;
+		border-radius: 10px;
+    box-shadow: $shadow3;
+    width: 600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  &__common{
+    padding-right: 20px;
+    @include textLink(18);
+    color: $white;
+  }
+  &__context{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__info{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: $gray3;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  &__text{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    color: $gray;
+    @include textRegular(14);
+  }
+  &__span{
+    color: $yellow;
+    @include textMedium(16);
+  }
+  &__button-wrapper{
+    display: flex;
+    gap: 10px;
+  }
+  &__button-edit{
+    cursor: pointer;
+		@include circleButton(52px)
+  }
+}

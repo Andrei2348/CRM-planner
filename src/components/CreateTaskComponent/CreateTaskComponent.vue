@@ -1,7 +1,7 @@
 <template>
 	<div class="task__wrapper">
 		<h2 class='task__title'>Задача</h2>
-		<div class="task__container">
+		<form class="task__container" @submit.prevent="createTaskHandler">
 		
 			<InputComponent 
 				label='Задание' 
@@ -55,11 +55,10 @@
 			<button 
 				class='task__button-create'
 				:disabled='disableButtonFlag'
-				@click='createTaskHandler'
 				>
 				{{editFlag? 'Редактировать' : 'Создать'}}
 			</button>
-		</div>
+		</form>
 	</div>
 </template>
 

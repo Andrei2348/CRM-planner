@@ -44,7 +44,7 @@ export default defineComponent({
         project_name: payload.name, 
         user_id: userStore.getUserInfo?.id as number,  
         user_name: userStore.getUserInfo?.username as string,
-        teamlead_id: payload.user_id as number 
+        teamleadId: payload.user_id as number 
       } 
       
       dataStore.projectParticipationRequest(participationData)  

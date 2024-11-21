@@ -1,76 +1,75 @@
-import { defineComponent, onBeforeMount, computed, ref } from 'vue'   
-import { Project } from '@/types/projects'   
-import { useDataStore } from '@/store/data'  
+import { defineComponent, onBeforeMount, ref, computed } from 'vue'
+import { Project, Colors } from '@/types/projects'
+import { useDataStore } from '@/store/data'
 import { useUserStore } from '@/store/user'
 import { useCloseCreatePanelHandler } from '@/composables/useTaskPanelOpen'
 
-export default defineComponent({  
-  name: 'CreateProjectComponent',  
-    
-  setup() {   
-    const dataStore = useDataStore() 
+export default defineComponent({
+  name: 'CreateProjectComponent',
+  
+  setup() {
+    const dataStore = useDataStore()
     const userStore = useUserStore()
 
-    const editFlag = ref(false)
-    const blankDataProject = ref<Project>({     
+    const defaultProjectData = (): Project => ({
       name: '',
       description: '',
       users: [
         {
-          id: userStore.getUserInfo ? userStore.getUserInfo.id : 0,
-          username: userStore.getUserInfo ? userStore.getUserInfo.username : ''
-        }
+          id: userStore.getUserInfo?.id ?? 0,
+          username: userStore.getUserInfo?.username ?? '',
+        },
       ],
-      color: '#FF5733'
+      color: '#FF5733' as Colors,
     })
 
-    const resetForm = (): void => {  
-      blankDataProject.value.name = ''
-      blankDataProject.value.description = ''
-      blankDataProject.value.users = [
-        {
-          id: userStore.getUserInfo ? userStore.getUserInfo.id : 0,
-          username: userStore.getUserInfo ? userStore.getUserInfo.username : ''
-        }
-      ]    
-      blankDataProject.value.color = '#FF5733'
+    const blankDataProject = ref<Project>(defaultProjectData())
+    const editFlag = ref(false)
+
+    const resetForm = () => {
+      blankDataProject.value = defaultProjectData()
     }
-    
-    const getInputData = (key: keyof Project, value: string | number): void => {   
-      (blankDataProject.value[key] as string | number) = value  
-    } 
-    
-    const createProjectHandler = (): void => {
-      if(blankDataProject.value.id){
+
+    const getInputData = (key: keyof Project, value: string | number) => {
+      if (key === 'name' || key === 'description' || key === 'color') {
+        blankDataProject.value[key] = value as Colors
+      } else if (key === 'users') {
+        blankDataProject.value[key] = value as any
+      }
+    }
+
+    const createProjectHandler = () => {
+      if (blankDataProject.value.id) {
         dataStore.projectPatchRequest(blankDataProject.value)
       } else {
         dataStore.projectCreateRequest(blankDataProject.value)
       }
       resetForm()
       useCloseCreatePanelHandler()
-    }  
- 
-    const disableButtonFlag = computed(() => {  
-      return !(blankDataProject.value.name && 
-        blankDataProject.value.description)  
-    })  
+    }
 
-    onBeforeMount(() => {  
-      if(dataStore.getProjectForEdit !== null){
-        blankDataProject.value = {...dataStore.getProjectForEdit}
+    const disableButtonFlag = computed(() => {
+      return !(blankDataProject.value.name && blankDataProject.value.description)
+    })
+
+    onBeforeMount(() => {
+      const projectForEdit = dataStore.getProjectForEdit
+      if (projectForEdit) {
+        blankDataProject.value = { ...projectForEdit }
         editFlag.value = true
       } else {
         editFlag.value = false
       }
     })
 
-    return {    
+    return {
       getInputData,
       createProjectHandler,
       userStore,
       blankDataProject,
       disableButtonFlag,
-      editFlag
-    }  
-  },  
+      editFlag,
+      resetForm
+    }
+  },
 })
