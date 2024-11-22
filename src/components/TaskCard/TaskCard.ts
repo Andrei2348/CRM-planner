@@ -51,7 +51,7 @@ export default defineComponent({
 			const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))  
 	
 			if (daysDiff <= 2 && daysDiff >= 0) {  
-					let form = daysDiff === 1 ? 'день' : daysDiff > 1 && daysDiff < 5 ? 'дня' : 'дней'  
+					const form = daysDiff === 1 ? 'день' : daysDiff > 1 && daysDiff < 5 ? 'дня' : 'дней'  
 					return `${daysDiff} ${form}!`
 			} else {  
 					return '' 
