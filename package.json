@@ -8,8 +8,7 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
-    "lint": "eslint --ext .js,.ts,.vue, --ignore-path .gitignore --fix src",
-    "prepare": "husky"
+    "lint": "eslint --exp"
   },
   "dependencies": {
     "@eslint/js": "^9.12.0",
@@ -25,13 +24,13 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.27.0",
-    "husky": "^9.1.7",
     "jsdom": "^24.1.1",
-    "lint-staged": "^15.2.10",
+    "lint-staged": "^15.2.8",
     "lodash.debounce": "^4.0.8",
     "pinia": "^2.2.4",
     "prettier": "^3.3.3",
     "typescript-eslint": "^8.8.1",
+    "vite-plugin-eslint": "^1.8.1",
     "vue": "^3.5.10",
     "vue-meta": "3.0.0-alpha.10",
     "vue-router": "4"
@@ -45,8 +44,5 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "lint": "eslint --ignore-path .gitignore --fix src"
   }
 }

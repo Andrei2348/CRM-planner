@@ -115,6 +115,14 @@ export const useDataStore = defineStore('data', () => {
 		}
 	}  
 
+	const updateLinksList = (changedLink: Link): void => {  
+		if (linksList.value) {  
+			linksList.value = linksList.value.map(link => 
+				link.id === changedLink.id ? { ...link, ...changedLink } : link
+			)
+		}
+	}  
+
 	const addProjectToProjectList = (payload: Project): void => {  
     projectList.value = projectList.value ?? []  
     projectList.value.push(payload)
@@ -407,6 +415,19 @@ export const useDataStore = defineStore('data', () => {
 			}
 		}
 	}
+
+	// Редактирование существующей ссылки
+	const linkPatchRequest = async (payload: Link): Promise<void> => {
+		try {  
+			const { status, data } = await useApiCall.patch(`links/${payload.id}`, payload)  
+			if (status === 200 || status === 201) {  
+				console.log(data) 
+				updateLinksList(data) 
+			} 
+    } catch (error) {  
+			console.error(error)
+		}
+	}
 	
   return {
 		projectsListRequest,
@@ -442,6 +463,7 @@ export const useDataStore = defineStore('data', () => {
 		getIsLoading,
 		linkDeleteRequest,
 		setLinkForEdit,
-		getLinkForEdit
+		getLinkForEdit,
+		linkPatchRequest
   }
 })

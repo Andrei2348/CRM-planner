@@ -42,11 +42,11 @@ export default defineComponent({
       }
     }
 
-    const createTaskHandler = (): void => {
+    const createTaskHandler = async (): Promise<void> => {
       if (blankDataTask.value.id) {
-        dataStore.taskPatchRequest(blankDataTask.value)
+        await dataStore.taskPatchRequest(blankDataTask.value)
       } else {
-        dataStore.taskCreateRequest(blankDataTask.value)
+        await dataStore.taskCreateRequest(blankDataTask.value)
       }
       resetForm()
       useCloseCreatePanelHandler()

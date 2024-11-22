@@ -38,11 +38,11 @@ export default defineComponent({
       }
     }
 
-    const createProjectHandler = () => {
+    const createProjectHandler = async (): Promise<void> => {
       if (blankDataProject.value.id) {
-        dataStore.projectPatchRequest(blankDataProject.value)
+        await dataStore.projectPatchRequest(blankDataProject.value)
       } else {
-        dataStore.projectCreateRequest(blankDataProject.value)
+        await dataStore.projectCreateRequest(blankDataProject.value)
       }
       resetForm()
       useCloseCreatePanelHandler()

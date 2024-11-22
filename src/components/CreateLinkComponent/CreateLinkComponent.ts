@@ -5,6 +5,8 @@ import { useDataStore } from '@/store/data'
 import { Link } from '@/types/projects'
 import { useRoute } from 'vue-router'
 import { validateLinks } from '@/helpers/validateLinks'
+import { useCloseCreatePanelHandler } from '@/composables/useTaskPanelOpen'
+
 
 export default defineComponent({
   name: 'CreateLinkComponent',
@@ -40,9 +42,14 @@ export default defineComponent({
       return !(blankDataLink.value.link && blankDataLink.value.description && validateLinks(blankDataLink.value.link))
     })
 
-    const createLinkHandler = async (): Promise<void> => { 
-      await dataStore.linkCreateRequest(blankDataLink.value)
+    const createLinkHandler = async (): Promise<void> => {
+      if (blankDataLink.value.id) {
+        await dataStore.linkPatchRequest(blankDataLink.value)
+      } else {
+        await dataStore.linkCreateRequest(blankDataLink.value)
+      }
       resetForm()
+      useCloseCreatePanelHandler()
     }
 
     onBeforeMount(() => {

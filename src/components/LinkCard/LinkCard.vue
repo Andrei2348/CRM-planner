@@ -5,7 +5,7 @@
 
 			<div class="link__info">
 				<p class="link__text">Автор: <span class='link__span'>{{ data.author }}</span></p>  
-				<p class="link__text">Дата создания: <span class='link__span'>{{ data.date }}</span></p>  
+				<p class="link__text">Дата создания: <span class='link__span'>{{ getFormatDate(data.date) }}</span></p>  
 			</div>
 		</div>
 		<div class="link__button-wrapper">  
