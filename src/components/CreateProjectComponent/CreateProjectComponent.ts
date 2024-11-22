@@ -12,7 +12,7 @@ export default defineComponent({
     const userStore = useUserStore()
 
     const defaultProjectData = (): Project => ({
-      name: '',
+      project: '',
       description: '',
       users: [
         {
@@ -31,7 +31,7 @@ export default defineComponent({
     }
 
     const getInputData = (key: keyof Project, value: string | number) => {
-      if (key === 'name' || key === 'description' || key === 'color') {
+      if (key === 'project' || key === 'description' || key === 'color') {
         blankDataProject.value[key] = value as Colors
       } else if (key === 'users') {
         blankDataProject.value[key] = value as any
@@ -49,7 +49,7 @@ export default defineComponent({
     }
 
     const disableButtonFlag = computed(() => {
-      return !(blankDataProject.value.name && blankDataProject.value.description)
+      return !(blankDataProject.value.project && blankDataProject.value.description)
     })
 
     onBeforeMount(() => {

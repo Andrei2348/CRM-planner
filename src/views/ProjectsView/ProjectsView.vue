@@ -2,7 +2,7 @@
 	<MainLayout>
 		<div 
 			v-if='dataStore.projectList &&
-			!dataStore.isLoadingProjects' 
+			!dataStore.getIsLoading' 
 			class='projects__list'
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>
@@ -15,7 +15,7 @@
 		<EmptyListComponent 
 			v-if='(!dataStore.projectList ||
 			dataStore.projectList.length === 0) &&
-			!dataStore.isLoadingProjects'
+			!dataStore.getIsLoading'
 			class='projects__empty-list'
 			message='Список проектов пока пуст.'
 		/>

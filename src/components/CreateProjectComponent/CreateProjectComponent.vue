@@ -5,11 +5,11 @@
 		
 			<InputComponent 
 				label='Название проекта' 
-				name='name' 
+				name='project' 
 				type='text'
 				placeholder='Введите название проекта'
 				@update:modelValue='getInputData'
-				:modelValue='blankDataProject.name'
+				:modelValue='blankDataProject.project'
 			/>
 
 			<TextAreaComponent 

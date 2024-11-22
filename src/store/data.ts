@@ -11,13 +11,14 @@ export const useDataStore = defineStore('data', () => {
 	const route = useRoute()
 	const userStore = useUserStore()
 	const projectList = ref<Project[] | null>(null)
-	const isLoadingProjects = ref(true)
 	const isLoadingTasks = ref(true)
 	const isLoadingUsers = ref(true)
+	const isLoading = ref(true)
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
 	const taskForEdit = ref<Task | null>(null)
 	const projectForEdit = ref<Project | null>(null)
+	const linkForEdit = ref<Link | null>(null)
 	const selectedProject = ref<Project | null>(null)
 	const notifyProjectList = ref<ParticipationDataProject[] | null>(null)
 	const linksList = ref<Link[] | null>(null)
@@ -47,10 +48,6 @@ export const useDataStore = defineStore('data', () => {
     return projectForEdit.value
   }) 
 
-	const setIsLoadingProjects = (payload: boolean): void => {
-		isLoadingProjects.value = payload
-	}
-
 	const setIsLoadingTasks = (payload: boolean): void => {
 		isLoadingTasks.value = payload
 	}
@@ -58,6 +55,14 @@ export const useDataStore = defineStore('data', () => {
 	const setIsLoadingUsers = (payload: boolean): void => {
 		isLoadingUsers.value = payload
 	}
+
+	const setIsLoading = (payload: boolean): void => {
+		isLoading.value = payload
+	}
+
+	const getIsLoading = computed(() => {  
+		return isLoading.value 
+	})
 
 	const setProjectList = (payload: Project[] | null): void => {  
 		projectList.value = payload
@@ -121,6 +126,12 @@ export const useDataStore = defineStore('data', () => {
     }  
 	}
 
+	const removeLinkById = (id: number | null): void => {  
+    if (linksList.value) {  
+			linksList.value = linksList.value.filter(item => item.id !== id);  
+    }  
+	}
+
 	const removeTaskById = (id: number | null): void => {  
     if (tasksList.value) {  
 			tasksList.value = tasksList.value.filter(item => item.id !== id);  
@@ -150,11 +161,19 @@ export const useDataStore = defineStore('data', () => {
 		}
 	}
 
+	const setLinkForEdit = (payload: Link | null) => {
+		linkForEdit.value = payload
+	}
+
+	const getLinkForEdit = computed(() => {  
+		return linkForEdit.value  
+	})
+
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
 		try{
 			if(userStore.getUserInfo){
-				setIsLoadingProjects(true)
+				setIsLoading(true)
 				const {status, data} = await useApiCall.get(`projects?users.id=${userStore.getUserInfo.id}`)
 				if(status === 200 || status === 201){
 					setProjectList(data)
@@ -163,7 +182,7 @@ export const useDataStore = defineStore('data', () => {
 		} catch (error) {
 			console.log(error)
 		} finally {
-      setIsLoadingProjects(false)
+			setIsLoading(false)
     }
 	}
 
@@ -291,7 +310,7 @@ export const useDataStore = defineStore('data', () => {
 	const searchProjectsListRequest = async (payload: string): Promise<void> => {
 		try{
 			if(userStore.getUserInfo){
-				setIsLoadingProjects(true)
+				setIsLoading(true)
 				const {status, data} = await useApiCall.get(`projects?name=*${payload}*`)
 				if(status === 200 || status === 201){
 					setProjectList(data)
@@ -300,7 +319,7 @@ export const useDataStore = defineStore('data', () => {
 		} catch (error) {
 			console.log(error)
 		} finally {
-      setIsLoadingProjects(false)
+			setIsLoading(false)
     }
 	}
 
@@ -345,12 +364,15 @@ export const useDataStore = defineStore('data', () => {
 		}
 	}
 
-	// Создание нового проекта
+	// Создание новой ссылки
 	const linkCreateRequest = async (payload: Link): Promise<void> => {
 		try {  
 			const { status, data } = await useApiCall.post('links/', payload)  
 			if (status === 200 || status === 201) {  
-				console.log(data)
+				if(!linksList.value){
+					linksList.value = []
+				}
+				linksList.value.push(data)
 			} 
     } catch (error) {  
 			console.error(error) 
@@ -359,22 +381,37 @@ export const useDataStore = defineStore('data', () => {
 
 	// Получение списка ссылок
 	const linksListRequest = async (projectId: number): Promise<void> => {
-		console.log(projectId)
 		try{
+			setIsLoading(true)
 			const {status, data} = await useApiCall.get(`links?projectId=${projectId}`)
 			if(status === 200 || status === 201){
 				setLinksList(data)
 			}
 		} catch (error) {
 			console.log(error)
-		}
+		} finally {
+      setIsLoading(false)
+    }
 	}
 
+	// Удаление выбранной ссылки
+	const linkDeleteRequest = async (): Promise<void> => {
+		if(linkForEdit.value && linkForEdit.value.id){
+			try {  
+				const { status } = await useApiCall.delete(`links/${linkForEdit.value.id}`)  
+				if (status === 200 || status === 201) {  
+					removeLinkById(linkForEdit.value.id)  
+				} 
+			} catch (error) {  
+				console.error(error)
+			}
+		}
+	}
+	
   return {
 		projectsListRequest,
 		projectInfoRequest,
 		tasksListRequest,
-		isLoadingProjects,
 		projectList,
 		tasksList,
 		usersList,
@@ -401,6 +438,10 @@ export const useDataStore = defineStore('data', () => {
 		deleteProjectsParticipationRequest,
 		linkCreateRequest,
 		linksListRequest,
-		getLinksList
+		getLinksList,
+		getIsLoading,
+		linkDeleteRequest,
+		setLinkForEdit,
+		getLinkForEdit
   }
 })

@@ -1,5 +1,8 @@
 import { defineComponent, PropType } from 'vue'
 import { Link } from '@/types/projects'
+import { useDataStore } from '@/store/data'
+import { useUxuiStore } from '@/store/uxui'
+import {useOpenCreatePanelHandler} from '@/composables/useTaskPanelOpen'
 
 export default defineComponent({
   name: 'LinkCard',
@@ -10,6 +13,17 @@ export default defineComponent({
 		}
   },
   setup() {
-    return {}
+    const dataStore = useDataStore()
+    const uxuiStore = useUxuiStore()
+
+    const deleteLinkHandler = (payload: Link) => {
+      dataStore.setLinkForEdit(payload)
+      uxuiStore.setModalName('ModalDeleteLink')
+    }
+
+    return {
+      deleteLinkHandler,
+      useOpenCreatePanelHandler
+    }
   }
 })

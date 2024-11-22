@@ -3,7 +3,7 @@
 		<div 
 			class="links__list" 
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
-			v-if='dataStore.getLinksList && dataStore.getLinksList.length > 0'>
+			v-if='dataStore.getLinksList && dataStore.getLinksList.length > 0 && !dataStore.getIsLoading'>
 			<LinkCard   
 				v-for="link in dataStore.getLinksList"   
 				:key="link.id"   
@@ -12,7 +12,7 @@
 		</div>
 
 		<EmptyListComponent   
-			v-if="!dataStore.getLinksList || dataStore.getLinksList.length === 0"  
+			v-if="(!dataStore.getLinksList || dataStore.getLinksList.length === 0) && !dataStore.getIsLoading"  
 			message="Список ссылок пока пуст."  
 		/>  
 		  

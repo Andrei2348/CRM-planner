@@ -13,8 +13,7 @@ export default defineComponent({
     const uxuiStore = useUxuiStore()
     const userStore = useUserStore()
     const dataStore = useDataStore()
-
-
+    
     const defaultLinkData = (): Link => ({
       link: '',
       description: '',
@@ -24,39 +23,44 @@ export default defineComponent({
       projectId: Number(route.params.id)
     })
 
-    const linkData = ref<Link>(defaultLinkData())
+    const editFlag = ref(false)
+    const blankDataLink = ref<Link>(defaultLinkData())
 
     const resetForm = (): void => {
-      linkData.value = defaultLinkData()
+      blankDataLink.value = defaultLinkData()
     }
 
     const getInputData = (key: keyof Link, value: string): void => {
-      if (key in linkData.value) {
-        (linkData.value[key] as string) = value
+      if (key in blankDataLink.value) {
+        (blankDataLink.value[key] as string) = value
       }
     }
 
     const isSubmitDisabled = computed(() => { 
-      return !(linkData.value.link && linkData.value.description && validateLinks(linkData.value.link))
+      return !(blankDataLink.value.link && blankDataLink.value.description && validateLinks(blankDataLink.value.link))
     })
 
     const createLinkHandler = async (): Promise<void> => { 
-      await dataStore.linkCreateRequest(linkData.value)
+      await dataStore.linkCreateRequest(blankDataLink.value)
       resetForm()
     }
 
-    onBeforeMount(async () => {
-      uxuiStore.setSelectedPage(4)
-      await dataStore.linksListRequest(Number(route.params.id))
+    onBeforeMount(() => {
+      if (dataStore.getLinkForEdit) {
+        blankDataLink.value = { ...dataStore.getLinkForEdit }
+        editFlag.value = true
+      } else {
+        resetForm()
+      }
     })
-
     return {
       uxuiStore,
-      linkData,
       getInputData,
       resetForm,
       createLinkHandler,
-      isSubmitDisabled
+      isSubmitDisabled,
+      blankDataLink,
+      editFlag
     }
   }
 })

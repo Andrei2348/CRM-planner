@@ -3,7 +3,7 @@
 		<div class="card__priority" v-if='isTeamLead'>
 			<SvgIcon icon="crown" class="card__priority-icon" />
 		</div>
-		<h3 class='card__title'>{{project.name}}</h3>
+		<h3 class='card__title'>{{project.project}}</h3>
 		<div class='card__color-underline' :style='{ backgroundColor: project.color }'></div>
 		<p class='card__text'>{{project.description}}</p>
 		<p class='card__text'>Участники: {{project.users.length}} человек.</p>

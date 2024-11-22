@@ -10,12 +10,14 @@
 		</div>
 		<div class="link__button-wrapper">  
 			<button   
-				class='link__button-edit'   
+				class='link__button-edit' 
+				@click='deleteLinkHandler(data)'  
 			>  
 				<SvgIcon class='link__button-icon' icon="trash" />  
 			</button>   
 			<button   
-				class='link__button-edit'   
+				class='link__button-edit' 
+				@click='useOpenCreatePanelHandler("CreateLinkComponent", data)'  
 			>  
 				<SvgIcon class='link__button-icon' icon="edit" />  
 			</button>  

@@ -41,7 +41,7 @@ export default defineComponent({
     const projectRequestHandler = (payload: Project) => {  
       const participationData: ParticipationDataProject = {  
         project_id: payload.id as number, 
-        project_name: payload.name, 
+        project_name: payload.project, 
         user_id: userStore.getUserInfo?.id as number,  
         user_name: userStore.getUserInfo?.username as string,
         teamleadId: payload.user_id as number 

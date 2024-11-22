@@ -8,7 +8,7 @@
         placeholder="Введите ссылку"
         name='link'
         @update:modelValue='getInputData'
-        :modelValue='linkData.link'
+        :modelValue='blankDataLink.link'
       />
       <InputComponent 
         label='Введите описание ссылки'
@@ -16,14 +16,14 @@
         placeholder='Введите описание ссылки'
         name='description'
         @update:modelValue='getInputData'
-        :modelValue='linkData.description'
+        :modelValue='blankDataLink.description'
       />
       <button 
         class='links__button-create' 
         type="submit" 
         :disabled="isSubmitDisabled"
       >
-        Создать ссылку
+      {{editFlag? 'Редактировать' : 'Создать'}} ссылку
       </button>
     </form>
   </div>
