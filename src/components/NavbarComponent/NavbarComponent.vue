@@ -6,7 +6,7 @@
 		>
 			<div class="navbar__line"></div>
 		</button>
-		<SearchComponent v-if='showSearch'/>
+		<SearchComponent v-if='uxuiStore.getSelectedPage === 1 || (uxuiStore.getSelectedPage === 3 && userStore.getIsTeamLead)'/>
 		<div class="navbar__person-wrapper">
 			<p class='navbar__user'>
 				{{ userStore.getUserInfo?.username }}

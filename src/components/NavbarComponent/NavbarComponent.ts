@@ -3,7 +3,6 @@ import { useUserStore } from '@/store/user'
 import { useUxuiStore } from '@/store/uxui'
 import { useDataStore } from '@/store/data'
 import SearchComponent from '@/components/SearchComponent/SearchComponent.vue'
-import { useRoute } from 'vue-router'
 import NotifyLayout from '@/components/NotifyLayout/NotifyLayout.vue'
 import clickOutside from '@/directives/clickOutside'
 
@@ -20,7 +19,6 @@ export default defineComponent({
 		const userStore = useUserStore()
     const uxuiStore = useUxuiStore()
     const dataStore = useDataStore()
-    const route = useRoute()
 
     const showNotify = ref(false)
 
@@ -42,10 +40,6 @@ export default defineComponent({
     const showNotifyPermission = computed(() => {  
       const notifyList = dataStore.getNotifyProjectList  
       return (showNotify.value && Array.isArray(notifyList) && notifyList.length > 0) 
-    });
-
-    const showSearch = computed(() => {   
-      return route.path === '/'  
     })
     
     return {
@@ -54,7 +48,6 @@ export default defineComponent({
       dataStore,
       logoutHandler,
       asideShowHandler,
-      showSearch,
       showNotify,
       toggleNotify,
       closeNotify,

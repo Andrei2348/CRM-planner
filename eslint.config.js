@@ -1,3 +1,5 @@
 export default [
-  {files: ["src/**/*.{js,mjs,cjs,ts,vue}"]},
+  {
+    files: ["src/**/*.{js,mjs,cjs,ts,vue}"]
+  }
 ];

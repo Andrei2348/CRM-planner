@@ -1,6 +1,6 @@
 import { watch, defineComponent, ref } from 'vue' 
 import { useDataStore } from '@/store/data'
-import debounce from 'lodash.debounce'
+import debounce from 'lodash/debounce'
 
 export default defineComponent({  
   name: 'SearchComponent',  
