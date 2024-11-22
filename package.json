@@ -48,6 +48,6 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{js,mjs,cjs,ts,vue}": ["eslint", "prettier --write --ignore-unknown"]
+    "**/*.{js,mjs,cjs,ts,vue}": ["eslint", "prettier --write --ignore-unknown"]
   }
 }
