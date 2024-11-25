@@ -1,0 +1,47 @@
+.settings{
+	&__wrapper{
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		margin-left: 70px;
+		margin-right: 20px;
+		padding: 70px 0 22px;
+		gap: 10px;
+		transition: all ease 0.5s;
+		&.visible{
+			margin-left: 280px;
+		}
+	}
+	&__stack-wrapper{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	&__stack-button{
+		@include textRegular(12);
+		padding: 6px 8px;
+		border-radius: 14px;
+		color: $white;
+		border: 1px solid $white;
+		cursor: pointer;
+	}
+	&__title,
+	&__stack-title {  
+		margin-bottom: 10px;  
+		color: $white;
+		@include heading(22);  
+	}  
+}
+
+.settings__checkbox-group {    
+	input[type="checkbox"] {  
+		display: none; 
+	}  
+	input[type="checkbox"]:checked + .settings__stack-button{  
+		background-color: $darkViolet; 
+	}
+	input[type="checkbox"]:hover + .settings__stack-button{  
+		background-color: $darkBlue2; 
+	}
+}  

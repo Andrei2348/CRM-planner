@@ -26,3 +26,9 @@ export interface UserApiResponse {
   data: UserItemResponse,
   token: string
 }
+
+export interface Technology {  
+  id: number;  
+  category: string;  
+  name: string;  
+}  

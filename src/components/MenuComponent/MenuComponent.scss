@@ -40,6 +40,7 @@
 		visibility: hidden;
 		width: 0;
 		color: white;
+		white-space: nowrap;
 		transition: opacity ease 3.9s;
 		@include textRegular(16);
 		&.visible{

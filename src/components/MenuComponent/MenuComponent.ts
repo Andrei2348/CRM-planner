@@ -25,7 +25,7 @@ export default defineComponent({
     )
 
     const checkIsDisabled = (item: MenuItem) => {
-      if(uxuiStore.getSelectedPage === 1){
+      if(uxuiStore.getSelectedPage === 1 || uxuiStore.getSelectedPage === 5){
         return item.in_project
       }
       return item.id === uxuiStore.getSelectedPage

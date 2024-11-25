@@ -25,6 +25,11 @@ const routes = [
     component: () => import('@/views/LinksView/LinksView.vue'),
   },
   {
+    path: '/settings',
+    name: RouteNamesEnum.settings,
+    component: () => import('@/views/SettingsView/SettingsView.vue'),
+  },
+  {
     path: '/login',
     name: RouteNamesEnum.login,
     component: () => import('@/views/LoginView/LoginView.vue'),

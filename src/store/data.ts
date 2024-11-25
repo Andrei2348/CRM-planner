@@ -2,10 +2,9 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
 import { Project, Task, PatchTaskResponse, ParticipationDataProject, Link } from '@/types/projects'
-import { User } from '@/types/user'
+import { User, Technology } from '@/types/user'
 import { useUserStore } from '@/store/user'
 import { useRoute } from 'vue-router'
-
 
 export const useDataStore = defineStore('data', () => {
 	const route = useRoute()
@@ -429,6 +428,24 @@ export const useDataStore = defineStore('data', () => {
 		}
 	}
 	
+	// Получение списка стека  
+	const stackListRequest = async (): Promise<Technology[]> => {  
+		try {  
+			setIsLoading(true)
+			const { status, data } = await useApiCall.get('stack/') 
+			if (status === 200 || status === 201) {  
+				return data
+			} else {  
+				return [] 
+			}  
+		} catch (error) {  
+			console.log(error) 
+			return [] 
+		} finally {  
+			setIsLoading(false)  
+		}  
+	}
+
   return {
 		projectsListRequest,
 		projectInfoRequest,
@@ -464,6 +481,7 @@ export const useDataStore = defineStore('data', () => {
 		linkDeleteRequest,
 		setLinkForEdit,
 		getLinkForEdit,
-		linkPatchRequest
+		linkPatchRequest,
+		stackListRequest
   }
 })

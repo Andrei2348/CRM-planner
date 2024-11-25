@@ -5,6 +5,7 @@ export enum RouteNamesEnum {
   register = "register",
   notFound = "notFound",
   users = "users",
-  links = "links"
+  links = "links",
+  settings = "settings"
 }
 

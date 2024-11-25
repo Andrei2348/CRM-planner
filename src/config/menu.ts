@@ -41,7 +41,7 @@ export const MENU_DATA: MenuItem[] = [
 		id: 5,
 		icon:'settings',
 		name: 'Профиль',
-		url: '/profile',
+		url: '/settings',
 		prefix: null,
 		color: '#d436b2',
 		in_project: false
