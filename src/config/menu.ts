@@ -8,7 +8,7 @@ export const MENU_DATA: MenuItem[] = [
 		url: '/',
 		prefix: null,
 		color: '#22d337',
-		in_project: true
+		in_project: false
 	},
 	{
 		id: 2,
