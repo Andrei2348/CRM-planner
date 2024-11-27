@@ -3,6 +3,7 @@ export interface User {
   username: string
 }
 
+// Нужен для валидации данных
 export interface UserItem {
   username: string,
   email: string,
@@ -10,12 +11,17 @@ export interface UserItem {
   repassword?: string
 }
 
-export interface UserItemResponse extends UserItem {
-  id: number,
-  telegram?: 'string',
-  phone?: 'string',
-  description?: 'string'
-}
+export interface UserItemResponse {  
+  id?: number;  
+  telegram?: string;  
+  phone?: string;  
+  description?: string;  
+  github?: string;  
+  username?: string;  
+  email?: string;  
+  password?: string;  
+  repassword?: string;  
+}  
 
 export interface UserLoginItem {
   email: string,

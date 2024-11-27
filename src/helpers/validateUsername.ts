@@ -1,6 +1,6 @@
 export const validateUsername = (username: string) => {
   const errors: string[] = []
-  const usernameRegex = /^[a-zA-Z0-9_-]{2,15}$/
+  const usernameRegex = /^[a-zA-Zа-яА-Я0-9_-]{2,15}$/
 
   if (username.length === 0) {
     errors.push('Это поле не может быть пустым')

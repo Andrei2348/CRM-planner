@@ -11,6 +11,8 @@
             name='username' 
             type='text'
             placeholder='Введите ваше имя'
+            :modelValue='userStore.getUserInfo?.username'
+            @update:modelValue='getInputData'
           />
 
           <InputComponent 
@@ -18,6 +20,8 @@
             name='email' 
             type='email'
             placeholder='Введите ваш email'
+            :modelValue='userStore.getUserInfo?.email'
+            @update:modelValue='getInputData'
           />
 
           <TextAreaComponent 
@@ -25,6 +29,8 @@
             name='description' 
             type='text'
             placeholder='О себе'
+            :textareaValue='userStore.getUserInfo?.description'
+            @update:modelValue='getInputData'
           />
         </div>
         <div class="settings__side">
@@ -33,6 +39,8 @@
             name='telegram' 
             type='text'
             placeholder='Введите ваш email'
+            :modelValue='userStore.getUserInfo?.telegram'
+            @update:modelValue='getInputData'
           />
 
           <InputComponent 
@@ -40,6 +48,8 @@
             name='phone' 
             type='text'
             placeholder='Введите ваш номер телефона'
+            :modelValue='userStore.getUserInfo?.phone'
+            @update:modelValue='getInputData'
           />
 
           <InputComponent 
@@ -47,6 +57,8 @@
             name='github' 
             type='text'
             placeholder='Введите ваш GitHub'
+            :modelValue='userStore.getUserInfo?.github'
+            @update:modelValue='getInputData'
           />
 
         </div>
@@ -64,8 +76,10 @@
         </div>
       </div>
       <div>
+      {{disableButtonFlag}}
         <button 
           class='settings__button'
+          :disabled='disableButtonFlag'
           >Сохранить изменения
         </button>
       </div>

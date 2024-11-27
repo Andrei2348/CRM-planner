@@ -1,5 +1,5 @@
 import { defineComponent, computed, reactive } from 'vue'  
-import { UserItem } from '@/types/user'  
+import { UserItemResponse, UserItem } from '@/types/user'  
 import { EMPTY_USER } from '@/config/user' 
 import { useUserStore } from '@/store/user'
 import { validateEmail } from '@/helpers/validateEmail'
@@ -11,7 +11,7 @@ export default defineComponent({
   
   setup() {
     const userStore = useUserStore()
-    const userData = reactive<UserItem>({ ...EMPTY_USER })
+    const userData = reactive<UserItemResponse>({ ...EMPTY_USER })
      
     const errors = reactive<UserItem>({  
       username: '',  
@@ -28,19 +28,31 @@ export default defineComponent({
     })
 
     const validateForm = () => {  
-      errors.username = validateUsername(userData.username) 
-      errors.email = validateEmail(userData.email)
-      errors.password = validatePassword(userData.password)
-      errors.repassword = doPasswordsMatch(userData.password, userData.repassword || '')
+      if(userData.username){
+        errors.username = validateUsername(userData.username) 
+      }
+      if(userData.email){
+        errors.email = validateEmail(userData.email)
+      }
+      if(userData.password){
+        errors.password = validatePassword(userData.password)
+      }
+      if(userData.password && userData.repassword){
+        errors.repassword = doPasswordsMatch(userData.password, userData.repassword || '')
+      }
     }
          
+    // переписать более  лаконично
     const disableButtonFlag = computed(() => {
       return (
-        !errors.username &&
-        !errors.email &&
-        !errors.password &&
-        !errors.repassword &&
-        Object.values(userData).every((field) => field)
+        errors.username === '' &&
+        errors.email === '' &&
+        errors.password === '' &&
+        errors.repassword === '' &&
+        userData.username !== '' && 
+        userData.email !== '' && 
+        userData.password !== '' &&
+        userData.repassword !== ''
       )
     })
 
@@ -63,9 +75,8 @@ export default defineComponent({
     })
 
     const registerUserHandler = () => {
-      console.log('register=', userData)
       const dataToSend = userData
-      delete dataToSend.repassword;
+      delete dataToSend.repassword
       userStore.userRegisterRequest('register', dataToSend)
     }
 

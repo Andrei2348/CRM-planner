@@ -1,9 +1,13 @@
-import { UserItem } from '@/types/user'
+import { UserItemResponse } from '@/types/user'
 import { UserLoginItem } from '@/types/user'
 
-export const EMPTY_USER: UserItem = {
+export const EMPTY_USER: UserItemResponse = {
 	"username": "",
 	"email": "",
+	"description": "",
+	"phone": "",
+	"telegram": "",
+	"github": "",
 	"password": "",
 	"repassword": ""
 }

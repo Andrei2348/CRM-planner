@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { UserLoginItem, UserItem, UserApiResponse, UserItemResponse } from '@/types/user'
+import { UserLoginItem, UserApiResponse, UserItemResponse } from '@/types/user'
 import { useRouter } from 'vue-router'
 import { setStorageItemWithExpiry } from '@/helpers/localStorageHelpers'
 import { useDataStore } from '@/store/data'
@@ -77,7 +77,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  const userRegisterRequest = async (url: string, user: UserItem): Promise<void> => {
+  const userRegisterRequest = async (url: string, user: UserItemResponse): Promise<void> => {
     try {
       const { status, data } = await useApiCall.post(url, user)
     		handleResponse(status, data)
