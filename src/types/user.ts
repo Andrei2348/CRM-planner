@@ -12,15 +12,16 @@ export interface UserItem {
 }
 
 export interface UserItemResponse {  
-  id?: number;  
-  telegram?: string;  
+  id?: number, 
+  telegram?: string,  
   phone?: string;  
-  description?: string;  
-  github?: string;  
-  username?: string;  
-  email?: string;  
-  password?: string;  
-  repassword?: string;  
+  description?: string,
+  github?: string,
+  username?: string,  
+  email?: string,  
+  password?: string,  
+  repassword?: string, 
+  stack?: Technology[] | []
 }  
 
 export interface UserLoginItem {

@@ -7,6 +7,7 @@
 	z-index: 50;
 	width: 60px;
 	border-top: 1px solid $gray2;
+	border-right: 1px solid $gray2;
 	transition: all ease-in-out 0.5s;
 	&.visible{
 		width: 260px;

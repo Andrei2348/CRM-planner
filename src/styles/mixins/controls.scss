@@ -21,6 +21,11 @@
     background: $gray5;
     border-color: $gray2;
   }
+  &:read-only{
+    border: 1px solid $gray2;
+    outline: none;
+    color: $gray;
+  }
   &::placeholder {
     font-size: 14px;
     line-height: 1;

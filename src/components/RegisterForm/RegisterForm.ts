@@ -28,32 +28,25 @@ export default defineComponent({
     })
 
     const validateForm = () => {  
-      if(userData.username){
-        errors.username = validateUsername(userData.username) 
-      }
-      if(userData.email){
-        errors.email = validateEmail(userData.email)
-      }
-      if(userData.password){
-        errors.password = validatePassword(userData.password)
-      }
-      if(userData.password && userData.repassword){
-        errors.repassword = doPasswordsMatch(userData.password, userData.repassword || '')
-      }
+      errors.username = userData.username ? validateUsername(userData.username) : ''
+      errors.email = userData.email ? validateEmail(userData.email) : ''
+      errors.password = userData.password ? validatePassword(userData.password) : ''
+      errors.repassword = (userData.password && userData.repassword) 
+        ? doPasswordsMatch(userData.password, userData.repassword || '') 
+        : ''
     }
-         
-    // переписать более  лаконично
-    const disableButtonFlag = computed(() => {
-      return (
-        errors.username === '' &&
-        errors.email === '' &&
-        errors.password === '' &&
-        errors.repassword === '' &&
-        userData.username !== '' && 
-        userData.email !== '' && 
-        userData.password !== '' &&
-        userData.repassword !== ''
-      )
+    
+    const disableButtonFlag = computed(() => {  
+      const isErrorEmpty = Object.values(errors).every(error => error === '')
+      
+      const userKeys: (keyof UserItem)[] = ['username', 'email', 'password', 'repassword'] 
+    
+      const isUserDataValid = userKeys.every(key => {  
+        const value = userData[key]
+        return value !== undefined && value !== '' 
+      })
+    
+      return isErrorEmpty && isUserDataValid
     })
 
     const getInputData = (key: keyof UserItem, value: string) => {

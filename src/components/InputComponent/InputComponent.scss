@@ -15,9 +15,9 @@
 	&__area{
 		background-color: $violet;
 		@include input;
-	}
-	&__area-wrapper{
-		width: 100%;
+		&-wrapper{
+			width: 100%;
+		}
 	}
 	&__label{
 		color: $white;

@@ -12,7 +12,7 @@
 				:maxlength="maxlength"  
 				:autocomplete="autocomplete"  
 				:class="{ error: error }"  
-				@focus="$emit('focus')"  
+				@focus="$emit('focus')"
 			/> 
 		</div>  
 			<button 

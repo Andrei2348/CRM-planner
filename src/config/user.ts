@@ -9,7 +9,8 @@ export const EMPTY_USER: UserItemResponse = {
 	"telegram": "",
 	"github": "",
 	"password": "",
-	"repassword": ""
+	"repassword": "",
+	"stack": []
 }
 
 export const EMPTY_LOGIN_FORM: UserLoginItem = {

@@ -100,6 +100,18 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const updateUserInfoRequest = async (payload: UserItemResponse): Promise<void> => {
+    try {
+      const { status, data } = await useApiCall.patch(`/users/${payload.id}`, payload)
+      if(status === 200 || status === 201){
+        setUserInfo(data)
+      }
+    } catch (error) {
+      console.log(error)
+      return
+    }
+  }
+
   return {
     getUserInfo,
     isLoginStatus,
@@ -111,6 +123,7 @@ export const useUserStore = defineStore('user', () => {
     setIsTeamLead,
     getIsTeamLead,
     getUserInfoRequest,
-    checkIfTeamLead
+    checkIfTeamLead,
+    updateUserInfoRequest
   }
 })

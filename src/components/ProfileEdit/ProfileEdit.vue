@@ -7,12 +7,12 @@
         <div class="settings__side">
 
           <InputComponent 
-            label='Введите ваше имя' 
+            label='Ваше имя' 
             name='username' 
             type='text'
-            placeholder='Введите ваше имя'
+            placeholder='Ваше имя'
             :modelValue='userStore.getUserInfo?.username'
-            @update:modelValue='getInputData'
+            readonly
           />
 
           <InputComponent 
@@ -70,16 +70,22 @@
         <h3 class='settings__stack-title'>Выберите технологии:</h3>
         <div class='settings__stack-wrapper' v-if="safeTechnologies && !dataStore.getIsLoading">  
           <div class='settings__checkbox-group' v-for="item in safeTechnologies" :key="item.id">  
-            <input type="checkbox" :id="`checkbox-${item.id}`" :value="item.id"/>  
+            <input 
+            type="checkbox" 
+            :id="`checkbox-${item.id}`" 
+            :value="item.id"
+            @change="handleCheckboxChange(item)"
+            :checked="isSelected(item)"
+            />  
             <label class='settings__stack-button' :for="`checkbox-${item.id}`">{{ item.name }}</label>  
           </div> 
         </div>
       </div>
       <div>
-      {{disableButtonFlag}}
         <button 
           class='settings__button'
           :disabled='disableButtonFlag'
+          @click='saveButtonHandler'
           >Сохранить изменения
         </button>
       </div>

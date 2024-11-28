@@ -1,6 +1,7 @@
 <template>  
 	<MainLayout class='settings'>  
     <ProfileEdit />
+		<PasswordChanger />
 	</MainLayout>  
 </template>  
 
