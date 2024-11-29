@@ -22,7 +22,7 @@ export default defineComponent({
       uxuiStore.setSelectedPage(1)
       const userInfo = userStore.getUserInfo
       const requests = [dataStore.projectsListRequest()]
-      if (userInfo) {
+      if (userInfo && userInfo.id) {
         requests.push(dataStore.getProjectsParticipationRequest(userInfo.id))
       }
       await Promise.all(requests)

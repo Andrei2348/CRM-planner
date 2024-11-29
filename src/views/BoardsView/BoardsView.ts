@@ -31,7 +31,7 @@ export default defineComponent({
         dataStore.tasksListRequest(Number(route.params.id)),
         dataStore.usersListRequest(Number(route.params.id))
       ]
-      if (userInfo) {
+      if (userInfo && userInfo.id) {
         requests.push(dataStore.getProjectsParticipationRequest(userInfo.id))
       }
       await Promise.all(requests)

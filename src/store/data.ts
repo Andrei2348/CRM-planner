@@ -178,19 +178,21 @@ export const useDataStore = defineStore('data', () => {
 
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
-		try{
-			if(userStore.getUserInfo){
-				setIsLoading(true)
-				const {status, data} = await useApiCall.get(`projects?users.id=${userStore.getUserInfo.id}`)
-				if(status === 200 || status === 201){
-					setProjectList(data)
+		if(!projectList.value){
+			try{
+				if(userStore.getUserInfo){
+					setIsLoading(true)
+					const {status, data} = await useApiCall.get(`projects?users.id=${userStore.getUserInfo.id}`)
+					if(status === 200 || status === 201){
+						setProjectList(data)
+					}
 				}
+			} catch (error) {
+				console.log(error)
+			} finally {
+				setIsLoading(false)
 			}
-		} catch (error) {
-			console.log(error)
-		} finally {
-			setIsLoading(false)
-    }
+		}
 	}
 
 	// Получение проекта по id
