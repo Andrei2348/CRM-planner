@@ -38,7 +38,7 @@ export default defineComponent({
       return props.project.users.some(user => user.id === userStore.getUserInfo?.id)  
     })
 
-    const projectRequestHandler = (payload: Project) => {  
+    const projectRequestHandler = async (payload: Project) => {  
       const participationData: ParticipationDataProject = {  
         project_id: payload.id as number, 
         project_name: payload.project, 
@@ -47,11 +47,10 @@ export default defineComponent({
         teamleadId: payload.user_id as number 
       } 
       
-      dataStore.projectParticipationRequest(participationData)  
+      await dataStore.projectParticipationRequest(participationData)  
     }
 
     const leaveTheProjectHandler = (payload: Project) => {
-      console.log(payload)
       dataStore.setProjectForEdit(payload)
       uxuiStore.setModalName('ModalLeaveProject')
     }

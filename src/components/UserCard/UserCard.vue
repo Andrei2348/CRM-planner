@@ -10,10 +10,17 @@
         <SvgIcon icon='info' />
       </button>
       <button 
-        v-if='userStore.getIsTeamLead'
+        v-if='userStore.getIsTeamLead && checkContainsUser(user)'
         class='user__info-button' 
         @click='deleteUserInfoHandler(user.id)'>
         <SvgIcon icon='trash'/>
+      </button>
+      <button 
+        v-if='userStore.getIsTeamLead && !checkContainsUser(user)'
+        class='user__info-button'
+        @click="projectRequestHandler(user)" 
+      >
+      <SvgIcon icon='add'/>
       </button>
     </div>
     <div 

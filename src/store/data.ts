@@ -15,6 +15,11 @@ export const useDataStore = defineStore('data', () => {
 	const isLoading = ref(true)
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
+
+	// =======================
+	const etalonUsersList = ref<User[] | null>(null)
+	// =======================
+
 	const taskForEdit = ref<Task | null>(null)
 	const projectForEdit = ref<Project | null>(null)
 	const linkForEdit = ref<Link | null>(null)
@@ -75,8 +80,20 @@ export const useDataStore = defineStore('data', () => {
 		usersList.value = payload
 	}
 
+	const setEtalonUsersList = (payload: User[] | null): void => {
+		if (payload !== null && payload.length !== 0){
+			etalonUsersList.value = payload
+		} else {
+			etalonUsersList.value = null
+		}
+	}
+
 	const getUsersList = computed(() => {  
 		return usersList.value 
+	})
+
+	const getEtalonUsersList = computed(() => {  
+		return etalonUsersList.value 
 	})
 
 	const addTaskData = (payload: Task) => {
@@ -178,20 +195,18 @@ export const useDataStore = defineStore('data', () => {
 
 	// Получение списка проектов
 	const projectsListRequest = async (): Promise<void> => {
-		if(!projectList.value){
-			try{
-				if(userStore.getUserInfo){
-					setIsLoading(true)
-					const {status, data} = await useApiCall.get(`projects?users.id=${userStore.getUserInfo.id}`)
-					if(status === 200 || status === 201){
-						setProjectList(data)
-					}
+		try{
+			if(userStore.getUserInfo){
+				setIsLoading(true)
+				const {status, data} = await useApiCall.get(`projects?users.id=${userStore.getUserInfo.id}`)
+				if(status === 200 || status === 201){
+					setProjectList(data)
 				}
-			} catch (error) {
-				console.log(error)
-			} finally {
-				setIsLoading(false)
 			}
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -255,11 +270,27 @@ export const useDataStore = defineStore('data', () => {
 			const {status, data} = await useApiCall.get(`projects?id=${projectId}`)
 			if(status === 200 || status === 201){
 				setUsersList(data[0].users)
+				setEtalonUsersList(data[0].users)
 			}
 		} catch (error) {
 			console.log(error)
 		} finally {
       setIsLoadingUsers(false)
+    }
+	}
+
+	// Поиск людей
+	const searchUsersListRequest = async (payload: string): Promise<void> => {
+		try{
+			setIsLoadingUsers(true)
+			const {status, data} = await useApiCall.get(`users?username=*${payload}*`)
+			if(status === 200 || status === 201){
+				setUsersList(data)
+			}
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setIsLoadingUsers(false)
     }
 	}
 
@@ -320,7 +351,7 @@ export const useDataStore = defineStore('data', () => {
 		try{
 			if(userStore.getUserInfo){
 				setIsLoading(true)
-				const {status, data} = await useApiCall.get(`projects?name=*${payload}*`)
+				const {status, data} = await useApiCall.get(`projects?project=*${payload}*`)
 				if(status === 200 || status === 201){
 					setProjectList(data)
 				}
@@ -338,12 +369,26 @@ export const useDataStore = defineStore('data', () => {
 			const { status, data } = await useApiCall.post('project-request/', payload)  
 			if (status === 200 || status === 201) {  
 				console.log(data)
-				// Сюда добавиьт оповещение об отправке заявки на участие в проекте
+				// Сюда добавить оповещение об отправке заявки на участие в проекте
 			} 
     } catch (error) {  
 			console.error(error) 
     }
 	}
+
+	// Создание запроса на приглашение пользователя в проект
+	const userParticipationRequest = async (payload: ParticipationDataProject): Promise<void> => {
+		try {  
+			const { status, data } = await useApiCall.post('user-request/', payload)  
+			if (status === 200 || status === 201) {  
+				console.log(data)
+				// Сюда добавить оповещение об отправке заявки на участие в проекте
+			} 
+		} catch (error) {  
+			console.error(error) 
+		}
+	}
+
 
 	// Получение списка запросов
 	const getProjectsParticipationRequest = async (payload: number | null): Promise<void> => {
@@ -484,6 +529,9 @@ export const useDataStore = defineStore('data', () => {
 		setLinkForEdit,
 		getLinkForEdit,
 		linkPatchRequest,
-		stackListRequest
+		stackListRequest,
+		searchUsersListRequest,
+		getEtalonUsersList,
+		userParticipationRequest
   }
 })

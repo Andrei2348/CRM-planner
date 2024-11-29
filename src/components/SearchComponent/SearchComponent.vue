@@ -4,7 +4,7 @@
       class="search__input"
       type="text"
       placeholder="Начать поиск..."
-      @input="searchProjectHandler"
+      @input="searchHandler"
     />
     <SvgIcon icon="search" />
 	</div>
