@@ -4,6 +4,7 @@ import NavbarComponent from '@/components/NavbarComponent/NavbarComponent.vue'
 import { clearStorageItem } from '@/helpers/localStorageHelpers'
 import { useUserStore } from '@/store/user'
 import { useUxuiStore } from '@/store/uxui'
+import { useDataStore } from '@/store/data'
 import { useRouter } from 'vue-router'
 import CreateLayout from '@/components/CreateLayout/CreateLayout.vue'
 import ModalLayout from '@/components/ModalLayout/ModalLayout.vue'
@@ -20,11 +21,13 @@ export default defineComponent({
     const router = useRouter()
     const userStore = useUserStore()
     const uxuiStore = useUxuiStore()
+    const dataStore = useDataStore()
 
 
     const logoutUserHandler = () => {
       userStore.setIsLoginStatus(false)
       userStore.setUserInfo(null)
+      dataStore.setNotifyProjectList(null)
       clearStorageItem()
       router.push({ name: 'login' })
     }

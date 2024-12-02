@@ -20,28 +20,30 @@ export default defineComponent({
       }
     }
 
-    const approvalHandler = async (data: ParticipationDataProject) => {  
-      await dataStore.projectInfoRequest(data.project_id)  
-      const selectedProject = dataStore.getSelectedProject  
+    const approvalHandler = async (data: ParticipationDataProject) => {
+      await dataStore.projectInfoRequest(data.projectId)
+      const selectedProject = dataStore.getSelectedProject
     
-      if (selectedProject && data.id) {  
-        projectInfo.value = selectedProject  
+      if (selectedProject && data.id) {
+        projectInfo.value = selectedProject
     
-        const newUser = {  
-          id: data.user_id,  
-          username: data.user_name  
-        }  
+        const userId = data.invitation === 'project' ? data.user_id : data.invitationId
+        if (userId !== undefined) {
+          const newUser = {
+            id: userId,
+            username: data.username,
+          }
     
-        const userExists = projectInfo.value.users.some(user => user.id === newUser.id) 
-
-        if (!userExists) {  
-          projectInfo.value.users.push(newUser)
-          await dataStore.projectPatchRequest(projectInfo.value)  
-        }    
-        await dataStore.deleteProjectsParticipationRequest(data.id) 
-      }  
+          if (!projectInfo.value.users.some(user => user.id === newUser.id)) {
+            projectInfo.value.users.push(newUser)
+            await dataStore.projectPatchRequest(projectInfo.value, data.invitation)
+          }
+    
+          await dataStore.deleteProjectsParticipationRequest(data.id)
+        }
+      }
     }
-
+    
     onBeforeUnmount(() => {
       dataStore.setSelectedProject(null)
     })

@@ -23,7 +23,8 @@ export default defineComponent({
       const userInfo = userStore.getUserInfo
       const requests = [dataStore.projectsListRequest()]
       if (userInfo && userInfo.id) {
-        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id))
+        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id, 'invitationId'))
+        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id, 'teamleadId'))
       }
       await Promise.all(requests)
     })

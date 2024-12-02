@@ -41,14 +41,16 @@ export default defineComponent({
     const projectRequestHandler = async(user: User) => {
       if(dataStore.getSelectedProject && dataStore.getSelectedProject.id){
         const participationData: ParticipationDataProject = {  
-          project_id: dataStore.getSelectedProject.id, 
-          project_name: dataStore.getSelectedProject.project, 
+          projectId: dataStore.getSelectedProject.id, 
+          projectName: dataStore.getSelectedProject.project, 
+          username: user.username as string,
+          teamleadId: user.id as number,
           user_id: user.id as number,  
-          user_name: user.username as string,
-          teamleadId: dataStore.getSelectedProject.user_id as number 
+          invitation: 'developer',
+          invitationId: user.id
         } 
         
-        await dataStore.userParticipationRequest(participationData)
+        await dataStore.projectParticipationRequest(participationData)
       }
     }
 

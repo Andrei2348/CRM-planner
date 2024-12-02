@@ -29,13 +29,17 @@ export interface PatchTaskResponse{
   status?: TasksStatuses
 }
 
+export type Invitation = 'developer' |  'project'
+
 export interface ParticipationDataProject{
 	id?: number,
-	project_id: number,
-	project_name: string,
+	projectId: number,
+	projectName: string,
 	user_id: number,
-	user_name: string,
-	teamleadId: number
+	username: string,
+	teamleadId: number,
+	invitation: Invitation,
+	invitationId?: number
 }
 
 export interface Link{

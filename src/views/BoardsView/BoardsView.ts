@@ -32,7 +32,8 @@ export default defineComponent({
         dataStore.usersListRequest(Number(route.params.id))
       ]
       if (userInfo && userInfo.id) {
-        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id))
+        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id, 'invitationId'))
+        requests.push(dataStore.getProjectsParticipationRequest(userInfo.id, 'teamleadId'))
       }
       await Promise.all(requests)
     })

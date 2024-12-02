@@ -40,11 +40,12 @@ export default defineComponent({
 
     const projectRequestHandler = async (payload: Project) => {  
       const participationData: ParticipationDataProject = {  
-        project_id: payload.id as number, 
-        project_name: payload.project, 
+        projectId: payload.id as number, 
+        projectName: payload.project, 
+        username: userStore.getUserInfo?.username as string,
+        teamleadId: payload.user_id as number,
         user_id: userStore.getUserInfo?.id as number,  
-        user_name: userStore.getUserInfo?.username as string,
-        teamleadId: payload.user_id as number 
+        invitation: 'project'
       } 
       
       await dataStore.projectParticipationRequest(participationData)  

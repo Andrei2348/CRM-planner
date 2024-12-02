@@ -1,9 +1,18 @@
 <template>
 	<div class='notify__message'>
-        <p class='notify__text'>Пользователь 
-            <span class='notify__username'>{{ data.user_name }}</span> 
+        <p 
+            class='notify__text'
+            v-if='data.invitation === "project"'
+            >Пользователь 
+            <span class='notify__username'>{{ data.username }}</span> 
             запрашивает разрешение на участие в проекте 
-            <span class='notify__project'>"{{ data.project_name }}"</span>
+            <span class='notify__project'>"{{ data.projectName }}"</span>
+        </p>
+        <p 
+            class='notify__text'
+            v-if='data.invitation === "developer"'
+            >Вас приглашают на участие в проекте 
+            <span class='notify__project'>"{{ data.projectName }}"</span>
         </p>
         <div class="notify__buttons-wrapper">
             <button class='notify__button' @click="cancelHandler(data.id)">Отклонить</button>

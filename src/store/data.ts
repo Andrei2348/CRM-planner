@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { Project, Task, PatchTaskResponse, ParticipationDataProject, Link } from '@/types/projects'
+import { Project, Task, PatchTaskResponse, ParticipationDataProject, Link, Invitation } from '@/types/projects'
 import { User, Technology } from '@/types/user'
 import { useUserStore } from '@/store/user'
 import { useRoute } from 'vue-router'
@@ -162,17 +162,21 @@ export const useDataStore = defineStore('data', () => {
     }  
 	}
 
-	const setNotifyProjectList = (payload: ParticipationDataProject[]) => {
-		if (!notifyProjectList.value) {
+	const setNotifyProjectList = (payload: ParticipationDataProject[] | null) => {  
+    if (!notifyProjectList.value) {  
 			notifyProjectList.value = []
+    }  
+
+    if (payload) {  
+			payload.forEach(newItem => {  
+				const exists = notifyProjectList.value!.some(existingItem => existingItem.id === newItem.id)
+				if (!exists) {  
+					notifyProjectList.value!.push(newItem)  
+				}  
+			}) 
+    } else {
+			notifyProjectList.value = null
 		}
-	
-		payload.forEach(newItem => {
-			const exists = notifyProjectList.value!.some(existingItem => existingItem.id === newItem.id)
-			if (!exists) {
-				notifyProjectList.value!.push(newItem)
-			}
-		})
 	}
 	
 	const getNotifyProjectList = computed(() => {  
@@ -307,11 +311,14 @@ export const useDataStore = defineStore('data', () => {
 	}
 
 	// Редактирование существующего проекта
-	const projectPatchRequest = async (payload: Project): Promise<void> => {
+	const projectPatchRequest = async (payload: Project, notifyStatus?: Invitation): Promise<void> => {
 		try {  
 			const { status, data } = await useApiCall.patch(`projects/${payload.id}`, payload)  
 			if (status === 200 || status === 201) {   
 				updateProjectsList(data) 
+				if(notifyStatus === 'developer'){
+					addProjectToProjectList(data)
+				}
 			} 
     } catch (error) {  
 			console.error(error)
@@ -376,25 +383,11 @@ export const useDataStore = defineStore('data', () => {
     }
 	}
 
-	// Создание запроса на приглашение пользователя в проект
-	const userParticipationRequest = async (payload: ParticipationDataProject): Promise<void> => {
-		try {  
-			const { status, data } = await useApiCall.post('user-request/', payload)  
-			if (status === 200 || status === 201) {  
-				console.log(data)
-				// Сюда добавить оповещение об отправке заявки на участие в проекте
-			} 
-		} catch (error) {  
-			console.error(error) 
-		}
-	}
-
-
 	// Получение списка запросов
-	const getProjectsParticipationRequest = async (payload: number | null): Promise<void> => {
+	const getProjectsParticipationRequest = async (payload: number | null, searchKey: string): Promise<void> => {
 		if(payload !== null){
 			try{
-				const {status, data} = await useApiCall.get(`project-request?teamleadId=${payload}`)
+				const {status, data} = await useApiCall.get(`project-request?${searchKey}=${payload}`)
 				if(status === 200 || status === 201){
 					setNotifyProjectList(data)
 				}
@@ -467,7 +460,6 @@ export const useDataStore = defineStore('data', () => {
 		try {  
 			const { status, data } = await useApiCall.patch(`links/${payload.id}`, payload)  
 			if (status === 200 || status === 201) {  
-				console.log(data) 
 				updateLinksList(data) 
 			} 
     } catch (error) {  
@@ -532,6 +524,7 @@ export const useDataStore = defineStore('data', () => {
 		stackListRequest,
 		searchUsersListRequest,
 		getEtalonUsersList,
-		userParticipationRequest
+		setNotifyProjectList,
+		addProjectToProjectList
   }
 })
