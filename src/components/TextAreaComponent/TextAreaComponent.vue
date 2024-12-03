@@ -10,7 +10,9 @@
         :required="required"  
         :readonly="readonly"  
         :maxlength="maxlength"  
-        :autocomplete="autocomplete"    
+        :autocomplete="autocomplete"
+        @input="adjustHeight"  
+        ref="textarea"
       ></textarea>  
     </div>    
   </div>  

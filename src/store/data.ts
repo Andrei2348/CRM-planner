@@ -68,6 +68,10 @@ export const useDataStore = defineStore('data', () => {
 		return isLoading.value 
 	})
 
+	const getIsLoadingUsers = computed(() => {  
+		return isLoadingUsers.value 
+	})
+
 	const setProjectList = (payload: Project[] | null): void => {  
 		projectList.value = payload
 	}
@@ -525,6 +529,8 @@ export const useDataStore = defineStore('data', () => {
 		searchUsersListRequest,
 		getEtalonUsersList,
 		setNotifyProjectList,
-		addProjectToProjectList
+		addProjectToProjectList,
+		getIsLoadingUsers
+
   }
 })

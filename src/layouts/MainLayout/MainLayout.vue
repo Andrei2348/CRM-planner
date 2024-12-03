@@ -1,5 +1,8 @@
 <template>
-	<main class="main">
+	<main 
+		class="main" 
+		@mousedown="onMouseDown" 
+		@mouseup="onMouseUp">
 		<AsideComponent />
 		<NavbarComponent @logoutUserHandler='logoutUserHandler'/>
 		<slot />

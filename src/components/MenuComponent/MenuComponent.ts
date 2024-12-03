@@ -28,7 +28,9 @@ export default defineComponent({
       if(item.id == uxuiStore.getSelectedPage){
         return true
       }
-      if(uxuiStore.getSelectedPage === 1 || uxuiStore.getSelectedPage === 5){
+      if(uxuiStore.getSelectedPage === 1 || 
+        uxuiStore.getSelectedPage === 5 
+      ){
         return item.in_project
       }
     }

@@ -1,7 +1,7 @@
 <template>
 	<MainLayout class='users'>
 		<div 
-			v-if='filteredUsersList.length > 0'
+			v-if='filteredUsersList.length > 0 && !dataStore.getIsLoadingUsers'
 			class="users__wrapper" 
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>
@@ -13,7 +13,7 @@
 			/>
 		</div>
 		<EmptyListComponent
-			v-else
+			v-if='filteredUsersList.length === 0 && !dataStore.getIsLoadingUsers'
 			message='Список участников пока пуст'
 		/>
 	</MainLayout>

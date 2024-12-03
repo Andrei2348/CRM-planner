@@ -5,6 +5,7 @@
 	position: relative;
 	background-color: $mainBg;
 	z-index: 0;
+	user-select: none;
 }
 .fade-enter-active {  
 	transition: all ease-in 0.9s; 

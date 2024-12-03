@@ -12,7 +12,8 @@
 	&__area{
 		background-color: $violet;
 		resize: none;
-		height: 120px;
+		min-height: 120px;
+		overflow: hidden;
 		@include input;
 		@include textLight(14);
 	}

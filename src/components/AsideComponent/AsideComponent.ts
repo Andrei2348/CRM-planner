@@ -7,7 +7,6 @@ export default defineComponent({
   components: {
     MenuComponent,
   },
-  emits: ['logoutUserHandler',],
   setup() {
     const uxuiStore = useUxuiStore()
     return {

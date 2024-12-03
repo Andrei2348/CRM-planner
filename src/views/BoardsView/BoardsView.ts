@@ -23,6 +23,7 @@ export default defineComponent({
     const uxuiStore = useUxuiStore()
     const userStore = useUserStore()
 
+
     onBeforeMount(async () => {
       uxuiStore.setSelectedPage(2)
       const userInfo = userStore.getUserInfo
