@@ -28,6 +28,12 @@
 		@include textMedium(12);
 		text-align: center;
 	}
+	&__count{
+		margin-left: 10px;
+		color: $gray;
+		@include textRegular(12);
+		text-align: center;
+	}
 	&__wrapper{
 		margin-top: 70px;
 		display: flex;

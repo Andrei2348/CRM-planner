@@ -25,11 +25,19 @@ export default defineComponent({
           const dateA = new Date(a.timeCreate).getTime() 
           const dateB = new Date(b.timeCreate).getTime() 
           return dateA - dateB
-        })  
+        }
+      )  
     })
 
+    const declensionOfTasks = (count: number): string => {
+      if (count === 1) return `${count} задача`
+      if (count >= 2 && count <= 4) return `${count} задачи`
+      return `${count} задач`
+    }
+
     return {  
-      filteredTasks  
+      filteredTasks,
+      declensionOfTasks
     }  
   },  
 })

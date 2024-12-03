@@ -2,6 +2,9 @@
 	<div class='tasks__container'>
 		<div class="tasks__header">
 			<h3 class='tasks__title'>{{ taskArea.title }}</h3>
+			<span class='tasks__count' v-if='filteredTasks.length > 0'>
+				{{ declensionOfTasks(filteredTasks.length) }}
+			</span>
 		</div>
 		<div class="tasks__wrapper">
 			<TaskCard  
