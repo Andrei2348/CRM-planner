@@ -21,7 +21,7 @@ export default defineComponent({
     })
     return { 
       svgContent,
-    };  
+    } 
   }  
-});
+})
 

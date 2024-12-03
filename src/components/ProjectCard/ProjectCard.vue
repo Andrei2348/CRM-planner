@@ -39,7 +39,8 @@
 		<div v-else class="card__buttons-wrapper">
 			<button   
 				class='card__button-request' 
-				@click='projectRequestHandler(project)'    
+				@click='projectRequestHandler(project)'   
+				:disabled='isDisabled' 
 			>  
 				Подать заявку  
 			</button>

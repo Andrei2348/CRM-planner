@@ -7,7 +7,6 @@ import { useRoute } from 'vue-router'
 import { validateLinks } from '@/helpers/validateLinks'
 import { useCloseCreatePanelHandler } from '@/composables/useTaskPanelOpen'
 
-
 export default defineComponent({
   name: 'CreateLinkComponent',
   setup() {
@@ -39,7 +38,9 @@ export default defineComponent({
     }
 
     const isSubmitDisabled = computed(() => { 
-      return !(blankDataLink.value.link && blankDataLink.value.description && validateLinks(blankDataLink.value.link))
+      return !(blankDataLink.value.link && 
+                blankDataLink.value.description && 
+                validateLinks(blankDataLink.value.link))
     })
 
     const createLinkHandler = async (): Promise<void> => {

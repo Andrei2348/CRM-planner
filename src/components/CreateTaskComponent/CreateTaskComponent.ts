@@ -37,7 +37,14 @@ export default defineComponent({
     }
 
     const getInputData = (key: keyof Task, value: string | number): void => {
-      if (key === 'projectId' || key === 'executorId' || key === 'task' || key === 'timeCreate' || key === 'deadline' || key === 'comment' || key === 'color' || key === 'status') {
+      if (key === 'projectId' || 
+          key === 'executorId' || 
+          key === 'task' || 
+          key === 'timeCreate' || 
+          key === 'deadline' || 
+          key === 'comment' || 
+          key === 'color' || 
+          key === 'status') {
         blankDataTask.value[key] = value as never
       }
     }

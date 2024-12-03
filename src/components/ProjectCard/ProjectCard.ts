@@ -1,4 +1,4 @@
-import { defineComponent, PropType, computed } from 'vue'
+import { defineComponent, PropType, computed, ref } from 'vue'
 import { Project } from '@/types/projects'
 import { useUserStore } from '@/store/user'
 import { useDataStore } from '@/store/data'
@@ -20,6 +20,7 @@ export default defineComponent({
     const dataStore = useDataStore()
     const uxuiStore = useUxuiStore()
     const router = useRouter()
+    const isDisabled = ref(false)
 
     const isTeamLead = computed(() => props.project.user_id === userStore.getUserInfo?.id);  
 
@@ -39,6 +40,7 @@ export default defineComponent({
     })
 
     const projectRequestHandler = async (payload: Project) => {  
+      isDisabled.value = true
       const participationData: ParticipationDataProject = {  
         projectId: payload.id as number, 
         projectName: payload.project, 
@@ -60,6 +62,7 @@ export default defineComponent({
       userStore,
       goToProjectHandler,
       isTeamLead,
+      isDisabled,
       useOpenCreatePanelHandler,
       deleteProjectHandler,
       isUserInProject,

@@ -14,7 +14,7 @@ export default defineComponent({
   setup() {
     const uxuiStore = useUxuiStore()
 
-    onBeforeMount(async () => {
+    onBeforeMount(() => {
       uxuiStore.setSelectedPage(5)
     })
 

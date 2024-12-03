@@ -27,8 +27,8 @@
 			placeholder='Введите пароль'
 			@update:modelValue='getInputData'
 			@focus="handleFocus('password')"
-			/>
-			<InputComponent 
+		/>
+		<InputComponent 
 			label='Повторите пароль' 
 			type='password'
 			name='repassword'
@@ -37,7 +37,7 @@
 			autocomplete='new-password'
 			@update:modelValue='getInputData'
 			@focus="handleFocus('repassword')"
-			/>
+		/>
 		<button 
 			class='register__button'
 			:disabled='!disableButtonFlag'

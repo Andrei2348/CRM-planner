@@ -14,9 +14,9 @@ export default defineComponent({
     const dataStore = useDataStore()
     const projectInfo = ref<Project | null>(null)
 
-    const cancelHandler = (id: number | undefined) => {
+    const cancelHandler = async (id: number | undefined) => {
       if(id){
-        dataStore.deleteProjectsParticipationRequest(id)
+        await dataStore.deleteProjectsParticipationRequest(id)
       }
     }
 

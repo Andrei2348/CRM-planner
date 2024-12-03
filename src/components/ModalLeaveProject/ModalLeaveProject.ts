@@ -3,7 +3,7 @@ import { useDataStore } from '@/store/data'
 import { useUserStore } from '@/store/user'
 import { useModalClose } from '@/composables/useModalClose'
 import { Project } from '@/types/projects'
-import { User } from '@/types/user'
+import { UserItemResponse } from '@/types/user'
 
 export default defineComponent({  
   name: 'ModalLeaveProject',  
@@ -15,7 +15,7 @@ export default defineComponent({
       try {
         if(dataStore.getProjectForEdit && userStore.getUserInfo){
           const projectInfo: Project = dataStore.getProjectForEdit
-          const userInfo: User = userStore.getUserInfo 
+          const userInfo: UserItemResponse = userStore.getUserInfo   
           projectInfo.users =  projectInfo.users.filter(user => user.id !== userInfo.id)
           await dataStore.projectPatchRequest(projectInfo)
           await dataStore.projectsListRequest()

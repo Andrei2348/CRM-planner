@@ -17,13 +17,35 @@ export default defineComponent({
       searchParam.value = (event.target as HTMLInputElement).value
     }, 800)
   
-    watch(searchParam, (newVal: string) => {
+    // watch(searchParam, async (newVal: string) => {
+    //   const page = uxuiStore.getSelectedPage
+    //   if (newVal.trim() === '') {
+    //     page === 1 ? dataStore.projectsListRequest() : dataStore.usersListRequest(Number(route.params.id))
+    //   } else {
+    //     page === 1 ? dataStore.searchProjectsListRequest(newVal) : dataStore.searchUsersListRequest(newVal)
+    //   }
+    // })
+
+    watch(searchParam, async (newVal: string) => {  
       const page = uxuiStore.getSelectedPage
-      if (newVal.trim() === '') {
-        page === 1 ? dataStore.projectsListRequest() : dataStore.usersListRequest(Number(route.params.id))
-      } else {
-        page === 1 ? dataStore.searchProjectsListRequest(newVal) : dataStore.searchUsersListRequest(newVal)
-      }
+    
+      try {  
+        if (newVal.trim() === '') {  
+          if (page === 1) {  
+            await dataStore.projectsListRequest()
+          } else {  
+            await dataStore.usersListRequest(Number(route.params.id))
+          }  
+        } else {  
+          if (page === 1) {  
+            await dataStore.searchProjectsListRequest(newVal) 
+          } else {  
+            await dataStore.searchUsersListRequest(newVal) 
+          }  
+        }  
+      } catch (error) {  
+        console.error('Ошибка при обновлении списка:', error)
+      }  
     })
 
     return {  

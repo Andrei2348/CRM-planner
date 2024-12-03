@@ -1,5 +1,3 @@
-// import { UserPasswordApiPayload } from '@/types/user'
-
 export const validatePassword = (password: string | null) => {
   const minLength = 8
   const errors: string[] = []
@@ -31,15 +29,6 @@ export const validatePassword = (password: string | null) => {
   return errors.length > 0 ? errors.join(' ') : ''
 }
 
-// export const isPasswordValid = (password: string) => {
-//   return (
-//     password !== null &&
-//     password !== undefined &&
-//     password.trim() !== '' &&
-//     password.length > 1
-//   )
-// }
-
 export const doPasswordsMatch = (
   newPassword: string,
   repeatPassword: string,
@@ -58,23 +47,3 @@ export const doPasswordsMatch = (
   }
   return errors.length > 0 ? errors.join(' ') : ''
 }
-
-// export const canChangePassword = (
-//   changePasswordData: UserPasswordApiPayload | null,
-//   reErrorMessage: string,
-//   errorMessage: string,
-// ): boolean => {
-//   if (!changePasswordData) return false
-//   const {
-//     password = '',
-//     newPassword = '',
-//     repeatPassword = '',
-//   } = changePasswordData || {}
-//   return (
-//     isPasswordValid(password || '') &&
-//     isPasswordValid(newPassword || '') &&
-//     isPasswordValid(repeatPassword || '') &&
-//     reErrorMessage === '' &&
-//     errorMessage === ''
-//   )
-// }
