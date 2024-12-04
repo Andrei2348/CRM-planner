@@ -19,6 +19,7 @@ export default defineComponent({
     const dataStore = useDataStore()
     const userInfo = ref<UserItemResponse | null | undefined>(null)
     const disabledFlag = ref(false)
+    const buttonAddFlag = ref(false)
 
     const getUserInfoHandler = async () => { 
       disabledFlag.value = true
@@ -49,7 +50,7 @@ export default defineComponent({
           invitation: 'developer',
           invitationId: user.id
         } 
-        
+        buttonAddFlag.value = true
         await dataStore.projectParticipationRequest(participationData)
       }
     }
@@ -61,7 +62,8 @@ export default defineComponent({
       disabledFlag,
       deleteUserInfoHandler,
       checkContainsUser,
-      projectRequestHandler
+      projectRequestHandler,
+      buttonAddFlag
     }
   },
 })

@@ -8,6 +8,7 @@ import { useDataStore } from '@/store/data'
 import { useRouter } from 'vue-router' 
 import CreateLayout from '@/components/CreateLayout/CreateLayout.vue'  
 import ModalLayout from '@/components/ModalLayout/ModalLayout.vue' 
+import InfoNotify from '@/components/InfoNotify/InfoNotify.vue'
 
 export default defineComponent({  
   name: 'MainLayout',  
@@ -16,6 +17,7 @@ export default defineComponent({
     NavbarComponent,  
     CreateLayout,  
     ModalLayout,  
+    InfoNotify 
   },  
   setup() {  
     const router = useRouter() 
@@ -28,6 +30,7 @@ export default defineComponent({
       userStore.setUserInfo(null)  
       dataStore.setNotifyProjectList(null)
       dataStore.setSelectedProject(null)
+      dataStore.setTasksList(null)
       clearStorageItem()  
       router.push({ name: 'login' })  
     }

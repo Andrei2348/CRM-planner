@@ -12,6 +12,9 @@
 		<transition>
 			<component v-if="uxuiStore.getModalName !== ''" :is="ModalLayout" />
 		</transition>
+		
+		<InfoNotify class='main__notify'/>
+		
 	</main>
 </template>
 

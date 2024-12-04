@@ -6,6 +6,11 @@
 	background-color: $mainBg;
 	z-index: 0;
 	user-select: none;
+	&__notify{
+		position: fixed;
+		bottom: 40px;
+		right: 20px;
+	}
 }
 .fade-enter-active {  
 	transition: all ease-in 0.9s; 

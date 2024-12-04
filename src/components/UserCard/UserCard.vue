@@ -19,6 +19,7 @@
         v-if='userStore.getIsTeamLead && !checkContainsUser(user)'
         class='user__info-button'
         @click="projectRequestHandler(user)" 
+        :disabled='buttonAddFlag'
       >
       <SvgIcon icon='add'/>
       </button>

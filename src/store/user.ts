@@ -5,6 +5,7 @@ import { UserLoginItem, UserApiResponse, UserItemResponse } from '@/types/user'
 import { useRouter } from 'vue-router'
 import { setStorageItemWithExpiry } from '@/helpers/localStorageHelpers'
 import { useDataStore } from '@/store/data'
+import { MESSAGES } from '@/config/messages'
 
 export const useUserStore = defineStore('user', () => {
   const router = useRouter()
@@ -65,6 +66,7 @@ export const useUserStore = defineStore('user', () => {
       }
     } catch (error) {
       console.log(error)
+      dataStore.setInfoNotify(MESSAGES[0])
     }
   }
 
@@ -74,6 +76,7 @@ export const useUserStore = defineStore('user', () => {
     		handleResponse(status, data)
     } catch (error) {
       console.log(error)
+      dataStore.setInfoNotify(MESSAGES[0])
     }
   }
 
@@ -83,6 +86,7 @@ export const useUserStore = defineStore('user', () => {
     		handleResponse(status, data)
     } catch (error) {
       console.log(error)
+      dataStore.setInfoNotify(MESSAGES[0])
     }
   }
 
@@ -96,6 +100,7 @@ export const useUserStore = defineStore('user', () => {
       }
     } catch (error) {
       console.log(error)
+      dataStore.setInfoNotify(MESSAGES[0])
       return
     }
   }
@@ -105,9 +110,11 @@ export const useUserStore = defineStore('user', () => {
       const { status, data } = await useApiCall.patch(`/users/${payload.id}`, payload)
       if(status === 200 || status === 201){
         setUserInfo(data)
+        dataStore.setInfoNotify(MESSAGES[2])
       }
     } catch (error) {
       console.log(error)
+      dataStore.setInfoNotify(MESSAGES[0])
       return
     }
   }

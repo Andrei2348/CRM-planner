@@ -51,3 +51,11 @@ export interface Link{
 	date: string,
 	projectId: number
 }
+
+type NotifyType = 'success' | 'alert'
+
+export interface Notify{
+	id: number
+	type: NotifyType,
+	message: string
+}

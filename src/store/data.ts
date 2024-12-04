@@ -1,10 +1,19 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import useApiCall from '@/composables/useApiCall'
-import { Project, Task, PatchTaskResponse, ParticipationDataProject, Link, Invitation } from '@/types/projects'
+import { 
+	Project, 
+	Task, 
+	PatchTaskResponse, 
+	ParticipationDataProject, 
+	Link, 
+	Invitation, 
+	Notify
+} from '@/types/projects'
 import { User, Technology } from '@/types/user'
 import { useUserStore } from '@/store/user'
 import { useRoute } from 'vue-router'
+import { MESSAGES } from '@/config/messages'
 
 export const useDataStore = defineStore('data', () => {
 	const route = useRoute()
@@ -15,17 +24,23 @@ export const useDataStore = defineStore('data', () => {
 	const isLoading = ref(true)
 	const tasksList = ref<Task[] | null>(null)
 	const usersList = ref<User[] | null>(null)
-
-	// =======================
 	const etalonUsersList = ref<User[] | null>(null)
-	// =======================
-
 	const taskForEdit = ref<Task | null>(null)
 	const projectForEdit = ref<Project | null>(null)
 	const linkForEdit = ref<Link | null>(null)
 	const selectedProject = ref<Project | null>(null)
 	const notifyProjectList = ref<ParticipationDataProject[] | null>(null)
 	const linksList = ref<Link[] | null>(null)
+
+	const infoNotify = ref<Notify | null>(null)
+
+	const setInfoNotify = (payload: Notify | null) => {  
+    infoNotify.value = payload
+  }
+
+	const getInfoNotify = computed(() => {  
+    return infoNotify.value
+  }) 
 
 	const changeTaskData = (newTask: Task): void => {
 		if(tasksList.value){
@@ -213,6 +228,7 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
+			setInfoNotify(MESSAGES[0])
 		} finally {
 			setIsLoading(false)
 		}
@@ -229,6 +245,7 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
+			setInfoNotify(MESSAGES[0])
 		}
 	}
 
@@ -244,6 +261,7 @@ export const useDataStore = defineStore('data', () => {
 			console.log(error)
 		} finally {
       setIsLoadingTasks(false)
+			setInfoNotify(MESSAGES[0])
     }
 	}
 
@@ -256,6 +274,7 @@ export const useDataStore = defineStore('data', () => {
 			}
     } catch (error) {  
 			console.error(error) 
+			setInfoNotify(MESSAGES[0])
     }
 	}
 
@@ -268,6 +287,7 @@ export const useDataStore = defineStore('data', () => {
 			}
     } catch (error) {  
 			console.error(error) 
+			setInfoNotify(MESSAGES[0])
     }
 	}
 
@@ -282,6 +302,7 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
+			setInfoNotify(MESSAGES[0])
 		} finally {
       setIsLoadingUsers(false)
     }
@@ -297,6 +318,7 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
+			setInfoNotify(MESSAGES[0])
 		} finally {
 			setIsLoadingUsers(false)
     }
@@ -311,6 +333,7 @@ export const useDataStore = defineStore('data', () => {
 			} 
     } catch (error) {  
 			console.error(error) 
+			setInfoNotify(MESSAGES[0])
     }
 	}
 
@@ -326,6 +349,7 @@ export const useDataStore = defineStore('data', () => {
 			} 
     } catch (error) {  
 			console.error(error)
+			setInfoNotify(MESSAGES[0])
 		}
 	}
 
@@ -339,6 +363,7 @@ export const useDataStore = defineStore('data', () => {
 				} 
 			} catch (error) {  
 				console.error(error)
+				setInfoNotify(MESSAGES[0])
 			}
 		}
 	}
@@ -353,6 +378,7 @@ export const useDataStore = defineStore('data', () => {
 				} 
 			} catch (error) {  
 				console.error(error)
+				setInfoNotify(MESSAGES[0])
 			}
 		}
 	}
@@ -369,6 +395,7 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
+			setInfoNotify(MESSAGES[0])
 		} finally {
 			setIsLoading(false)
     }
@@ -377,13 +404,13 @@ export const useDataStore = defineStore('data', () => {
 	// Создание запроса на участие в проекте
 	const projectParticipationRequest = async (payload: ParticipationDataProject): Promise<void> => {
 		try {  
-			const { status, data } = await useApiCall.post('project-request/', payload)  
+			const { status } = await useApiCall.post('project-request/', payload)  
 			if (status === 200 || status === 201) {  
-				console.log(data)
-				// Сюда добавить оповещение об отправке заявки на участие в проекте
+				setInfoNotify(MESSAGES[1])
 			} 
     } catch (error) {  
 			console.error(error) 
+			setInfoNotify(MESSAGES[0])
     }
 	}
 
@@ -397,6 +424,7 @@ export const useDataStore = defineStore('data', () => {
 				}
 			} catch (error) {
 				console.log(error)
+				setInfoNotify(MESSAGES[0])
 			}
 		}
 	}
@@ -411,6 +439,7 @@ export const useDataStore = defineStore('data', () => {
 				}
 			} catch (error) {
 				console.log(error)
+				setInfoNotify(MESSAGES[0])
 			}
 		}
 	}
@@ -427,6 +456,7 @@ export const useDataStore = defineStore('data', () => {
 			} 
     } catch (error) {  
 			console.error(error) 
+			setInfoNotify(MESSAGES[0])
     }
 	}
 
@@ -440,6 +470,7 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
+			setInfoNotify(MESSAGES[0])
 		} finally {
       setIsLoading(false)
     }
@@ -455,6 +486,7 @@ export const useDataStore = defineStore('data', () => {
 				} 
 			} catch (error) {  
 				console.error(error)
+				setInfoNotify(MESSAGES[0])
 			}
 		}
 	}
@@ -468,6 +500,7 @@ export const useDataStore = defineStore('data', () => {
 			} 
     } catch (error) {  
 			console.error(error)
+			setInfoNotify(MESSAGES[0])
 		}
 	}
 	
@@ -483,6 +516,7 @@ export const useDataStore = defineStore('data', () => {
 			}  
 		} catch (error) {  
 			console.log(error) 
+			setInfoNotify(MESSAGES[0])
 			return [] 
 		} finally {  
 			setIsLoading(false)  
@@ -495,6 +529,7 @@ export const useDataStore = defineStore('data', () => {
 		tasksListRequest,
 		projectList,
 		tasksList,
+		setTasksList,
 		usersList,
 		setProjectList,
 		usersListRequest,
@@ -530,7 +565,8 @@ export const useDataStore = defineStore('data', () => {
 		getEtalonUsersList,
 		setNotifyProjectList,
 		addProjectToProjectList,
-		getIsLoadingUsers
-
+		getIsLoadingUsers,
+		getInfoNotify,
+		setInfoNotify
   }
 })
