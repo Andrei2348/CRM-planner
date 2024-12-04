@@ -6,11 +6,14 @@
 			class='projects__list'
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>
-			<ProjectCard  
-        v-for="project in dataStore.projectList"  
-        :key="project.id"  
-        :project="project"  
-      />  
+			<h2 class='projects__title'>Ваши проекты</h2>
+			<div class="projects__list-wrapper">
+				<ProjectCard  
+					v-for="project in dataStore.projectList"  
+					:key="project.id"  
+					:project="project"  
+				/>  
+			</div>
 		</div>
 		<EmptyListComponent 
 			v-if='(!dataStore.projectList ||

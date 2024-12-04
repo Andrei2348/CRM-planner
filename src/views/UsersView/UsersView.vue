@@ -5,6 +5,7 @@
 			class="users__wrapper" 
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
 		>
+			<h2 class='users__title'>Список пользователей в проекте</h2>
 			<UserCard 
 				v-for="user in filteredUsersList" 
 				:key="user.id" 

@@ -1,16 +1,24 @@
 .links{
+	&__title{
+		padding-bottom: 20px;
+		color: $white;
+		@include heading(22);
+	}
 	&__list{
 		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-start;
-		flex-wrap: wrap;
+		flex-direction: column;
 		margin-left: 70px;
 		margin-right: 20px;
-		padding: 70px 0 22px;
-		gap: 10px;
+		padding: 80px 0 22px;
 		transition: all ease 0.5s;
 		&.visible{
 			margin-left: 280px;
+		}
+		&-wrapper{
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			align-items: flex-start;
 		}
 	}
 	&__create-widget{

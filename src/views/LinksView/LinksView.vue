@@ -1,15 +1,21 @@
 <template>  
-	<MainLayout class='links'>  
+	<MainLayout class='links'>
 		<div 
-			class="links__list" 
+			class="links__list"
 			:class='{"visible": uxuiStore.getShowAsidePanel}'
-			v-if='dataStore.getLinksList && dataStore.getLinksList.length > 0 && !dataStore.getIsLoading'>
-			<LinkCard   
-				v-for="link in dataStore.getLinksList"   
-				:key="link.id"   
-				:data="link"  
-			/>  
-		</div>
+			v-if='dataStore.getLinksList && 
+						dataStore.getLinksList.length > 0 && 
+						!dataStore.getIsLoading'
+		>
+			<h2 class='links__title'>Полезные ссылки</h2>
+			<div class="links__list-wrapper">
+				<LinkCard   
+					v-for="link in dataStore.getLinksList"   
+					:key="link.id"   
+					:data="link"  
+				/>  
+			</div>
+		</div>  
 
 		<EmptyListComponent   
 			v-if="(!dataStore.getLinksList || dataStore.getLinksList.length === 0) && !dataStore.getIsLoading"  

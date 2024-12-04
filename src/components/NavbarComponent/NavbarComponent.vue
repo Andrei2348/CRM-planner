@@ -4,8 +4,11 @@
 			class="navbar__burger" 
 			@click='asideShowHandler'
 		>
-			<div class="navbar__line"></div>
+			<SvgIcon icon="burger" class='navbar__burger-svg'/>
 		</button>
+		<div class='navbar__name' v-if='dataStore.getSelectedProject'>
+			{{ dataStore.getSelectedProject.project }}
+		</div>
 		<SearchComponent v-if='uxuiStore.getSelectedPage === 1 || (uxuiStore.getSelectedPage === 3 && userStore.getIsTeamLead)'/>
 		<div class="navbar__person-wrapper">
 			<p class='navbar__user'>
