@@ -245,7 +245,6 @@ export const useDataStore = defineStore('data', () => {
 			}
 		} catch (error) {
 			console.log(error)
-			setInfoNotify(MESSAGES[0])
 		}
 	}
 
@@ -261,7 +260,6 @@ export const useDataStore = defineStore('data', () => {
 			console.log(error)
 		} finally {
       setIsLoadingTasks(false)
-			setInfoNotify(MESSAGES[0])
     }
 	}
 

@@ -1,6 +1,6 @@
 .card{
 	&__wrapper{
-		width: 300px;
+		width: 90%;
 		background-color: $violet;
 		padding: 24px;
 		border-radius: 8px;
@@ -11,6 +11,12 @@
 		gap: 12px;
 		position: relative;
 		box-shadow: $shadow3;
+		@include screen('550px'){
+			width: 95%;
+		}
+		@include screen('695px'){
+			width: 300px;
+		}
 	}
 	&__color-underline{
 		width: 100%;

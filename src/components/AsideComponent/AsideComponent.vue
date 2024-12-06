@@ -1,5 +1,7 @@
 <template>
 	<aside class='aside' :class='{ "visible": uxuiStore.getShowAsidePanel }' >
+		<div class="aside__container">
+		
 		<MenuComponent />
 		<div class="aside__date-wrapper">
 			<DateElement 
@@ -9,6 +11,8 @@
 				class='aside__date-picker'
 			/>
 		</div>
+
+	</div>
 	</aside>
 </template>
 

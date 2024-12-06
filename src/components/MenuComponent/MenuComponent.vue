@@ -8,7 +8,11 @@
 			:class='{"visible": uxuiStore.getShowAsidePanel}'  
 			:disabled='checkIsDisabled(item)'
 		>  
-			<SvgIcon :icon='item.icon' iconClass='menu__svg-image'/>  
+			<SvgIcon 
+				:icon='item.icon' 
+				iconClass='menu__svg-image'
+				:class='{"visible": uxuiStore.getShowAsidePanel}'
+			/>  
 			<p   
 				:class='{"visible": uxuiStore.getShowAsidePanel}'  
 				class='menu__router-text'  

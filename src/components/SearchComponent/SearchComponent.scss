@@ -8,8 +8,17 @@
     border: none;
     border-bottom: 1px solid $gray2;
     background-color: transparent;
-    width: 300px;
+    width: 100%;
     color: $white;
     @include textMedium(16);
+    @include screen('550px'){
+			width: 300px;
+		}
+  }
+  &__icon{
+    display: none;
+    @include screen('460px'){
+      display: flex;
+    }
   }
 }

@@ -5,12 +5,26 @@
 	height: 100vh;
 	background-color: $black;
 	z-index: 50;
-	width: 60px;
+	width: 0;
 	border-top: 1px solid $gray2;
-	border-right: 1px solid $gray2;
 	transition: all ease-in-out 0.5s;
+	@include screen('450px'){
+		width: 60px;
+		border-right: 1px solid $gray2;
+	}
 	&.visible{
-		width: 260px;
+		width: 100%;	
+		@include screen('450px'){
+			width: 260px;
+		}
+	}
+	&__container{
+		overflow-y: auto;
+		height: 90vh;
+		@include screen('450px'){
+			overflow-y: hidden;
+			height: 100vh;
+		}
 	}
 	&__date-wrapper{
 		display: flex;

@@ -7,12 +7,17 @@
 	&__list{
 		display: flex;
 		flex-direction: column;
-		margin-left: 70px;
 		margin-right: 20px;
+		margin-left: 10px;
 		padding: 80px 0 22px;
 		transition: all ease 0.5s;
+		@include screen('450px'){
+			margin-left: 70px;
+		}
 		&.visible{
-			margin-left: 280px;
+			@include screen('450px'){
+				margin-left: 280px;
+			}
 		}
 		&-wrapper{
 			display: flex;

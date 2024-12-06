@@ -6,7 +6,7 @@
       placeholder="Начать поиск..."
       @input="searchHandler"
     />
-    <SvgIcon icon="search" />
+    <SvgIcon icon="search" class='search__icon' />
 	</div>
 </template>
 
