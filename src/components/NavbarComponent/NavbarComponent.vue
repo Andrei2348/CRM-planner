@@ -9,12 +9,16 @@
 		<div class='navbar__name' v-if='dataStore.getSelectedProject'>
 			{{ dataStore.getSelectedProject.project }}
 		</div>
-		<SearchComponent v-if='uxuiStore.getSelectedPage === 1 || (uxuiStore.getSelectedPage === 3 && userStore.getIsTeamLead)'/>
+		<SearchComponent 
+			v-if='uxuiStore.getSelectedPage === 1 || 
+			(uxuiStore.getSelectedPage === 3 && 
+			userStore.getIsTeamLead)'
+		/>
 		<div class="navbar__person-wrapper">
 			<p class='navbar__user'>
 				{{ userStore.getUserInfo?.username }}
 			</p>
-			<div class="navbar__notify-wrapper" v-click-outside="closeNotify">
+			<div class="navbar__notify-wrapper">
 				<button 
 					class='navbar__logout-button navbar__notify-button' 
 					@click="toggleNotify"
@@ -28,11 +32,6 @@
 						{{ dataStore.getNotifyProjectList?.length }}
 					</span>
 				</button>
-				<NotifyLayout 
-					v-if="showNotifyPermission"
-					class="navbar__notify-area" 
-					@closeNotify='closeNotify'
-				/>
 			</div>
 			<button 
 				class='navbar__logout-button' 

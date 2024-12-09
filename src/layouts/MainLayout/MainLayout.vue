@@ -12,7 +12,13 @@
 		<transition>
 			<component v-if="uxuiStore.getModalName !== ''" :is="ModalLayout" />
 		</transition>
-		
+
+		<NotifyLayout 
+			v-if="showNotifyPermission"
+			class="navbar__notify-area" 
+			@closeNotify='closeNotify'
+		/>
+
 		<InfoNotify class='main__notify'/>
 		
 	</main>

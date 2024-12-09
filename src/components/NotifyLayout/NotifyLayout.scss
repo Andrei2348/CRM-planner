@@ -1,13 +1,21 @@
 .notify{
   &__layout{
-    min-width: 320px;
     background-color: $modalLayer;
     backdrop-filter: blur(10px);
     color: $white;
     padding: 42px 0 22px;
     border-radius: 8px;
     border: 1px solid $gray2;
-    position: relative;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    z-index: 100;
+    max-width: 420px;
+    @include screen('450px'){
+      width: auto;
+      right: 50px;
+      top: 50px;
+    }
   }
   &__content-wrapper{
     display: flex;

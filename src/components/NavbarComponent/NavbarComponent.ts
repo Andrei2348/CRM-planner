@@ -1,19 +1,13 @@
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useUserStore } from '@/store/user'
 import { useUxuiStore } from '@/store/uxui'
 import { useDataStore } from '@/store/data'
 import SearchComponent from '@/components/SearchComponent/SearchComponent.vue'
-import NotifyLayout from '@/components/NotifyLayout/NotifyLayout.vue'
-import clickOutside from '@/directives/clickOutside'
 
 export default defineComponent({
   name: 'NavbarComponent',
   components: {
     SearchComponent,
-    NotifyLayout
-  },
-  directives: {
-    clickOutside,
   },
   setup(_, { emit }) {
 		const userStore = useUserStore()
@@ -27,21 +21,16 @@ export default defineComponent({
     }
 
     const toggleNotify = () => { 
-      showNotify.value = !showNotify.value
+      dataStore.setShowInvitationMessage(!dataStore.getShowInvitationMessage)
     }
     const closeNotify = () => {
-      showNotify.value = false
+      dataStore.setShowInvitationMessage(false)
     }
 
     const asideShowHandler = (): void => {
       uxuiStore.setShowAsidePanel(!uxuiStore.getShowAsidePanel)
     }
 
-    const showNotifyPermission = computed(() => {  
-      const notifyList = dataStore.getNotifyProjectList  
-      return (showNotify.value && Array.isArray(notifyList) && notifyList.length > 0) 
-    })
-    
     return {
 			userStore,
       uxuiStore,
@@ -51,7 +40,7 @@ export default defineComponent({
       showNotify,
       toggleNotify,
       closeNotify,
-      showNotifyPermission
 		}
   },
 })
+

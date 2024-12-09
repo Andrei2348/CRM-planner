@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import AsideComponent from '@/components/AsideComponent/AsideComponent.vue'  
 import NavbarComponent from '@/components/NavbarComponent/NavbarComponent.vue' 
 import { clearStorageItem } from '@/helpers/localStorageHelpers'  
@@ -9,6 +9,7 @@ import { useRouter } from 'vue-router'
 import CreateLayout from '@/components/CreateLayout/CreateLayout.vue'  
 import ModalLayout from '@/components/ModalLayout/ModalLayout.vue' 
 import InfoNotify from '@/components/InfoNotify/InfoNotify.vue'
+import NotifyLayout from '@/components/NotifyLayout/NotifyLayout.vue'
 
 export default defineComponent({  
   name: 'MainLayout',  
@@ -17,7 +18,8 @@ export default defineComponent({
     NavbarComponent,  
     CreateLayout,  
     ModalLayout,  
-    InfoNotify 
+    InfoNotify,
+    NotifyLayout
   },  
   setup() {  
     const router = useRouter() 
@@ -66,6 +68,19 @@ export default defineComponent({
       document.removeEventListener('mouseup', onMouseUp) 
     }
 
+    const closeNotify = () => {
+      dataStore.setShowInvitationMessage(false)
+    }
+
+    const asideShowHandler = (): void => {
+      uxuiStore.setShowAsidePanel(!uxuiStore.getShowAsidePanel)
+    }
+
+    const showNotifyPermission = computed(() => {  
+      const notifyList = dataStore.getNotifyProjectList  
+      return (dataStore.getShowInvitationMessage && Array.isArray(notifyList) && notifyList.length > 0) 
+    })
+
     return {  
       logoutUserHandler,  
       uxuiStore,  
@@ -73,6 +88,9 @@ export default defineComponent({
       ModalLayout,  
       onMouseDown,  
       onMouseUp,  
+      closeNotify,
+      asideShowHandler,
+      showNotifyPermission
     }
   },  
 })

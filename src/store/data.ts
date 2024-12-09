@@ -31,12 +31,20 @@ export const useDataStore = defineStore('data', () => {
 	const selectedProject = ref<Project | null>(null)
 	const notifyProjectList = ref<ParticipationDataProject[] | null>(null)
 	const linksList = ref<Link[] | null>(null)
-
 	const infoNotify = ref<Notify | null>(null)
+	const showInvitationMessage = ref(false)
 
 	const setInfoNotify = (payload: Notify | null) => {  
     infoNotify.value = payload
   }
+
+	const setShowInvitationMessage = (payload: boolean) => {
+		showInvitationMessage.value = payload
+	}
+
+	const getShowInvitationMessage = computed(() => {  
+    return showInvitationMessage.value
+  }) 
 
 	const getInfoNotify = computed(() => {  
     return infoNotify.value
@@ -565,6 +573,8 @@ export const useDataStore = defineStore('data', () => {
 		addProjectToProjectList,
 		getIsLoadingUsers,
 		getInfoNotify,
-		setInfoNotify
+		setInfoNotify,
+		setShowInvitationMessage,
+		getShowInvitationMessage
   }
 })

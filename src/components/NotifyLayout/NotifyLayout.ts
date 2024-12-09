@@ -1,13 +1,12 @@
 import { defineComponent } from 'vue'
 import { useDataStore } from '@/store/data'
-import NotifyMessage from '@/components/NotifyMessage/NotifyMessage.vue'
+import NotifyMessage from '@/components/NotifyMessage/NotifyMessage.vue' 
 
 export default defineComponent({
   name: 'NotifyLayout',
   components: {
     NotifyMessage
   },
-  
   setup(_, { emit }) {
     const dataStore = useDataStore()
 
