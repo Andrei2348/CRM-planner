@@ -4,14 +4,22 @@
 		transition: all ease 0.5s;
 		display: flex;
 		align-items: flex-start;
+		flex-direction: column;
 		gap: 20px;
 		padding-bottom: 20px;
+		@include screen('1024px'){
+			flex-direction: row;
+		}
 	}
 	&__container{
 		display: flex;
-		gap: 20px;
 		align-items: flex-start;
 		justify-content: flex-start;
+		flex-direction: column;
+		gap: 20px;
+		@include screen('650px'){
+			flex-direction: row;
+		}
 	}
 	&__side{
 		display: flex;
@@ -38,7 +46,11 @@
 		@include heading(22);  
 	}  
 	&__profile{
-		width: 47%;
+		width: 100%;
+		@include screen('1024px'){
+			width: 47%;
+
+		}
 	}
 	&__profile,
 	&__stack{
@@ -48,10 +60,14 @@
 		border: 1px solid $gray;
 	}
 	&__right-side{
-		width: 47%;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
+		width: 100%;
+		@include screen('1024px'){
+			width: 47%;
+
+		}
 	}
 	&__button{
 		@include primaryButton;

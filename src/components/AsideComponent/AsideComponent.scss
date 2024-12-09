@@ -28,7 +28,9 @@
 	}
 	&__date-wrapper{
 		display: flex;
-		justify-content: center;
+		@include screen('450px'){
+			justify-content: center;
+		}
 	}
 	&__date-picker{
 		position: relative;

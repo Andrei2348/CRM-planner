@@ -2,19 +2,23 @@
   position: relative;
   &__wrapper{
 		background-color: $mainBg;
-		margin-left: 80px;
+		margin-left: 10px;
 		padding-bottom: 20px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 		transition: all ease-in-out 0.5s;
     padding-top: 80px;
+		@include screen('450px'){
+			margin-left: 80px;
+		}
 		&.visible{
 			margin-left: 280px;
 		}
 	}
 	&__title{
 		padding-bottom: 10px;
+		padding-right: 20px;
 		color: $white;
 		@include heading(22);
 	}

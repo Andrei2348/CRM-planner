@@ -3,11 +3,14 @@
     padding: 22px;
     border: 1px solid $gray;
     border-radius: 8px;
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     position: relative;
     background-color: $modalLayer;
+    @include screen ('1024px'){
+      width: 60%;
+    }
   }
   &__info{
     &-button{
@@ -53,13 +56,15 @@
   &__moreinfo-header{
     position: relative;
     &::after{
-      content: '';
-      position: absolute;
-      top: 8px;
-      right: -220px;
-      height: 1px;
-      width: 200px;
-      background-color: $gray2;
+      @include screen('600px'){
+        content: '';
+        position: absolute;
+        top: 8px;
+        right: -220px;
+        height: 1px;
+        width: 200px;
+        background-color: $gray2;
+      }
     }
   }
   &__moreinfo-container{
@@ -82,8 +87,11 @@
   }
   &__moreinfo-header--content{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 20px;
+    @include screen('670px'){
+      flex-wrap: nowrap;
+    }
   }
   &__moreinfo-footer--content{
     display: flex;
