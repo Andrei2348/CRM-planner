@@ -1,0 +1,86 @@
+.navbar{
+	background-color: $black;
+	height: 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	&__name{
+		display: none;
+		@include screen('1024px'){
+			display: block;
+			position: absolute;
+			left: 80px;
+			top: 28px;
+			padding-bottom: 20px;
+			color: $white;
+			@include textRegular(16);
+		}
+	}
+	&__person-wrapper{
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+	&__user{
+		display: none;
+		@include screen('650px'){
+			display: block;
+			color: $white;
+			@include textRegular(16);
+		}
+	}
+	&__logout-button{
+		background: transparent;
+		border: none;
+		cursor: pointer;
+	}
+	&__burger{
+		z-index: 100;
+		height: 26px;
+		width: 28px;
+		position: relative;
+		margin-left: 4px;
+		margin-right: 20px;
+		background-color: transparent;
+		border: none;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 1.1s;
+	}
+	&__notify-wrapper{
+		position: relative;
+	}
+	&__notify-span{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 18px;
+		width: 18px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: $yellow;
+		color: $white;
+		@include textRegular(12);
+	}
+	&__notify-area{
+		position: relative;
+		top: 34px;
+		right: 0;
+		z-index: 1000;
+	}
+}	
+
+::v-deep(.navbar__burger-svg svg) {
+  width: 32px;
+  height: 32px;
+}

@@ -1,0 +1,10 @@
+.notify__wrapper{
+  padding: 22px;
+  background-color: $lightGreen;
+  color: $white;
+  @include textRegular(14);
+  border-radius: 8px;
+  &.alert{
+    background-color: $lightRed;
+  }
+}

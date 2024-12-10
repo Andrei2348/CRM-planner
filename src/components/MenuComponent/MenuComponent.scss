@@ -1,0 +1,69 @@
+.menu{
+	&__wrapper{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 8px;
+		width: 100%;
+		margin: 20px 0;
+		.visible{
+			padding-left: 10px;
+		}
+	}
+	&__svg-image{
+		display: none;
+		@include screen('450px'){
+			display: block;
+		}
+		&.visible{
+			display: block;
+		}
+	}
+	&__router-link{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 0 10px 7px;
+		gap: 10px;
+		background-color: transparent;
+		border: none;
+		position: relative;
+		transition: all ease-in-out 0.5s;
+		cursor: pointer;
+		&:hover{
+			background-color: $gray2;
+		}
+		&:disabled{
+			background-color: $disabledAsibeBCG;
+			cursor: unset;
+		}
+		&.visible{
+			padding: 10px;
+			justify-content: flex-start;
+		}
+	}
+	&__router-text{
+		opacity: 0;
+		visibility: hidden;
+		width: 0;
+		color: $white;
+		white-space: nowrap;
+		transition: opacity ease 3.9s;
+		@include textRegular(16);
+		&.visible{
+			opacity: 1;
+			visibility: visible;
+			width: 100%;
+		}
+	}
+	&__button-span{
+		height: 6px;
+		width: 6px;
+		border-radius: 50%;
+		position: absolute;
+		right: 4px;
+	}
+}
+

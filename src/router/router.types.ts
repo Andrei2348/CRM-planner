@@ -1,9 +1,11 @@
 export enum RouteNamesEnum {
-  home = "home",
-  one = "one",
-  two = "two",
-  three = "three",
-  four = "four",
-  five = "five",
-  six = "six",
+  projects = "projects",
+  boards = "boards",
+  login = "login",
+  register = "register",
+  notFound = "notFound",
+  users = "users",
+  links = "links",
+  settings = "settings"
 }
+

@@ -1,0 +1,73 @@
+.select{
+	position: relative;
+	cursor: pointer;
+	&__icon{
+		position: absolute;
+		&-button{
+			transition: all ease 0.5s;
+			transform: rotate(90deg);
+		}
+		&-button.active{
+			transform: rotate(-90deg);
+		}
+	}
+	&__label{
+		margin-bottom: 8px;
+		color: $white;
+		@include textLight(16);
+	}
+	&__face{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 18px;
+		line-height: 1;
+		font-weight: 300;
+		padding: 12px;
+		outline: none;
+		border: 1px solid $gray;
+		color: $white;
+		border-radius: 4px;
+		background-color: transparent;
+	}
+	&__title{
+		color: $white;
+		white-space: nowrap;
+		@include textMedium(14);
+	}
+	&__menu{
+		position: absolute;
+		border-radius: 4px;
+		background-color: $modalLayerNoTransparent;
+		box-shadow: 0px 0px 10.2px 0px #9F9F9F47;
+		border: 1px solid $gray;
+		z-index: 2000;
+		padding: 1px 0;
+		left: 0;
+		width: 100%;
+		&-item{
+			@include textRegular(14);
+			color: $gray;
+			cursor: pointer;
+			padding: 16px 10px;
+			margin: 0 1px;
+			transform: all ease-out 0.5s;
+			white-space: nowrap;
+			&.empty{
+				display: none;
+			}
+			&:hover{
+				background-color: $darkViolet;
+			}
+		}
+		&-top{
+			top: auto;
+			bottom: 68px;
+		}
+		&-bottom{
+			bottom: auto;
+			top: 80px;
+		}
+	}
+}

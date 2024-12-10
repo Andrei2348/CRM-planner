@@ -1,0 +1,32 @@
+.notify{
+  &__buttons-wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 10px;
+    @include screen('450px'){
+      flex-direction: row;
+    }
+  }
+  &__button{
+    @include secondaryButton;
+    display: block;
+    width: 100%;
+    @include screen('450px'){
+      width: auto;
+      display: inline-block;
+    }
+  }
+  &__text{
+    @include textLight(16);
+  }
+  &__username{
+    @include textMedium(16);
+  }
+  &__project{
+    color: $yellow;
+    @include textMedium(16);
+  }
+}

@@ -1,8 +1,71 @@
 .aside{
 	position: fixed;
 	left: 0;
-	top: 0;
+	top: 60px;
 	height: 100vh;
-	width: 200px;
 	background-color: $black;
+	z-index: 50;
+	width: 0;
+	border-top: 1px solid $gray2;
+	transition: all ease-in-out 0.5s;
+	@include screen('450px'){
+		width: 60px;
+		border-right: 1px solid $gray2;
+	}
+	&.visible{
+		width: 100%;	
+		@include screen('450px'){
+			width: 260px;
+		}
+	}
+	&__container{
+		overflow-y: auto;
+		height: 90vh;
+		@include screen('450px'){
+			overflow-y: hidden;
+			height: 100vh;
+		}
+	}
+	&__date-wrapper{
+		display: flex;
+		@include screen('450px'){
+			justify-content: center;
+		}
+	}
+	&__date-picker{
+		position: relative;
+		width: 250px;
+		transform: translateX(-100%);
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity ease 0.3s;
+		transition: transform ease 0.8s;
+		&::after{
+			content: '';
+			position: absolute;
+			top: 50px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+		&.visible{
+			transform: translateX(0);
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+::v-deep(.svg_image svg) {
+  width: 24px;
+  height: 24px;
+}
+::v-deep(.svg_image svg path) {
+  stroke: $gray;
+}
+::v-deep(.svg_image:hover svg path) {
+  stroke: $blue;
+}
+::v-deep(.dp__theme_dark) {
+  --dp-menu-border-color: #141736;
 }

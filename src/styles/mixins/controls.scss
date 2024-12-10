@@ -1,15 +1,17 @@
 @mixin input {
-  height: 52px;
-  @include textRegular(14);
-  padding: 14px 16px;
-  box-sizing: border-box;
-  background: $white;
-  border: 1.4px solid $gray3;
-  border-radius: 14px;
-  color: $black;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 300;
+  padding: 12px 30px 12px 6px;
   outline: none;
+  border: 1px solid $gray;
+  color: $white;
+  border-radius: 4px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
   &:focus {
-    outline: 3px solid $gray4;
+    outline: 2px solid $gray4;
     border-color: $gray;
   }
   &:hover {
@@ -19,8 +21,19 @@
     background: $gray5;
     border-color: $gray2;
   }
+  &:read-only{
+    border: 1px solid $gray2;
+    outline: none;
+    color: $gray;
+  }
+  &::placeholder {
+    font-size: 14px;
+    line-height: 1;
+    color: $gray2;
+    font-weight: 300;
+  }
   &.error {
-    outline: 3px solid $bgRed;
+    outline: 2px solid $red;
     border-color: $red;
   }
 }
@@ -31,53 +44,92 @@
   @include centering;
   transition: background, opacity 0.2s linear;
   height: $height;
-  padding: 17px 30px 18px 28px;
+  padding: 12px 30px;
   gap: 10px;
-  border-radius: 14px;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
 @mixin primaryButton($height: 52px) {
   @include button($height);
-  background: $green;
+  background: $violet;
   color: $white;
   &:hover {
-    background: $darkGreen;
+    background: $darkViolet;
   }
   &:disabled {
-    background: $lightGreen;
-    color: $gray2;
+    background: $lightBlue;
+    color: $gray;
     cursor: unset;
   }
 }
 
 @mixin secondaryButton($height: 52px) {
   @include button($height);
-  background: $lightGreen;
-  color: $darkGreen;
+  justify-content: flex-start;
+  background: $darkViolet;
+  color: $white;
   &:hover {
-    background: $lightGreen2;
+    background: $darkBlue;
   }
   &:disabled {
-    cursor: unset;
-    background: $lightGreen;
+    background: $lightBlue;
     color: $gray2;
+    cursor: unset;
   }
 }
 
-@mixin redButton($height: 52px) {
+@mixin yellowButton($height: 52px) {
   @include button($height);
-  background: $red;
+  justify-content: flex-start;
+  background: $yellow;
   color: $white;
   &:hover {
-    background: $darkRed;
+    background: $darkYellow;
   }
   &:disabled {
-    background: $bgRed;
+    background: $lightYellow;
     color: $gray2;
     cursor: unset;
   }
 }
+
+@mixin circleButton($height: 52px) {
+  border: none;
+  background: $darkViolet;
+  height: $height;
+  width: $height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background: $darkBlue;
+  }
+  &:disabled {
+    background: $lightBlue;
+    cursor: unset;
+  }
+}
+
+@mixin circleButtonTransparent($height: 52px) {
+  border: none;
+  background: transparent;
+  height: $height;
+  width: $height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  &:disabled {
+    background: $lightBlue;
+    color: $gray2;
+    cursor: unset;
+  }
+}
+
 
 @mixin grayButton($height: 52px) {
   @include button($height);
