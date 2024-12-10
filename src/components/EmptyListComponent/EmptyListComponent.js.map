@@ -1,0 +1,1 @@
+{"version":3,"file":"EmptyListComponent.js","sourceRoot":"","sources":["EmptyListComponent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,KAAK,CAAA;AAErC,eAAe,eAAe,CAAC;IAC7B,IAAI,EAAE,oBAAoB;IAC1B,KAAK,EAAE;QACP,OAAO,EAAE;YACR,IAAI,EAAE,MAAM;YACZ,QAAQ,EAAE,IAAI;SACd;KACA;IAED,KAAK;QACH,OAAO,EACN,CAAA;IACH,CAAC;CACF,CAAC,CAAA"}
