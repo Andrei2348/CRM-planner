@@ -67,10 +67,10 @@ export default defineComponent({
       }
     })
 
-    const registerUserHandler = () => {
+    const registerUserHandler = async () => {
       const dataToSend = userData
       delete dataToSend.repassword
-      userStore.userRegisterRequest('register', dataToSend)
+      await userStore.userRegisterRequest('register', dataToSend)
     }
 
     return {  
